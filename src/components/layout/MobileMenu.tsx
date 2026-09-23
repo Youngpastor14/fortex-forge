@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { primaryNav } from '@/data/navigation'
+import BrandLogo from '@/components/ui/BrandLogo'
 
 interface MobileMenuProps {
   id: string
@@ -99,24 +100,14 @@ export default function MobileMenu({ id, isOpen, onClose }: MobileMenuProps) {
       >
         {/* Header row */}
         <div className="flex items-center justify-between px-6 h-[72px] border-b border-forge-border flex-shrink-0">
-          <Link
+          <BrandLogo
             to="/"
             className="flex items-center gap-3"
+            iconClassName="w-[30px] h-[30px]"
+            textClassName="font-display font-bold text-forge-ink text-[15px] tracking-[0.05em] uppercase leading-none"
+            variant="dark"
             onClick={onClose}
-            aria-label="Fortex Forge — Home"
-          >
-            <div className="w-[32px] h-[32px] flex-shrink-0">
-              <img
-                src="/assets/brand/black_icon.svg"
-                alt=""
-                aria-hidden="true"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <span className="font-display font-bold text-forge-ink text-[15px] tracking-[0.06em] uppercase leading-none">
-              Fortex Forge
-            </span>
-          </Link>
+          />
 
           <button
             ref={firstFocusableRef}

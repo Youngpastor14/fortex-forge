@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { footerNav } from '@/data/navigation'
+import BrandLogo from '@/components/ui/BrandLogo'
 
 // ─── GlobalFooter ─────────────────────────────────────────────────────────────
 // Dark Forge Ink background, 3-column layout:
@@ -25,24 +26,13 @@ export default function GlobalFooter() {
           {/* ── Col 1: Brand ─────────────────────────────────────────────── */}
           <div className="lg:col-span-2">
             {/* Brand mark */}
-            <Link
+            <BrandLogo
               to="/"
               className="inline-flex items-center gap-3.5 group mb-6"
-              aria-label="Fortex Forge — Home"
-            >
-              {/* Icon mark — white version via CSS invert on dark bg */}
-              <div className="w-[38px] h-[38px] flex-shrink-0">
-                <img
-                  src="/assets/brand/black_icon.svg"
-                  alt=""
-                  aria-hidden="true"
-                  className="w-full h-full object-contain invert"
-                />
-              </div>
-              <span className="font-display font-bold text-white text-[16px] tracking-[0.06em] uppercase leading-none select-none">
-                Fortex Forge
-              </span>
-            </Link>
+              iconClassName="w-[36px] h-[36px]"
+              textClassName="font-display font-bold text-white text-[17px] tracking-[0.05em] uppercase leading-none select-none"
+              variant="white"
+            />
 
             {/* Brand tagline */}
             <p className="text-body-sm text-white/60 leading-relaxed max-w-[340px] mb-8">

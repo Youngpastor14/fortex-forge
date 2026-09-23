@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { primaryNav } from '@/data/navigation'
+import BrandLogo from '@/components/ui/BrandLogo'
 import MobileMenu from './MobileMenu'
 
 // ─── GlobalHeader ─────────────────────────────────────────────────────────────
@@ -68,24 +69,13 @@ export default function GlobalHeader() {
             className="flex items-center justify-between h-[72px]"
           >
             {/* ── Brand Mark ────────────────────────────────────────────── */}
-            <Link
+            <BrandLogo
               to="/"
               className="flex items-center gap-3.5 flex-shrink-0 group"
-              aria-label="Fortex Forge — Home"
-            >
-              {/* Official icon mark: black_icon.svg with tight viewBox crop */}
-              <div className="w-[38px] h-[38px] flex-shrink-0">
-                <img
-                  src="/assets/brand/black_icon.svg"
-                  alt="Fortex Forge mark"
-                  className="w-full h-full object-contain"
-                  aria-hidden="true"
-                />
-              </div>
-              <span className="font-display font-bold text-forge-ink text-[16px] tracking-[0.06em] uppercase leading-none select-none">
-                Fortex Forge
-              </span>
-            </Link>
+              iconClassName="w-[36px] h-[36px]"
+              textClassName="font-display font-bold text-forge-ink text-[17px] tracking-[0.05em] uppercase leading-none select-none"
+              variant="dark"
+            />
 
             {/* ── Desktop Navigation ────────────────────────────────────── */}
             <ul
