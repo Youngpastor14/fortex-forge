@@ -1,0 +1,92 @@
+import type { Insight } from '@/types/content'
+
+// Insights editorial data. Author: Melo Kaji (Insights Editor).
+// Cover images map to /public/assets/insights/{id}/cover.webp
+
+export const insights: Insight[] = [
+  {
+    id: 'the-trust-deficit',
+    title: 'The Trust Deficit: Why Most B2B Brands Fail Before the Meeting',
+    excerpt: "Before a prospect ever speaks to your team, they've already formed an opinion. And for most B2B companies, that opinion is costing them deals they never knew they lost.",
+    category: 'brand-strategy',
+    categoryLabel: 'Brand Strategy',
+    author: {
+      name: 'Melo Kaji',
+      role: 'Insights Editor',
+      avatarSrc: '/assets/insights/authors/melo-kaji.webp',
+    },
+    publishedAt: '2025-03-14',
+    readTime: '9 min read',
+    coverImage: '/assets/insights/the-trust-deficit/cover.webp',
+    href: '/insights/the-trust-deficit',
+    isFeatured: true,
+  },
+  {
+    id: 'logo-is-not-a-brand',
+    title: "Your Logo Is Not Your Brand. Here's What Is.",
+    excerpt: 'The conflation of logo with brand is one of the most expensive mistakes a growing company can make. This is what a brand actually consists of - and why it matters for commercial outcomes.',
+    category: 'visual-identity',
+    categoryLabel: 'Visual Identity',
+    author: {
+      name: 'Melo Kaji',
+      role: 'Insights Editor',
+      avatarSrc: '/assets/insights/authors/melo-kaji.webp',
+    },
+    publishedAt: '2025-02-28',
+    readTime: '7 min read',
+    coverImage: '/assets/insights/logo-is-not-a-brand/cover.webp',
+    href: '/insights/logo-is-not-a-brand',
+    isFeatured: false,
+  },
+  {
+    id: 'what-positioning-actually-is',
+    title: "What Positioning Actually Is (And What Everyone Gets Wrong)",
+    excerpt: "Positioning is not your tagline. It's not your niche. It's the logical foundation that determines how every other decision in your business gets made.",
+    category: 'brand-strategy',
+    categoryLabel: 'Brand Strategy',
+    author: {
+      name: 'Melo Kaji',
+      role: 'Insights Editor',
+      avatarSrc: '/assets/insights/authors/melo-kaji.webp',
+    },
+    publishedAt: '2025-02-05',
+    readTime: '11 min read',
+    coverImage: '/assets/insights/what-positioning-actually-is/cover.webp',
+    href: '/insights/what-positioning-actually-is',
+    isFeatured: false,
+  },
+  {
+    id: 'redesign-without-strategy',
+    title: "Redesigning Without a Strategy Is Just Rearranging Furniture",
+    excerpt: "Every few years, ambitious companies redesign their brand. Most walk away with a new aesthetic and the same underlying problem. Here's why that happens - and how to prevent it.",
+    category: 'process',
+    categoryLabel: 'Process',
+    author: {
+      name: 'Melo Kaji',
+      role: 'Insights Editor',
+      avatarSrc: '/assets/insights/authors/melo-kaji.webp',
+    },
+    publishedAt: '2025-01-16',
+    readTime: '8 min read',
+    coverImage: '/assets/insights/redesign-without-strategy/cover.webp',
+    href: '/insights/redesign-without-strategy',
+    isFeatured: false,
+  },
+  {
+    id: 'pricing-and-brand-authority',
+    title: "How Brand Authority Lets You Charge What You're Worth",
+    excerpt: "Price resistance is rarely about price. It's about the gap between how much you charge and how much authority your brand projects. Closing that gap is the highest-ROI move in your business.",
+    category: 'growth',
+    categoryLabel: 'Growth',
+    author: {
+      name: 'Melo Kaji',
+      role: 'Insights Editor',
+      avatarSrc: '/assets/insights/authors/melo-kaji.webp',
+    },
+    publishedAt: '2024-12-10',
+    readTime: '6 min read',
+    coverImage: '/assets/insights/pricing-and-brand-authority/cover.webp',
+    href: '/insights/pricing-and-brand-authority',
+    isFeatured: false,
+  },
+]

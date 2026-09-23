@@ -1,0 +1,377 @@
+/* ============================================================
+   FORTEX FORGE — Global Stylesheet
+   
+   Load order:
+   1. Tailwind base / components / utilities
+   2. CSS custom properties (design tokens)
+   3. Base element resets
+   4. Global utility classes
+   5. Reduced-motion overrides
+   ============================================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Custom Properties (Design Tokens) ─────────────────────────────────
+   Mirror the Tailwind config for cases where CSS variables are needed directly.
+   ─────────────────────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    /* Colors */
+    --color-forge-blue:       #1557FF;
+    --color-forge-blue-hover: #0D3FD4;
+    --color-forge-blue-soft:  #E8EFFE;
+    --color-forge-ink:        #0D1117;
+    --color-forge-secondary:  #3D4657;
+    --color-forge-muted:      #5A6270;
+    --color-forge-subtle:     #747E91;
+    --color-forge-border:     #E1E5EC;
+    --color-forge-canvas:     #FFFFFF;
+    --color-forge-surface:    #F7F8FA;
+    --color-forge-container:  #EEF1F6;
+
+    /* Typography */
+    --font-display: "Instrument Sans", system-ui, ui-sans-serif, sans-serif;
+    --font-body:    "Inter",           system-ui, ui-sans-serif, sans-serif;
+    --font-mono:    ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    /* Motion */
+    --duration-fast:     150ms;
+    --duration-standard: 250ms;
+    --duration-slow:     400ms;
+    --ease-forge:        cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-forge-ink);
+    background-color: var(--color-forge-canvas);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  /* Accessible global focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-forge-blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  ::selection {
+    background-color: var(--color-forge-blue);
+    color: white;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-forge-border) transparent;
+  }
+}
+
+/* ─── Component Classes ─────────────────────────────────────────────────────
+   Reusable multi-token compositions.
+   ─────────────────────────────────────────────────────────────────────────── */
+@layer components {
+
+  /* Skip-to-content accessibility link */
+  .skip-to-content {
+    @apply absolute -top-full left-4 z-[9999]
+           bg-forge-blue text-white
+           px-6 py-3 rounded-b-md
+           font-semibold text-body-sm
+           no-underline
+           transition-[top] duration-fast ease-in;
+  }
+  .skip-to-content:focus {
+    @apply top-0;
+  }
+
+  /* Containers */
+  .container-standard {
+    @apply max-w-container mx-auto px-6 sm:px-8 lg:px-12;
+  }
+  .container-wide {
+    @apply max-w-wide mx-auto px-6 sm:px-8 lg:px-12;
+  }
+  .container-editorial {
+    @apply max-w-editorial mx-auto px-6 sm:px-8;
+  }
+  .container-form {
+    @apply max-w-form mx-auto px-6 sm:px-8;
+  }
+
+  /* Section vertical rhythm */
+  .section-spacing {
+    @apply py-section-sm md:py-section-md lg:py-section-lg;
+  }
+  .section-spacing-lg {
+    @apply py-section-md md:py-section-lg lg:py-section-xl;
+  }
+
+  /* Eyebrow / section label */
+  .eyebrow {
+    @apply inline-flex items-center gap-2
+           text-eyebrow font-bold uppercase tracking-widest
+           text-forge-muted;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply flex-shrink-0 w-[2.5px] h-[12px] bg-forge-blue rounded-sm;
+  }
+
+  /* Alias matching the approved Stitch .eyebrow-tick naming */
+  .eyebrow-label {
+    @apply inline-flex items-center gap-2
+           text-eyebrow font-bold uppercase tracking-widest
+           text-forge-muted;
+  }
+  .eyebrow-label::before {
+    content: '';
+    @apply flex-shrink-0 w-[2.5px] h-[12px] bg-forge-blue rounded-sm;
+  }
+
+  /* Hairline dividers */
+  .hairline-t { @apply border-t border-forge-border; }
+  .hairline-b { @apply border-b border-forge-border; }
+  .hairline   { @apply border border-forge-border; }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           px-7 py-3.5 rounded-pill
+           bg-forge-blue text-white font-semibold text-label-md
+           shadow-cta
+           transition-all duration-standard
+           hover:bg-forge-blue-hover hover:shadow-cta-hover hover:-translate-y-px
+           active:translate-y-0 active:shadow-cta
+           disabled:opacity-50 disabled:cursor-not-allowed
+           disabled:hover:translate-y-0 disabled:hover:bg-forge-blue;
+  }
+
+  .btn-inverse {
+    @apply inline-flex items-center justify-center gap-2
+           px-7 py-3.5 rounded-pill
+           bg-forge-ink text-white font-semibold text-label-md
+           shadow-ambient
+           transition-all duration-standard
+           hover:bg-neutral-800 hover:-translate-y-px
+           active:translate-y-0
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           px-7 py-3.5 rounded-pill
+           bg-forge-canvas text-forge-ink font-semibold text-label-md
+           border border-forge-border
+           transition-all duration-standard
+           hover:bg-forge-surface hover:border-forge-muted hover:-translate-y-px
+           active:translate-y-0
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-text {
+    @apply inline-flex items-center gap-1.5
+           text-forge-ink font-semibold text-body-sm
+           border-b border-transparent
+           transition-all duration-standard
+           hover:border-forge-ink hover:gap-2;
+  }
+
+  /* Card foundation */
+  .card {
+    @apply bg-forge-canvas rounded-lg border border-forge-border shadow-card
+           transition-all duration-standard;
+  }
+  .card-hover {
+    @apply hover:-translate-y-1 hover:shadow-card-hover;
+  }
+
+  /* Form foundations */
+  .input-base {
+    @apply w-full bg-forge-canvas border border-forge-border rounded-md
+           px-4 py-3 text-body-sm text-forge-ink placeholder-forge-subtle
+           transition-all duration-fast
+           focus:outline-none focus:ring-2 focus:ring-forge-blue/20 focus:border-forge-blue
+           disabled:bg-forge-surface disabled:cursor-not-allowed;
+  }
+  .input-error {
+    @apply border-status-error ring-2 ring-status-error/20;
+  }
+  .label-base {
+    @apply block text-label-sm font-semibold text-forge-ink mb-1.5;
+  }
+  .error-text  { @apply text-label-sm text-status-error mt-1; }
+  .helper-text { @apply text-label-sm text-forge-muted mt-1; }
+
+  /* Navigation */
+  .nav-link {
+    @apply text-body-sm font-medium text-forge-muted py-1
+           transition-colors duration-fast hover:text-forge-ink;
+  }
+  .nav-link-active {
+    @apply text-forge-ink font-semibold;
+  }
+}
+
+/* ─── Utility Layer ─────────────────────────────────────────────────────────
+   ─────────────────────────────────────────────────────────────────────────── */
+@layer utilities {
+  .overflow-x-safe { overflow-x: clip; }
+  .text-balance    { text-wrap: balance; }
+  .select-none-decorative { @apply select-none pointer-events-none; }
+}
+
+/* ─── Prose: Long-Form Article Body ─────────────────────────────────────────
+   Used in InsightDetailPage for article body rendering.
+   Max reading width applied at container level (max-w-[680px]).
+   ─────────────────────────────────────────────────────────────────────────── */
+.prose-forge {
+  /* Base text */
+  font-family: var(--font-body);
+  font-size: 1.0625rem;        /* 17px — comfortable reading size */
+  line-height: 1.75;
+  color: var(--color-forge-secondary);
+
+  /* Paragraphs */
+  & p { margin-bottom: 1.5rem; }
+  & p:last-child { margin-bottom: 0; }
+
+  /* Headings */
+  & h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+    color: var(--color-forge-ink);
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  & h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    font-weight: 700;
+    color: var(--color-forge-ink);
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  & h4 {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-forge-ink);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Lists */
+  & ul, & ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  & ul { list-style-type: disc; }
+  & ol { list-style-type: decimal; }
+  & li { margin-bottom: 0.5rem; }
+
+  /* Blockquote — pull quote treatment */
+  & blockquote {
+    border-left: 3px solid var(--color-forge-blue);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: var(--color-forge-surface);
+    border-radius: 0 0.5rem 0.5rem 0;
+    & p {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-style: italic;
+      color: var(--color-forge-ink);
+      margin-bottom: 0;
+    }
+  }
+
+  /* Links */
+  & a {
+    color: var(--color-forge-blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    &:hover { color: var(--color-forge-blue-hover); }
+  }
+
+  /* Strong */
+  & strong {
+    font-weight: 700;
+    color: var(--color-forge-ink);
+  }
+
+  /* Inline images */
+  & img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    margin: 2rem 0;
+    border: 1px solid var(--color-forge-border);
+  }
+  & figcaption {
+    font-size: 0.8125rem;
+    color: var(--color-forge-muted);
+    text-align: center;
+    margin-top: -1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Code */
+  & code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: var(--color-forge-container);
+    padding: 0.15em 0.4em;
+    border-radius: 0.25rem;
+    color: var(--color-forge-ink);
+  }
+
+  /* Horizontal rule */
+  & hr {
+    border: none;
+    border-top: 1px solid var(--color-forge-border);
+    margin: 2.5rem 0;
+  }
+}
+
+/* ─── Reduced Motion (Foundation for all future animation) ─────────────────
+   ALL animations added in later phases MUST honour this rule.
+   ─────────────────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
