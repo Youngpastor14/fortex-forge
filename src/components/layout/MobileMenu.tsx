@@ -105,7 +105,7 @@ export default function MobileMenu({ id, isOpen, onClose }: MobileMenuProps) {
             onClick={onClose}
             aria-label="Fortex Forge — Home"
           >
-            <div className="w-[28px] h-[28px] overflow-hidden">
+            <div className="w-[32px] h-[32px] flex-shrink-0">
               <img
                 src="/assets/brand/black_icon.svg"
                 alt=""
@@ -113,7 +113,7 @@ export default function MobileMenu({ id, isOpen, onClose }: MobileMenuProps) {
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="font-display font-bold text-forge-ink text-[13px] tracking-[0.08em] uppercase leading-none">
+            <span className="font-display font-bold text-forge-ink text-[15px] tracking-[0.06em] uppercase leading-none">
               Fortex Forge
             </span>
           </Link>

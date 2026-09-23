@@ -27,11 +27,11 @@ export default function GlobalFooter() {
             {/* Brand mark */}
             <Link
               to="/"
-              className="inline-flex items-center gap-3 group mb-6"
+              className="inline-flex items-center gap-3.5 group mb-6"
               aria-label="Fortex Forge — Home"
             >
               {/* Icon mark — white version via CSS invert on dark bg */}
-              <div className="w-[32px] h-[32px] overflow-hidden flex-shrink-0">
+              <div className="w-[38px] h-[38px] flex-shrink-0">
                 <img
                   src="/assets/brand/black_icon.svg"
                   alt=""
@@ -39,7 +39,7 @@ export default function GlobalFooter() {
                   className="w-full h-full object-contain invert"
                 />
               </div>
-              <span className="font-display font-bold text-white text-[14px] tracking-[0.08em] uppercase leading-none select-none">
+              <span className="font-display font-bold text-white text-[16px] tracking-[0.06em] uppercase leading-none select-none">
                 Fortex Forge
               </span>
             </Link>

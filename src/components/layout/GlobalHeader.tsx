@@ -70,11 +70,11 @@ export default function GlobalHeader() {
             {/* ── Brand Mark ────────────────────────────────────────────── */}
             <Link
               to="/"
-              className="flex items-center gap-3 flex-shrink-0 group"
+              className="flex items-center gap-3.5 flex-shrink-0 group"
               aria-label="Fortex Forge — Home"
             >
-              {/* Official icon mark: black_icon.svg, cropped to the visible mark */}
-              <div className="w-[34px] h-[34px] flex-shrink-0 overflow-hidden">
+              {/* Official icon mark: black_icon.svg with tight viewBox crop */}
+              <div className="w-[38px] h-[38px] flex-shrink-0">
                 <img
                   src="/assets/brand/black_icon.svg"
                   alt="Fortex Forge mark"
@@ -82,10 +82,7 @@ export default function GlobalHeader() {
                   aria-hidden="true"
                 />
               </div>
-              {/* Wordmark — rendered as styled text per A01 audit recommendation.
-                  The full logo SVG (ff_prim_logo.svg) has viewBox 1920×1080 which
-                  makes it impractical for header use; the icon + text approach is used. */}
-              <span className="font-display font-bold text-forge-ink text-[15px] tracking-[0.08em] uppercase leading-none select-none">
+              <span className="font-display font-bold text-forge-ink text-[16px] tracking-[0.06em] uppercase leading-none select-none">
                 Fortex Forge
               </span>
             </Link>
