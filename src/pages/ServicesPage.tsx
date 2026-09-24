@@ -266,7 +266,7 @@ export default function ServicesPage() {
       ════════════════════════════════════════════════════════════════════ */}
       <section
         className="relative w-full overflow-hidden min-h-[90vh] flex flex-col justify-between"
-        style={{ backgroundImage: "url('/assets/services/hero-bg.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+        style={{ backgroundImage: "url('/assets/services/01-hero.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}
         aria-labelledby="services-hero-heading"
       >
         {/* Dual gradient scrims: left-to-right + top/bottom */}
@@ -366,7 +366,7 @@ export default function ServicesPage() {
             <div className="lg:col-span-7 bg-forge-surface rounded-2xl border border-forge-border p-6 md:p-8 shadow-sm">
               <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 bg-slate-100">
                 <img
-                  src="/assets/services/brand-comparison.webp"
+                  src="/assets/services/02-brand-comparison.webp"
                   alt="Stationery comparison: superficial logo versus strategic brand identity"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -586,7 +586,7 @@ export default function ServicesPage() {
             <div className="lg:col-span-6">
               <div className="relative rounded-2xl overflow-hidden shadow-lg border border-forge-border">
                 <img
-                  src="/assets/services/card-strategy.webp"
+                  src="/assets/services/04-strategy-and-positioning.webp"
                   alt="Strategic brand positioning — clear market differentiation"
                   className="w-full aspect-[4/3] object-cover"
                   loading="lazy"
@@ -651,7 +651,7 @@ export default function ServicesPage() {
             <div className="lg:col-span-6 order-2 lg:order-1">
               <div className="relative rounded-2xl overflow-hidden shadow-lg border border-forge-border">
                 <img
-                  src="/assets/services/card-identity.webp"
+                  src="/assets/services/05-brand-identity.webp"
                   alt="Brand identity suite — stationery and guidelines"
                   className="w-full aspect-[4/3] object-cover"
                   loading="lazy"
@@ -773,7 +773,7 @@ export default function ServicesPage() {
             <div className="lg:col-span-6">
               <div className="relative rounded-2xl overflow-hidden shadow-lg border border-forge-border">
                 <img
-                  src="/assets/services/card-web.webp"
+                  src="/assets/services/06-web-design-and-development.webp"
                   alt="High-performance digital experience displayed on modern device"
                   className="w-full aspect-[4/3] object-cover"
                   loading="lazy"
@@ -830,7 +830,7 @@ export default function ServicesPage() {
             <div className="lg:col-span-6 order-2 lg:order-1">
               <div className="relative rounded-2xl overflow-hidden shadow-lg border border-forge-border">
                 <img
-                  src="/assets/services/card-complete.webp"
+                  src="/assets/services/07-complete-brand-and-web.webp"
                   alt="Unified brand identity and digital platform multi-screen display"
                   className="w-full aspect-[4/3] object-cover"
                   loading="lazy"
@@ -1061,7 +1061,7 @@ export default function ServicesPage() {
       ════════════════════════════════════════════════════════════════════ */}
       <section
         className="relative w-full overflow-hidden bg-cover bg-center py-24 lg:py-32"
-        style={{ backgroundImage: "url('/assets/services/hero-bg.webp')" }}
+        style={{ backgroundImage: "url('/assets/services/09-closing.webp')" }}
         aria-labelledby="services-cta-heading"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/60" aria-hidden="true" />

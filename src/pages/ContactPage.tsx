@@ -455,10 +455,20 @@ export default function ContactPage() {
           Approved copy from Stitch export, zero modification.
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="w-full bg-forge-surface py-20 border-b border-forge-border"
+        className="relative w-full bg-forge-surface py-20 border-b border-forge-border overflow-hidden"
         aria-labelledby="process-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+          <img
+            src="/assets/contact/needs-logo-correction/02-what-happens-next.webp"
+            alt=""
+            className="w-full h-full object-cover opacity-15"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-forge-surface via-forge-surface/90 to-forge-surface" />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="max-w-2xl mb-14">
             <Eyebrow>Our Process</Eyebrow>
             <h2 id="process-heading" className="font-display text-3xl sm:text-4xl font-bold tracking-[-0.025em] text-forge-ink mb-3">
@@ -513,10 +523,20 @@ export default function ContactPage() {
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="intake-form"
-        className="w-full bg-white py-20 lg:py-24 border-b border-forge-border"
+        className="relative w-full bg-white py-20 lg:py-24 border-b border-forge-border overflow-hidden"
         aria-labelledby="form-heading"
       >
-        <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-8">
+        <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+          <img
+            src="/assets/contact/03-project-diagnostic.webp"
+            alt=""
+            className="w-full h-full object-cover opacity-[0.06]"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/95 to-white" />
+        </div>
+        <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 lg:px-8">
           {/* Form header */}
           <div className="text-center max-w-xl mx-auto mb-14">
             <Eyebrow>Diagnostic & Intake</Eyebrow>
@@ -885,10 +905,20 @@ export default function ContactPage() {
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="contact-channels"
-        className="w-full bg-forge-surface py-20 border-b border-forge-border"
+        className="relative w-full bg-forge-surface py-20 border-b border-forge-border overflow-hidden"
         aria-labelledby="alt-contact-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+          <img
+            src="/assets/contact/04-alternative-contact.webp"
+            alt=""
+            className="w-full h-full object-cover opacity-15"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-forge-surface via-forge-surface/90 to-forge-surface" />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
             <div>
               <Eyebrow>Direct Routing</Eyebrow>
@@ -986,6 +1016,16 @@ export default function ContactPage() {
         className="w-full bg-[#080C14] text-white py-24 relative overflow-hidden"
         aria-labelledby="closing-heading"
       >
+        <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+          <img
+            src="/assets/contact/needs-logo-correction/05-closing.webp"
+            alt=""
+            className="w-full h-full object-cover opacity-20"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#080C14] via-[#080C14]/80 to-[#080C14]/90" />
+        </div>
         {/* Subtle background watermark */}
         <div
           className="absolute -bottom-28 -right-10 pointer-events-none select-none opacity-[0.03] font-display font-bold text-white"

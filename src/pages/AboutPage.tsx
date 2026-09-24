@@ -372,7 +372,7 @@ export default function AboutPage() {
               <div className="lg:col-span-7">
                 <div className="relative rounded-2xl overflow-hidden shadow-xl border border-forge-border bg-slate-100">
                   <img
-                    src="/assets/about/story.webp"
+                    src="/assets/about/02-story.webp"
                     alt="Fortex Forge Origin Architecture"
                     className="w-full h-auto object-cover"
                     loading="lazy"
@@ -486,7 +486,7 @@ export default function AboutPage() {
             <div className="lg:col-span-6">
               <div className="rounded-2xl overflow-hidden shadow-xl border border-forge-border bg-white">
                 <img
-                  src="/assets/about/values.webp"
+                  src="/assets/about/06-values.webp"
                   alt="Fortex Forge Brand Architecture Values"
                   className="w-full h-auto object-cover"
                   loading="lazy"
@@ -564,7 +564,7 @@ export default function AboutPage() {
             <div className="lg:col-span-6">
               <div className="rounded-2xl overflow-hidden shadow-2xl border border-forge-border bg-white">
                 <img
-                  src="/assets/about/mission.webp"
+                  src="/assets/about/07-process.webp"
                   alt="Fortex Forge How We Work"
                   className="w-full h-auto object-cover"
                   loading="lazy"
@@ -685,7 +685,7 @@ export default function AboutPage() {
             <div className="lg:col-span-6">
               <div className="rounded-2xl overflow-hidden shadow-2xl border border-forge-border bg-slate-50">
                 <img
-                  src="/assets/about/mission.webp"
+                  src="/assets/about/12-mission.webp"
                   alt="Fortex Forge Office Still Life"
                   className="w-full h-auto object-cover"
                   loading="lazy"
@@ -918,11 +918,11 @@ export default function AboutPage() {
           Asymmetric 7-col/5-col header, 3×2 principle cards, conviction bar
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-24 lg:py-32 bg-white border-b border-forge-border"
+        className="py-24 lg:py-32 bg-white border-b border-forge-border relative overflow-hidden"
         id="principles"
         aria-labelledby="principles-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
           {/* Asymmetric header */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-end">
             <div className="lg:col-span-7">
@@ -993,7 +993,7 @@ export default function AboutPage() {
 
       {/* ════════════════════════════════════════════════════════════════════
           11. PARTNER FIT — "The right partners build further. Together."
-          Architectural BG (opacity-10), 2-col comparison cards, action bar
+          Architectural BG, 2-col comparison cards, action bar
       ════════════════════════════════════════════════════════════════════ */}
       <section
         className="py-24 lg:py-32 bg-forge-surface border-b border-forge-border relative overflow-hidden"
@@ -1001,9 +1001,9 @@ export default function AboutPage() {
         aria-labelledby="partner-fit-heading"
       >
         {/* Architectural wall background */}
-        <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" aria-hidden="true">
+        <div className="absolute inset-0 z-0 opacity-15 pointer-events-none" aria-hidden="true">
           <img
-            src="/assets/about/partner-fit.webp"
+            src="/assets/about/09-partner-fit.webp"
             alt=""
             className="w-full h-full object-cover object-center"
             loading="lazy"
@@ -1117,7 +1117,7 @@ export default function AboutPage() {
           {/* Transformation image */}
           <div className="rounded-3xl overflow-hidden shadow-xl border border-forge-border bg-slate-50 mb-16">
             <img
-              src="/assets/about/story.webp"
+              src="/assets/about/10-journey.webp"
               alt="Our Journey — Three Stage Transformation"
               className="w-full h-auto object-cover"
               loading="lazy"
@@ -1211,7 +1211,7 @@ export default function AboutPage() {
             <div className="lg:col-span-6 relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-forge-border bg-white group">
                 <img
-                  src="/assets/about/closing-cta.webp"
+                  src="/assets/about/14-closing.webp"
                   alt="Fortex Forge Closing Monolith Monument"
                   className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                   loading="lazy"

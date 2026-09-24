@@ -306,12 +306,15 @@ export default function HomePage() {
           aria-hidden="true"
         >
           <img
-            src="/assets/home/hidden-cost.webp"
+            src="/assets/home/02-hidden-cost.webp"
             alt=""
-            className="absolute right-[-10%] sm:right-0 bottom-0 w-full sm:w-[75%] lg:w-[58%] h-full object-contain object-right-bottom mix-blend-multiply opacity-80 sm:opacity-95 lg:opacity-100"
+            className="absolute right-[-10%] sm:right-0 bottom-0 w-full sm:w-[75%] lg:w-[58%] h-full object-contain object-right-bottom mix-blend-multiply opacity-85 sm:opacity-95 lg:opacity-100"
             loading="lazy"
             decoding="async"
           />
+          {/* White gradient — protects left copy */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent w-full lg:w-1/2 pointer-events-none" />
+
           {/* Blueprint annotations — large screens only, purely decorative */}
           <div className="hidden lg:block absolute right-[28%] top-[14%] text-[10px] font-mono font-bold text-neutral-400 tracking-wider leading-tight">
             MISALIGNED<br />MESSAGE<br /><span className="text-forge-blue">+</span>
@@ -394,9 +397,9 @@ export default function HomePage() {
           aria-hidden="true"
         >
           <img
-            src="/assets/home/trust-proof.webp"
+            src="/assets/home/03-trust-and-proof.webp"
             alt=""
-            className="w-full h-40 md:h-56 lg:h-72 object-cover object-bottom mix-blend-multiply opacity-80"
+            className="w-full h-44 md:h-60 lg:h-80 object-cover object-bottom mix-blend-multiply opacity-85"
             loading="lazy"
             decoding="async"
           />
@@ -501,7 +504,7 @@ export default function HomePage() {
             aria-hidden="true"
           >
             <img
-              src="/assets/home/approach.webp"
+              src="/assets/home/04-our-approach.webp"
               alt=""
               className="w-full h-auto object-contain mx-auto mix-blend-multiply"
               loading="lazy"
@@ -616,7 +619,7 @@ export default function HomePage() {
             aria-hidden="true"
           >
             <img
-              src="/assets/home/process.webp"
+              src="/assets/home/05-how-we-work.webp"
               alt=""
               className="w-full h-auto object-contain mx-auto mix-blend-multiply"
               loading="lazy"
@@ -693,7 +696,7 @@ export default function HomePage() {
               aria-hidden="true"
             >
               <img
-                src="/assets/home/consequences.webp"
+                src="/assets/home/06-consequence-with-lettering.webp"
                 alt=""
                 className="w-full h-auto object-contain mix-blend-multiply"
                 loading="lazy"
@@ -766,7 +769,7 @@ export default function HomePage() {
           aria-hidden="true"
         >
           <img
-            src="/assets/home/faq.webp"
+            src="/assets/home/07-faq.webp"
             alt=""
             className="absolute right-[-12%] sm:right-[-4%] lg:right-0 bottom-0 sm:top-0 w-[85%] sm:w-[65%] lg:w-[48%] h-full object-contain object-right-bottom mix-blend-multiply opacity-85 lg:opacity-100"
             loading="lazy"
@@ -845,7 +848,7 @@ export default function HomePage() {
           aria-hidden="true"
         >
           <img
-            src="/assets/home/cta.webp"
+            src="/assets/home/08-closing.webp"
             alt=""
             className="absolute right-[-15%] sm:right-[-5%] lg:right-0 bottom-0 w-[95%] sm:w-[75%] lg:w-[58%] h-full object-contain object-right-bottom mix-blend-multiply opacity-90 lg:opacity-100"
             loading="lazy"

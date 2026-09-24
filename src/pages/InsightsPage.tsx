@@ -340,28 +340,39 @@ export default function InsightsPage() {
           Approved copy from Stitch export.
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="w-full py-20 lg:py-24 bg-[#F2F4F6] border-y border-forge-border"
+        className="relative w-full py-20 lg:py-28 bg-[#0B0F19] text-white border-y border-forge-border overflow-hidden"
         aria-label="Founder perspective"
       >
-        <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+        <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+          <img
+            src="/assets/insights/needs-logo-correction/06-founder-background.webp"
+            alt=""
+            className="w-full h-full object-cover opacity-20"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/85" />
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           {/* Quote icon */}
           <div
-            className="w-12 h-12 rounded-full bg-forge-blue/10 text-forge-blue flex items-center justify-center mx-auto mb-8 text-2xl font-bold select-none"
+            className="w-12 h-12 rounded-full bg-forge-blue/20 text-forge-blue flex items-center justify-center mx-auto mb-8 text-2xl font-bold select-none"
             aria-hidden="true"
           >
             "
           </div>
 
           <blockquote>
-            <p className="font-display text-2xl sm:text-3xl lg:text-[2.1rem] text-forge-ink tracking-[-0.02em] leading-snug mb-8 font-medium">
+            <p className="font-display text-2xl sm:text-3xl lg:text-[2.1rem] text-white tracking-[-0.02em] leading-snug mb-8 font-medium">
               "You don't need more content. You need clearer ideas. In an era of infinite noise, the rarest and most valuable brand asset is absolute clarity."
             </p>
             <footer>
               <cite className="not-italic">
-                <span className="font-display text-base text-forge-ink font-bold block">
+                <span className="font-display text-base text-white font-bold block">
                   Ayobami Egbewole (Melo Kaji)
                 </span>
-                <span className="text-xs text-forge-muted mt-1 block font-medium">
+                <span className="text-xs text-slate-400 mt-1 block font-medium">
                   Founder &amp; Creative Director, Fortex Forge
                 </span>
               </cite>
@@ -382,8 +393,19 @@ export default function InsightsPage() {
         aria-labelledby="newsletter-heading"
       >
         <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="p-8 sm:p-10 lg:p-12 rounded-2xl bg-[#F7F8FA] border border-forge-border shadow-sm">
-            <div className="text-center max-w-2xl mx-auto mb-8">
+          <div className="relative overflow-hidden p-8 sm:p-10 lg:p-12 rounded-2xl bg-[#F7F8FA] border border-forge-border shadow-sm">
+            <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+              <img
+                src="/assets/insights/needs-logo-correction/07-newsletter.webp"
+                alt=""
+                className="w-full h-full object-cover opacity-15"
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/80 to-white/90" />
+            </div>
+
+            <div className="relative z-10 text-center max-w-2xl mx-auto mb-8">
               <Eyebrow>Fortnightly Intelligence</Eyebrow>
               <h2
                 id="newsletter-heading"
@@ -398,7 +420,7 @@ export default function InsightsPage() {
 
             {/* Email form — visual only */}
             <form
-              className="max-w-md mx-auto flex flex-col sm:flex-row gap-2"
+              className="relative z-10 max-w-md mx-auto flex flex-col sm:flex-row gap-2"
               onSubmit={(e) => e.preventDefault()}
               aria-label="Newsletter subscription"
             >
@@ -421,7 +443,7 @@ export default function InsightsPage() {
               </button>
             </form>
 
-            <p className="mt-4 text-center text-xs text-forge-muted">
+            <p className="relative z-10 mt-4 text-center text-xs text-forge-muted">
               Fortnightly release. No sponsored content. Unsubscribe at any time.
             </p>
           </div>

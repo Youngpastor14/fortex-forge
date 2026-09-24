@@ -75,7 +75,7 @@ export default function WorkPage() {
         {/* Full-bleed workspace background */}
         <div className="absolute inset-0 z-0 flex justify-end pointer-events-none" aria-hidden="true">
           <img
-            src="/assets/work/hero-bg.webp"
+            src="/assets/work/01-portfolio-hero.webp"
             alt=""
             className="w-full lg:w-3/4 h-full object-cover object-right lg:object-center opacity-95 lg:opacity-100"
             fetchPriority="high"
@@ -315,10 +315,20 @@ export default function WorkPage() {
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="featured-case-study"
-        className="py-24 bg-forge-surface border-t border-b border-forge-border"
+        className="relative py-24 bg-forge-surface border-t border-b border-forge-border overflow-hidden"
         aria-labelledby="case-study-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+          <img
+            src="/assets/work/02-featured-case-study.webp"
+            alt=""
+            className="w-full h-full object-cover opacity-15"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-forge-surface via-forge-surface/90 to-forge-surface" />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
             {/* Left — narrative */}
             <div className="lg:col-span-5">
@@ -544,10 +554,20 @@ export default function WorkPage() {
           5. OUR APPROACH — Vanity Work vs Real Results + 4 strategic pillars
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-24 bg-forge-surface border-t border-b border-forge-border"
+        className="relative py-24 bg-forge-surface border-t border-b border-forge-border overflow-hidden"
         aria-labelledby="approach-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+          <img
+            src="/assets/work/05-process.webp"
+            alt=""
+            className="w-full h-full object-cover opacity-15"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-forge-surface via-forge-surface/90 to-forge-surface" />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="max-w-2xl mb-16">
             <Eyebrow>Our Approach</Eyebrow>
             <h2
@@ -667,7 +687,17 @@ export default function WorkPage() {
         className="py-24 bg-white relative overflow-hidden"
         aria-labelledby="work-cta-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+          <img
+            src="/assets/work/07-closing-scene.webp"
+            alt=""
+            className="w-full h-full object-cover opacity-10"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/70" />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Conversion column */}
             <div className="lg:col-span-6">
