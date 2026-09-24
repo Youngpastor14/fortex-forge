@@ -223,7 +223,7 @@ export default function AboutPage() {
         {/* Blueprint monument image — full right */}
         <div className="absolute inset-0 z-0 flex justify-end pointer-events-none" aria-hidden="true">
           <img
-            src="/assets/about/philosophy.webp"
+            src="/assets/about/hero-bg.webp"
             alt=""
             className="w-full lg:w-3/4 h-full object-cover object-right lg:object-center opacity-95 lg:opacity-100"
             fetchPriority="high"

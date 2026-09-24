@@ -232,9 +232,9 @@ export default function HomePage() {
           aria-hidden="true"
         >
           <img
-            src="/assets/home/heromonolith.webp"
+            src="/assets/home/hero-bg.webp"
             alt=""
-            className="absolute right-[-15%] sm:right-[-5%] lg:right-0 top-0 w-[95%] sm:w-[80%] lg:w-[62%] h-full object-contain object-right-bottom mix-blend-multiply opacity-90 lg:opacity-100"
+            className="absolute right-[-10%] sm:right-[-5%] lg:right-0 top-0 w-[95%] sm:w-[80%] lg:w-[62%] h-full object-contain object-right-bottom mix-blend-multiply opacity-95 lg:opacity-100"
             fetchPriority="high"
             decoding="async"
             width={900}
@@ -253,13 +253,12 @@ export default function HomePage() {
               id="hero-heading"
               className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.03em] text-forge-ink leading-[1.08] mb-6 text-balance"
             >
-              Your business is{' '}
-              <span className="text-forge-blue">being judged</span>{' '}
-              before you get the chance to explain it.
+              Your brand is costing you{' '}
+              <span className="text-forge-blue">clients right now.</span>
             </h1>
 
             <p className="text-base sm:text-lg text-forge-secondary leading-relaxed max-w-xl mb-9">
-              We make sure that judgment works in your favor.
+              Not because your product is weak. Because your brand doesn't communicate why you're worth trusting.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">

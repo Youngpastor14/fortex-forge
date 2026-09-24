@@ -71,7 +71,7 @@ export default function InsightsPage() {
         {/* Background editorial image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/assets/insights/hero.webp"
+            src="/assets/insights/hero-bg.webp"
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover object-right lg:object-center"
@@ -80,12 +80,12 @@ export default function InsightsPage() {
           />
           {/* Left gradient scrim — protects text legibility */}
           <div
-            className="absolute inset-0 bg-gradient-to-r from-[#F8F9FB] via-[#F8F9FB]/95 sm:via-[#F8F9FB]/90 lg:via-[#F8F9FB]/80 to-transparent"
+            className="absolute inset-0 bg-gradient-to-r from-white via-white/95 sm:via-white/90 lg:via-white/80 to-transparent"
             aria-hidden="true"
           />
           {/* Bottom fade for mobile */}
           <div
-            className="absolute inset-0 bg-gradient-to-t from-[#F8F9FB] via-transparent to-transparent lg:hidden"
+            className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden"
             aria-hidden="true"
           />
         </div>
@@ -110,7 +110,7 @@ export default function InsightsPage() {
 
             {/* Topic pill strip — scrolls to the article grid */}
             <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Browse topics">
-              {['Branding', 'Business', 'Strategy', 'Identity', 'Founder Thinking'].map((topic) => (
+              {['Branding', 'Business', 'Web & Tech', 'Marketing', 'Founder Journey'].map((topic) => (
                 <a
                   key={topic}
                   href="#latest-perspectives"

@@ -282,10 +282,8 @@ export default function ServicesPage() {
               id="services-hero-heading"
               className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.025em] text-forge-ink leading-[1.08] mb-6"
             >
-              We fix the one thing<br />
-              keeping clients from<br />
-              trusting you.<br />
-              <span className="text-forge-blue">Your brand.</span>
+              From clarity to clients.<br />
+              <span className="text-forge-blue">That's the work.</span>
             </h1>
 
             <p className="text-lg md:text-xl text-forge-secondary max-w-lg mb-8 leading-relaxed">
@@ -314,10 +312,10 @@ export default function ServicesPage() {
           <div className="bg-white/95 backdrop-blur-md rounded-2xl p-5 md:p-6 shadow-[0_8px_30px_rgba(10,15,29,0.06)] border border-forge-border">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { icon: '▦', label: 'Strategy-led',    sub: 'Rigorous approach' },
-                { icon: '↑', label: 'Built for results', sub: 'Tangible business impact' },
-                { icon: '◎', label: 'Trusted Founders', sub: 'For serious builders' },
-                { icon: '∞', label: 'End-to-End',       sub: 'Lifecycle support' },
+                { icon: '▦', label: 'Strategy-led approach',  sub: 'Rigorous commercial positioning' },
+                { icon: '↗', label: 'Built for real results', sub: 'Tangible business impact' },
+                { icon: '🛡', label: 'Trusted by serious founders', sub: 'For ambitious builders' },
+                { icon: '∞', label: 'End-to-end support',     sub: 'Complete lifecycle delivery' },
               ].map((badge) => (
                 <div key={badge.label} className="flex items-center gap-3.5">
                   <div className="w-10 h-10 rounded-xl bg-forge-blue/10 text-forge-blue flex items-center justify-center shrink-0 font-mono font-bold text-base">

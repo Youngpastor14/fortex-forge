@@ -65,68 +65,64 @@ export default function WorkPage() {
   return (
     <>
       {/* ════════════════════════════════════════════════════════════════════
-          1. WORK HERO
-          5-col value messaging + 7-col featured project visual
-          Trust ribbon: 20+ / 10+ / 100%
+          1. WORK HERO — Full bleed panoramic workspace background
+          Reference: Reference mockups/Portfolio/work.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative pt-12 pb-20 lg:pt-16 lg:pb-24 overflow-hidden bg-forge-surface"
-        id="work"
+        className="relative min-h-[660px] lg:min-h-[760px] flex items-center bg-white border-b border-forge-border overflow-hidden"
         aria-labelledby="work-hero-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-            {/* Left — value messaging */}
-            <div className="lg:col-span-5 flex flex-col items-start z-10">
-              <Eyebrow>Our Work</Eyebrow>
+        {/* Full-bleed workspace background */}
+        <div className="absolute inset-0 z-0 flex justify-end pointer-events-none" aria-hidden="true">
+          <img
+            src="/assets/work/hero-bg.webp"
+            alt=""
+            className="w-full lg:w-3/4 h-full object-cover object-right lg:object-center opacity-95 lg:opacity-100"
+            fetchPriority="high"
+            decoding="async"
+          />
+          {/* White gradient — protects left copy */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 lg:via-white/30 to-transparent" />
+        </div>
 
-              <h1
-                id="work-hero-heading"
-                className="font-display text-4xl sm:text-5xl lg:text-[54px] leading-[1.1] font-bold text-forge-ink mb-6 tracking-[-0.025em]"
-              >
-                Ideas, brands and websites{' '}
-                <span className="text-forge-blue">brought to life.</span>
-              </h1>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 lg:py-28 w-full">
+          <div className="max-w-xl">
+            <Eyebrow>OUR WORK</Eyebrow>
 
-              <p className="text-base sm:text-lg text-forge-muted mb-8 leading-relaxed max-w-lg">
-                A look at the brands, websites and products we've helped build, from early ideas to real results.
-              </p>
+            <h1
+              id="work-hero-heading"
+              className="font-display text-4xl sm:text-5xl lg:text-[56px] leading-[1.08] font-bold text-forge-ink mb-6 tracking-[-0.025em]"
+            >
+              Ideas, brands and websites{' '}
+              <br className="hidden sm:inline" />
+              <span className="text-forge-blue">brought to life.</span>
+            </h1>
 
-              <a
-                href="#selected-work"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-forge-blue text-white font-medium text-sm shadow-md hover:bg-forge-blue-hover transition-all active:scale-95 mb-14 group"
-              >
-                <span>View Our Work</span>
-                <span className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-xs" aria-hidden="true">↗</span>
-              </a>
+            <p className="text-base sm:text-lg text-forge-secondary mb-8 leading-relaxed max-w-lg">
+              A look at the brands, websites and products we've helped build, from early ideas to real results.
+            </p>
 
-              {/* Trust ribbon */}
-              <div className="grid grid-cols-3 gap-6 sm:gap-8 pt-8 border-t border-forge-border w-full" aria-label="Portfolio statistics">
-                <div>
-                  <div className="font-display text-2xl sm:text-3xl font-bold text-forge-ink">20+</div>
-                  <div className="text-xs text-forge-muted mt-1 leading-snug">Projects delivered</div>
-                </div>
-                <div className="border-l border-forge-border pl-6 sm:pl-8">
-                  <div className="font-display text-2xl sm:text-3xl font-bold text-forge-ink">10+</div>
-                  <div className="text-xs text-forge-muted mt-1 leading-snug">Brands built</div>
-                </div>
-                <div className="border-l border-forge-border pl-6 sm:pl-8">
-                  <div className="font-display text-2xl sm:text-3xl font-bold text-forge-ink">100%</div>
-                  <div className="text-xs text-forge-muted mt-1 leading-snug">Client-focused</div>
-                </div>
+            <a
+              href="#selected-work"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-forge-blue text-white font-semibold text-sm shadow-lg shadow-forge-blue/25 hover:bg-forge-blue-hover transition-all hover:-translate-y-0.5 mb-12 group"
+            >
+              <span>View Our Work</span>
+              <span className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-xs" aria-hidden="true">↗</span>
+            </a>
+
+            {/* Stats strip */}
+            <div className="grid grid-cols-3 gap-6 sm:gap-8 pt-8 border-t border-forge-border max-w-lg" aria-label="Portfolio statistics">
+              <div>
+                <div className="font-display text-2xl sm:text-3xl font-bold text-forge-ink">20+</div>
+                <div className="text-xs text-forge-muted mt-1 leading-snug">Projects delivered</div>
               </div>
-            </div>
-
-            {/* Right — featured project visual */}
-            <div className="lg:col-span-7 relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-forge-border bg-white aspect-[16/11]">
-                <img
-                  src={featured.coverImage}
-                  alt={`${featured.client} — ${featured.tagline}`}
-                  className="w-full h-full object-cover object-center"
-                  fetchPriority="high"
-                  decoding="async"
-                />
+              <div className="border-l border-forge-border pl-6 sm:pl-8">
+                <div className="font-display text-2xl sm:text-3xl font-bold text-forge-ink">10+</div>
+                <div className="text-xs text-forge-muted mt-1 leading-snug">Brands built</div>
+              </div>
+              <div className="border-l border-forge-border pl-6 sm:pl-8">
+                <div className="font-display text-2xl sm:text-3xl font-bold text-forge-ink">100%</div>
+                <div className="text-xs text-forge-muted mt-1 leading-snug">Client-focused</div>
               </div>
             </div>
           </div>
