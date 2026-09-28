@@ -52,7 +52,7 @@ const processSteps = [
     title: 'Build',
     caption: 'CREATE A HIGH-PERFORMING PRESENCE',
     body: 'We build a modern, conversion-focused website and digital touchpoints that turn attention into opportunities.',
-    deliverables: ['Website design & dev', 'Integration & testing', 'Launch preparation'],
+    deliverables: ['Website design & development', 'Integration & testing', 'Launch preparation'],
   },
   {
     num: '04',
@@ -60,7 +60,7 @@ const processSteps = [
     title: 'Launch',
     caption: 'GO TO MARKET WITH CONFIDENCE',
     body: "We help you launch, refine and position your brand for long-term growth with ongoing support when needed.",
-    deliverables: ['Go-live support', 'Performance review', 'Growth roadmap'],
+    deliverables: ['Go-live support', 'Performance review', 'Growth recommendations'],
   },
 ]
 
@@ -583,13 +583,13 @@ export default function HomePage() {
 
       {/* ════════════════════════════════════════════════════════════════════
           5. PROCESS (HOW WE WORK)
-          Full background composition: 05-how-we-work.webp spans the section.
-          Stage headers above the 4 rocks, rocks visible across the middle,
-          deliverables grid aligned beneath on the marble floor.
-          Reference: Reference mockups/home page/home 4th sec.png
+          Exact composition matching media_1790593974690.jpg reference mockup.
+          Background 05-how-we-work.webp spans the section.
+          Each column contains stage header above, rock spacing in center,
+          and deliverables on reflective floor.
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-24 lg:py-32 bg-white border-t border-forge-border overflow-hidden min-h-[960px] lg:min-h-[1100px] flex flex-col justify-between"
+        className="relative py-20 lg:py-28 bg-white border-t border-forge-border overflow-hidden min-h-[960px] lg:min-h-[1080px] flex flex-col justify-between"
         id="process"
         aria-labelledby="process-heading"
       >
@@ -607,96 +607,110 @@ export default function HomePage() {
           />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mb-auto">
-          {/* Split header */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12 lg:mb-16">
-            <div className="lg:col-span-7">
-              <Eyebrow className="mb-6">HOW WE WORK</Eyebrow>
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
+          {/* Top header row */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-10 lg:mb-16">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 mb-4">
+                <span className="w-1 h-3.5 bg-forge-blue rounded-full" aria-hidden="true" />
+                <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-forge-ink/70">
+                  HOW WE WORK
+                </span>
+              </div>
               <h2
                 id="process-heading"
-                className="font-display text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-[-0.03em] text-forge-ink leading-[1.1]"
+                className="font-display text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-[-0.035em] text-forge-ink leading-[1.06]"
               >
                 A clear process.{' '}
-                <br className="hidden sm:inline" />
-                <span className="text-forge-blue">A stronger outcome.</span>
+                <br />
+                A <span className="text-forge-blue">stronger outcome.</span>
               </h2>
             </div>
-            <div className="lg:col-span-5 flex flex-col justify-between">
-              <div className="hidden lg:flex items-center justify-end gap-2 text-[10px] uppercase tracking-widest text-neutral-400 font-bold mb-4">
-                <span className="w-1.5 h-3 bg-neutral-300 rounded-full" />
-                <span>SAME PRINCIPLES. REAL PROGRESS.</span>
-              </div>
-              <p className="text-base sm:text-lg text-forge-secondary leading-relaxed">
+
+            <div className="flex flex-col sm:flex-row items-start lg:items-center justify-between lg:justify-end gap-6 lg:gap-10 pb-1">
+              <p className="text-forge-secondary text-sm sm:text-base leading-relaxed max-w-sm">
                 In just 6 weeks, we take you from confusion to a clear, credible brand that attracts the right clients and positions you for real growth.
               </p>
+              <div className="hidden lg:flex items-start gap-2.5 shrink-0 text-left border-l-[1.5px] border-forge-blue pl-2.5">
+                <div className="text-[10px] font-bold uppercase tracking-wider text-forge-ink/70 leading-snug">
+                  SAME<br />PRINCIPLES.<br />REAL PROGRESS.
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Stage number banner above the 4 rocks */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-4 pt-2">
+          {/* 4 Process Columns aligned over the 4 rocks */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 xl:gap-8 max-w-[1360px] mx-auto my-4 lg:my-8">
             {processSteps.map((step) => (
-              <div key={step.num} className="bg-white/75 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none p-3 lg:p-0 rounded-xl">
-                <div className="flex items-baseline gap-3">
-                  <span className="text-4xl lg:text-5xl font-display font-extrabold text-neutral-300">
-                    {step.num}
-                  </span>
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 block">
-                      {step.week}
+              <div key={step.num} className="flex flex-col justify-between">
+                {/* Top: 01 Discover */}
+                <div>
+                  <div className="flex items-baseline gap-3.5 mb-1.5">
+                    <span className="font-display text-5xl lg:text-[54px] font-extrabold text-neutral-300 leading-none select-none">
+                      {step.num}
                     </span>
-                    <h3 className="font-display font-bold text-lg sm:text-xl text-forge-ink">{step.title}</h3>
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-0.5">
+                        {step.week}
+                      </span>
+                      <h3 className="font-display font-bold text-xl sm:text-2xl text-forge-ink tracking-tight">
+                        {step.title}
+                      </h3>
+                    </div>
                   </div>
+                  <p className="text-[9.5px] font-bold uppercase tracking-wider text-neutral-500 pl-0.5">
+                    {step.caption}
+                  </p>
                 </div>
-                <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider mt-1">
-                  {step.caption}
-                </p>
+
+                {/* Middle spacing revealing the rocks & connecting blue line from background */}
+                <div className="h-44 sm:h-52 lg:h-60 xl:h-64 pointer-events-none select-none" aria-hidden="true" />
+
+                {/* Bottom: body text + bullet points on marble floor */}
+                <div className="pt-2">
+                  <p className="text-xs sm:text-[13px] text-forge-secondary leading-relaxed mb-4">
+                    {step.body}
+                  </p>
+                  <ul className="space-y-1.5 text-xs text-forge-ink/90 font-medium">
+                    {step.deliverables.map((d) => (
+                      <li key={d} className="flex items-center gap-2">
+                        <span className="text-forge-blue text-xs font-bold shrink-0">→</span>
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* Dedicated space showcasing the 4 rocks & connecting blue line from background */}
-          <div className="w-full max-w-6xl mx-auto h-36 sm:h-48 lg:h-64 pointer-events-none select-none" aria-hidden="true" />
-
-          {/* 4-column deliverables grid beneath the 4 rocks on the marble floor */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-6xl mx-auto mb-16">
-            {processSteps.map((step) => (
-              <div key={step.num} className="space-y-4 bg-white/75 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none p-5 lg:p-0 rounded-2xl lg:rounded-none">
-                <p className="text-xs sm:text-sm text-forge-secondary leading-relaxed">{step.body}</p>
-                <ul className="space-y-2 pt-1">
-                  {step.deliverables.map((d) => (
-                    <li key={d} className="flex items-center gap-2.5 text-xs text-neutral-800 font-medium">
-                      <span className="text-forge-blue font-bold text-sm" aria-hidden="true">→</span>
-                      {d}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          {/* Centered CTA */}
-          <div className="text-center mb-12">
+          {/* Centered CTA Button */}
+          <div className="text-center my-10 sm:my-14">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-forge-blue text-white text-sm font-semibold shadow-lg shadow-forge-blue/25 hover:bg-forge-blue-hover transition-all duration-200 hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 px-9 py-3.5 rounded-full bg-forge-blue text-white text-sm font-semibold shadow-lg shadow-forge-blue/25 hover:bg-forge-blue-hover transition-all duration-200 hover:-translate-y-0.5"
             >
-              Start Your Transformation <span aria-hidden="true">↗</span>
+              Start Your Transformation <span aria-hidden="true" className="text-xs">↗</span>
             </Link>
           </div>
         </div>
 
         {/* Bottom annotations */}
-        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mt-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-3">
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
-              FROM STRATEGY TO IMPACT.
-            </span>
-            <span>IDEAS ARE EVERYWHERE. CLARITY IS RARE.</span>
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
-              BUILT WITH INTENTION. FOR WHAT'S NEXT.
-            </span>
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-4">
+            <div className="flex items-start gap-2 text-left border-l-[1.5px] border-forge-blue pl-2.5">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 leading-tight">
+                FROM STRATEGY<br />TO IMPACT.
+              </div>
+            </div>
+            <div className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
+              IDEAS ARE EVERYWHERE. CLARITY IS RARE.
+            </div>
+            <div className="flex items-start gap-2 text-left border-l-[1.5px] border-forge-blue pl-2.5">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 leading-tight">
+                BUILT WITH INTENTION.<br />FOR WHAT'S NEXT.
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -926,16 +940,16 @@ export default function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
-          8. FINAL CTA
-          Composition: left copy (max-w-2xl), brand monument atmospheric
-          right, dual CTA row, trust badges, annotation footer
+          8. FINAL CTA (READY TO BUILD)
+          Full-bleed background artwork 08-closing.webp with rock monolith
+          on the right and reflective wet marble floor matching home 7th sec.png.
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-24 lg:py-36 bg-white relative border-t border-forge-border overflow-hidden"
+        className="relative py-20 lg:py-28 bg-white border-t border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
         id="contact"
         aria-labelledby="final-cta-heading"
       >
-        {/* Brand monument — atmospheric right bleed */}
+        {/* Full-bleed background artwork matching reference mockup */}
         <div
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
@@ -943,19 +957,36 @@ export default function HomePage() {
           <img
             src="/assets/home/08-closing.webp"
             alt=""
-            className="absolute right-[-15%] sm:right-[-5%] lg:right-0 bottom-0 w-[95%] sm:w-[75%] lg:w-[58%] h-full object-contain object-right-bottom mix-blend-multiply opacity-90 lg:opacity-100"
+            className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply"
             loading="lazy"
             decoding="async"
           />
+          {/* Responsive scrim on mobile/tablet to ensure copy readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent lg:hidden" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="max-w-xl lg:max-w-2xl">
-            <Eyebrow className="mb-6">READY TO BUILD</Eyebrow>
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
+          {/* Top header row */}
+          <div className="flex items-center justify-between gap-8 mb-10 lg:mb-14">
+            <div className="inline-flex items-center gap-2">
+              <span className="w-1 h-3.5 bg-forge-blue rounded-full" aria-hidden="true" />
+              <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-forge-ink/70">
+                READY TO BUILD
+              </span>
+            </div>
 
+            <div className="hidden lg:flex items-start gap-2.5 shrink-0 text-left border-l-[1.5px] border-forge-blue pl-2.5">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-forge-ink/70 leading-snug">
+                BETTER BRANDS.<br />BRIGHTER OPPORTUNITIES.
+              </div>
+            </div>
+          </div>
+
+          {/* Left copy block */}
+          <div className="max-w-xl lg:max-w-2xl">
             <h2
               id="final-cta-heading"
-              className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.03em] text-forge-ink leading-[1.08] mb-6"
+              className="font-display text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-[-0.035em] text-forge-ink leading-[1.08] mb-6"
             >
               Clarity isn't a luxury.{' '}
               <br />
@@ -967,40 +998,70 @@ export default function HomePage() {
             </p>
 
             {/* Dual CTAs */}
-            <div className="flex flex-wrap items-center gap-4 mb-12">
+            <div className="flex flex-wrap items-center gap-4 mb-12 sm:mb-14">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-forge-blue text-white text-sm font-semibold shadow-lg shadow-forge-blue/25 hover:bg-forge-blue-hover transition-all duration-200"
+                className="inline-flex items-center gap-2 px-8 py-3.5 sm:py-4 rounded-full bg-forge-blue text-white text-sm font-semibold shadow-lg shadow-forge-blue/25 hover:bg-forge-blue-hover transition-all duration-200 hover:-translate-y-0.5"
               >
                 Let's Talk <span aria-hidden="true">↗</span>
               </Link>
               <Link
                 to="/work"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white/90 backdrop-blur-sm text-forge-ink border border-forge-border text-sm font-semibold hover:bg-neutral-50 transition-all duration-200"
+                className="inline-flex items-center gap-2 px-8 py-3.5 sm:py-4 rounded-full bg-white/90 backdrop-blur-sm text-forge-ink border border-neutral-300 text-sm font-semibold hover:bg-neutral-50 transition-all duration-200"
               >
                 View Our Work
               </Link>
             </div>
 
-            {/* Trust badges */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-forge-border">
-              {[
-                { icon: '👥', label: 'Strategy-Led Approach' },
-                { icon: '🛡', label: 'Proven Results' },
-                { icon: '📊', label: 'A Partner In Your Growth' },
-              ].map((badge) => (
-                <div key={badge.label} className="flex items-center gap-2 text-xs font-bold text-forge-ink uppercase tracking-wider">
-                  <span className="text-forge-blue" aria-hidden="true">{badge.icon}</span>
-                  {badge.label}
+            {/* Trust badges with vertical dividers */}
+            <div className="flex flex-wrap items-center gap-6 sm:gap-8 pt-2">
+              <div className="flex items-center gap-3">
+                <svg className="w-5 h-5 text-forge-ink/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <div className="text-[11px] font-bold uppercase tracking-wider text-forge-ink leading-tight">
+                  STRATEGY-LED<br />APPROACH
                 </div>
-              ))}
+              </div>
+
+              <div className="hidden sm:block w-px h-7 bg-neutral-300" aria-hidden="true" />
+
+              <div className="flex items-center gap-3">
+                <svg className="w-5 h-5 text-forge-ink/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                <div className="text-[11px] font-bold uppercase tracking-wider text-forge-ink leading-tight">
+                  PROVEN<br />RESULTS
+                </div>
+              </div>
+
+              <div className="hidden sm:block w-px h-7 bg-neutral-300" aria-hidden="true" />
+
+              <div className="flex items-center gap-3">
+                <svg className="w-5 h-5 text-forge-ink/80 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                <div className="text-[11px] font-bold uppercase tracking-wider text-forge-ink leading-tight">
+                  A PARTNER<br />IN YOUR GROWTH
+                </div>
+              </div>
             </div>
           </div>
+        </div>
 
-          {/* Annotation footer */}
-          <div className="mt-24 flex items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-forge-border pt-6">
-            <span>STRATEGY TODAY. A STRONGER TOMORROW.</span>
-            <span>LET'S FORGE WHAT'S NEXT.</span>
+        {/* Bottom annotation footer matching mockup */}
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-4">
+            <div className="flex items-start gap-2 text-left border-l-[1.5px] border-forge-blue pl-2.5">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 leading-tight">
+                STRATEGY TODAY.<br />A STRONGER TOMORROW.
+              </div>
+            </div>
+            <div className="flex items-start gap-2 text-left border-l-[1.5px] border-forge-blue pl-2.5">
+              <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 leading-tight">
+                LET'S FORGE<br />WHAT'S NEXT.
+              </div>
+            </div>
           </div>
         </div>
       </section>
