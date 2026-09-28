@@ -138,16 +138,6 @@ function Eyebrow({ children, className = '', center = false }: { children: React
   )
 }
 
-/** Section annotation footer — uppercase micro-text pair */
-function SectionAnnotation({ left, right }: { left: string; right?: string }) {
-  return (
-    <div className="flex items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-forge-border pt-6">
-      <span>{left}</span>
-      {right && <span>{right}</span>}
-    </div>
-  )
-}
-
 /** Individual FAQ accordion item */
 function FaqItem({ item, isOpen, onToggle }: {
   item: typeof faqItems[0]
@@ -253,12 +243,12 @@ export default function HomePage() {
               id="hero-heading"
               className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.03em] text-forge-ink leading-[1.08] mb-6 text-balance"
             >
-              Your brand is costing you{' '}
-              <span className="text-forge-blue">clients right now.</span>
+              Customers decide about your business{' '}
+              <span className="text-forge-blue">before you say a word.</span>
             </h1>
 
             <p className="text-base sm:text-lg text-forge-secondary leading-relaxed max-w-xl mb-9">
-              Not because your product is weak. Because your brand doesn't communicate why you're worth trusting.
+              We shape that first impression so it works in your favor, and build the website that turns it into inquiries.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -473,47 +463,58 @@ export default function HomePage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
-          4. WHAT ACTUALLY WORKS
-          Composition: centered header, transformation artwork spanning
-          full width (mix-blend-multiply), 3-discipline grid below,
-          section annotation footer
+          4. OUR APPROACH (WHAT ACTUALLY WORKS)
+          Full background composition: 04-our-approach.webp spans the section.
+          Header centered in top sky space, 3 transformation blocks displayed
+          in center, 3-discipline columns aligned beneath on reflective floor.
+          Reference: Reference mockups/home page/home 3rd sec.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-24 lg:py-32 bg-white border-t border-forge-border relative overflow-hidden"
+        className="relative py-24 lg:py-32 bg-white border-t border-forge-border overflow-hidden min-h-[900px] lg:min-h-[1050px] flex flex-col justify-between"
         id="approach"
         aria-labelledby="what-works-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          {/* Centered header */}
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <Eyebrow className="mb-6" center>OUR APPROACH</Eyebrow>
+        {/* Full-bleed background artwork */}
+        <div
+          className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
+          aria-hidden="true"
+        >
+          <img
+            src="/assets/home/04-our-approach.webp"
+            alt=""
+            className="w-full h-full object-cover object-center mix-blend-multiply"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mb-auto">
+          {/* Centered header in top white space */}
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+            <Eyebrow className="mb-5" center>OUR APPROACH</Eyebrow>
             <h2
               id="what-works-heading"
-              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-[-0.03em] text-forge-ink mb-4"
+              className="font-display text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-[-0.03em] text-forge-ink mb-5 leading-[1.1]"
             >
               What Actually <span className="text-forge-blue">Works.</span>
             </h2>
-            <p className="text-base sm:text-lg text-forge-secondary leading-relaxed">
+            <p className="text-base sm:text-lg text-forge-secondary leading-relaxed max-w-2xl mx-auto">
               We don't just make things look good. We build strategic systems that help you attract, convince and retain the right clients.
             </p>
           </div>
 
-          {/* Transformation artwork — full-bleed decorative */}
-          <div
-            className="relative w-full max-w-5xl mx-auto my-6 select-none pointer-events-none"
-            aria-hidden="true"
-          >
-            <img
-              src="/assets/home/04-our-approach.webp"
-              alt=""
-              className="w-full h-auto object-contain mx-auto mix-blend-multiply"
-              loading="lazy"
-              decoding="async"
-            />
+          {/* Dedicated spacing where the 3 monoliths in the background image live */}
+          <div className="relative w-full max-w-5xl mx-auto h-40 sm:h-56 lg:h-72 my-2 pointer-events-none select-none flex items-center justify-between">
+            {/* Overlay numbers 01, 02, 03 on top of the monoliths matching mockup */}
+            <div className="hidden lg:grid grid-cols-3 w-full text-center font-display font-bold text-3xl lg:text-4xl text-neutral-400/90 tracking-tight">
+              <span className="translate-y-2">01</span>
+              <span className="translate-y-2">02</span>
+              <span className="translate-y-2">03</span>
+            </div>
           </div>
 
-          {/* 3-discipline breakdown */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-6 mb-16">
+          {/* 3-discipline breakdown on the reflective ground beneath the blocks */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-5xl mx-auto mt-6 mb-14">
             {[
               {
                 num: '01',
@@ -534,76 +535,116 @@ export default function HomePage() {
                 body: 'We build high-converting websites that turn your brand, message and offers into real business results.',
               },
             ].map((item) => (
-              <div key={item.num} className="space-y-3 pt-4 border-t border-forge-border">
-                <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest font-mono">{item.num}</span>
-                <h3 className="font-display text-2xl font-bold text-forge-ink">{item.title}</h3>
-                <p className="text-xs font-bold tracking-wider uppercase text-neutral-500">{item.subtitle}</p>
-                <p className="text-sm text-forge-secondary leading-relaxed">{item.body}</p>
+              <div
+                key={item.num}
+                className="space-y-3 pt-5 border-t border-neutral-300/80 bg-white/75 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none p-5 lg:p-0 rounded-2xl lg:rounded-none"
+              >
+                <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest font-mono block">
+                  {item.num}
+                </span>
+                <h3 className="font-display text-2xl sm:text-[28px] font-bold text-forge-ink tracking-tight">
+                  {item.title}
+                </h3>
+                <p className="text-xs font-bold tracking-widest uppercase text-neutral-500">
+                  {item.subtitle}
+                </p>
+                <p className="text-sm text-forge-secondary leading-relaxed">
+                  {item.body}
+                </p>
               </div>
             ))}
           </div>
 
-          {/* CTA */}
-          <div className="text-center mb-12">
+          {/* Centered CTA */}
+          <div className="text-center mb-10">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-forge-blue text-white text-sm font-semibold shadow-lg shadow-forge-blue/25 hover:bg-forge-blue-hover transition-all duration-200"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-forge-blue text-white text-sm font-semibold shadow-lg shadow-forge-blue/25 hover:bg-forge-blue-hover transition-all duration-200 hover:-translate-y-0.5"
             >
               Let's Build Your System <span aria-hidden="true">↗</span>
             </Link>
           </div>
+        </div>
 
-          <SectionAnnotation
-            left="STRATEGY. DESIGN. TECHNOLOGY. BUILT FOR REAL GROWTH."
-            right="FROM CLARITY TO OPPORTUNITY."
-          />
+        {/* Bottom annotations */}
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mt-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-3">
+            <span className="flex items-center gap-2">
+              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
+              STRATEGY. DESIGN. TECHNOLOGY. BUILT FOR REAL GROWTH.
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
+              FROM CLARITY TO OPPORTUNITY.
+            </span>
+          </div>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
-          5. PROCESS (HOW THIS WORKS)
-          Composition: split header (7-col / 5-col), 4-stage number banner,
-          process artwork backbone, 4-column deliverables grid, annotation
+          5. PROCESS (HOW WE WORK)
+          Full background composition: 05-how-we-work.webp spans the section.
+          Stage headers above the 4 rocks, rocks visible across the middle,
+          deliverables grid aligned beneath on the marble floor.
+          Reference: Reference mockups/home page/home 4th sec.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-24 lg:py-32 bg-forge-surface border-t border-forge-border relative overflow-hidden"
+        className="relative py-24 lg:py-32 bg-white border-t border-forge-border overflow-hidden min-h-[960px] lg:min-h-[1100px] flex flex-col justify-between"
         id="process"
         aria-labelledby="process-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* Full-bleed background artwork */}
+        <div
+          className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
+          aria-hidden="true"
+        >
+          <img
+            src="/assets/home/05-how-we-work.webp"
+            alt=""
+            className="w-full h-full object-cover object-center mix-blend-multiply"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mb-auto">
           {/* Split header */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12 lg:mb-16">
             <div className="lg:col-span-7">
               <Eyebrow className="mb-6">HOW WE WORK</Eyebrow>
               <h2
                 id="process-heading"
-                className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-[-0.03em] text-forge-ink"
+                className="font-display text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-[-0.03em] text-forge-ink leading-[1.1]"
               >
                 A clear process.{' '}
                 <br className="hidden sm:inline" />
                 <span className="text-forge-blue">A stronger outcome.</span>
               </h2>
             </div>
-            <div className="lg:col-span-5">
-              <p className="text-base text-forge-secondary leading-relaxed">
+            <div className="lg:col-span-5 flex flex-col justify-between">
+              <div className="hidden lg:flex items-center justify-end gap-2 text-[10px] uppercase tracking-widest text-neutral-400 font-bold mb-4">
+                <span className="w-1.5 h-3 bg-neutral-300 rounded-full" />
+                <span>SAME PRINCIPLES. REAL PROGRESS.</span>
+              </div>
+              <p className="text-base sm:text-lg text-forge-secondary leading-relaxed">
                 In just 6 weeks, we take you from confusion to a clear, credible brand that attracts the right clients and positions you for real growth.
               </p>
             </div>
           </div>
 
-          {/* Stage number banner */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-2 pt-4">
+          {/* Stage number banner above the 4 rocks */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-4 pt-2">
             {processSteps.map((step) => (
-              <div key={step.num}>
+              <div key={step.num} className="bg-white/75 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none p-3 lg:p-0 rounded-xl">
                 <div className="flex items-baseline gap-3">
                   <span className="text-4xl lg:text-5xl font-display font-extrabold text-neutral-300">
                     {step.num}
                   </span>
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 block">
                       {step.week}
                     </span>
-                    <h3 className="font-display font-bold text-lg text-forge-ink">{step.title}</h3>
+                    <h3 className="font-display font-bold text-lg sm:text-xl text-forge-ink">{step.title}</h3>
                   </div>
                 </div>
                 <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider mt-1">
@@ -613,29 +654,18 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Process artwork backbone */}
-          <div
-            className="relative w-full max-w-6xl mx-auto my-4 select-none pointer-events-none"
-            aria-hidden="true"
-          >
-            <img
-              src="/assets/home/05-how-we-work.webp"
-              alt=""
-              className="w-full h-auto object-contain mx-auto mix-blend-multiply"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
+          {/* Dedicated space showcasing the 4 rocks & connecting blue line from background */}
+          <div className="w-full max-w-6xl mx-auto h-36 sm:h-48 lg:h-64 pointer-events-none select-none" aria-hidden="true" />
 
-          {/* 4-column deliverables grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-16">
+          {/* 4-column deliverables grid beneath the 4 rocks on the marble floor */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-6xl mx-auto mb-16">
             {processSteps.map((step) => (
-              <div key={step.num} className="space-y-3">
-                <p className="text-xs text-forge-secondary leading-relaxed">{step.body}</p>
-                <ul className="space-y-1.5">
+              <div key={step.num} className="space-y-4 bg-white/75 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none p-5 lg:p-0 rounded-2xl lg:rounded-none">
+                <p className="text-xs sm:text-sm text-forge-secondary leading-relaxed">{step.body}</p>
+                <ul className="space-y-2 pt-1">
                   {step.deliverables.map((d) => (
-                    <li key={d} className="flex items-center gap-2 text-xs text-neutral-700 font-medium">
-                      <span className="text-forge-blue" aria-hidden="true">→</span>
+                    <li key={d} className="flex items-center gap-2.5 text-xs text-neutral-800 font-medium">
+                      <span className="text-forge-blue font-bold text-sm" aria-hidden="true">→</span>
                       {d}
                     </li>
                   ))}
@@ -644,126 +674,165 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* CTA */}
+          {/* Centered CTA */}
           <div className="text-center mb-12">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-forge-blue text-white text-sm font-semibold shadow-lg shadow-forge-blue/25 hover:bg-forge-blue-hover transition-all duration-200"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-forge-blue text-white text-sm font-semibold shadow-lg shadow-forge-blue/25 hover:bg-forge-blue-hover transition-all duration-200 hover:-translate-y-0.5"
             >
               Start Your Transformation <span aria-hidden="true">↗</span>
             </Link>
           </div>
+        </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-forge-border pt-6 gap-3">
-            <span>FROM STRATEGY TO IMPACT.</span>
+        {/* Bottom annotations */}
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mt-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-3">
+            <span className="flex items-center gap-2">
+              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
+              FROM STRATEGY TO IMPACT.
+            </span>
             <span>IDEAS ARE EVERYWHERE. CLARITY IS RARE.</span>
-            <span>BUILT WITH INTENTION. FOR WHAT'S NEXT.</span>
+            <span className="flex items-center gap-2">
+              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
+              BUILT WITH INTENTION. FOR WHAT'S NEXT.
+            </span>
           </div>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
           6. CONSEQUENCES
-          Composition: header left-aligned, escalation monolith artwork
-          full-width, then 4-col grid (3 period cards + dark breakthrough card)
+          Full background composition: 06-consequence-with-lettering.webp spans the section.
+          Monoliths in artwork showcase 3 Months, 6 Months, 12 Months escalation
+          and the glowing 6-week glass monolith with "Let's Talk" CTA.
+          Reference: Reference mockups/home page/home 5th sec.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-24 lg:py-32 bg-white border-t border-forge-border relative overflow-hidden"
+        className="relative py-24 lg:py-32 bg-white border-t border-forge-border overflow-hidden min-h-[820px] lg:min-h-[960px] flex flex-col justify-between"
         id="consequences"
         aria-labelledby="consequences-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          {/* Header */}
-          <div className="max-w-3xl mb-12">
-            <Eyebrow className="mb-6">THE CONSEQUENCE</Eyebrow>
-            <h2
-              id="consequences-heading"
-              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-[-0.03em] text-forge-ink mb-6"
-            >
-              The longer you wait,{' '}
-              <br />
-              <span className="text-forge-blue">the more it costs you.</span>
-            </h2>
-            <p className="text-base sm:text-lg text-forge-secondary leading-relaxed">
-              An unclear brand doesn't just slow growth — it quietly takes opportunities, revenue and market position while you focus on everything else.
-            </p>
-          </div>
-
-          {/* Escalation artwork */}
-          <div className="relative w-full max-w-6xl mx-auto rounded-3xl overflow-hidden pt-6 pb-8">
-            <div
-              className="relative w-full select-none"
-              aria-hidden="true"
-            >
-              <img
-                src="/assets/home/06-consequence-with-lettering.webp"
-                alt=""
-                className="w-full h-auto object-contain mix-blend-multiply"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-
-            {/* 4-column cards: 3 period cards + breakthrough dark card */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
-              {consequencePeriods.map((item) => (
-                <div
-                  key={item.num}
-                  className="bg-neutral-50/90 backdrop-blur-sm p-6 rounded-xl border border-forge-border"
-                >
-                  <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest font-mono">
-                    {item.num}
-                  </span>
-                  <h3 className="font-display font-bold text-lg text-forge-ink mt-2 mb-1">
-                    {item.period}
-                  </h3>
-                  <p className="text-xs text-forge-secondary leading-relaxed">{item.body}</p>
-                </div>
-              ))}
-
-              {/* Breakthrough contrast card */}
-              <div className="bg-forge-ink p-6 rounded-xl border border-forge-blue/40 text-white flex flex-col justify-between shadow-xl relative overflow-hidden">
-                <div className="absolute -right-8 -top-8 w-28 h-28 bg-forge-blue/30 rounded-full blur-2xl pointer-events-none" aria-hidden="true" />
-                <div>
-                  <span className="text-[10px] font-bold text-forge-blue uppercase tracking-widest block mb-2">
-                    OR YOU COULD FIX THIS
-                  </span>
-                  <h3 className="font-display font-bold text-2xl text-white mb-2 leading-tight">
-                    In 6 Weeks.
-                  </h3>
-                  <p className="text-xs text-neutral-300 leading-relaxed mb-6">
-                    Get clarity, build credibility, and start attracting the right clients — faster.
-                  </p>
-                </div>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-forge-blue text-white text-xs font-semibold hover:bg-forge-blue-hover transition-all"
-                >
-                  Let's Talk <span aria-hidden="true">↗</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <SectionAnnotation
-            left="UNCLEAR BRANDS PAY A SILENT PRICE."
-            right="CLARITY CHANGES EVERYTHING."
+        {/* Full-bleed background artwork with escalation monoliths */}
+        <div
+          className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
+          aria-hidden="true"
+        >
+          <img
+            src="/assets/home/06-consequence-with-lettering.webp"
+            alt=""
+            className="w-full h-full object-cover object-bottom mix-blend-multiply"
+            loading="lazy"
+            decoding="async"
           />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mb-auto">
+          {/* Header */}
+          <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-12 lg:mb-16">
+            <div className="max-w-2xl">
+              <Eyebrow className="mb-6">THE CONSEQUENCE</Eyebrow>
+              <h2
+                id="consequences-heading"
+                className="font-display text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-[-0.03em] text-forge-ink leading-[1.1] mb-6"
+              >
+                The longer you wait,{' '}
+                <br />
+                <span className="text-forge-blue">the more it costs you.</span>
+              </h2>
+              <p className="text-base sm:text-lg text-forge-secondary leading-relaxed max-w-xl">
+                An unclear brand doesn't just slow growth — it quietly takes opportunities, revenue and market position while you focus on everything else.
+              </p>
+            </div>
+
+            <div className="hidden lg:flex items-center gap-2 text-[10px] uppercase tracking-widest text-neutral-400 font-bold pt-2">
+              <span className="w-1.5 h-3 bg-neutral-300 rounded-full" />
+              <span>INACTION TODAY, HARDER TOMORROW.</span>
+            </div>
+          </div>
+
+          {/* Period timeline headers positioned above the monolith columns */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto pt-2 pb-36 sm:pb-52 lg:pb-72">
+            {/* 3 Months */}
+            <div className="space-y-1.5">
+              <span className="text-xs font-bold uppercase tracking-widest text-forge-ink font-mono block">
+                3 MONTHS
+              </span>
+              <div className="w-12 h-0.5 bg-neutral-400" />
+            </div>
+
+            {/* 6 Months */}
+            <div className="space-y-1.5">
+              <span className="text-xs font-bold uppercase tracking-widest text-forge-ink font-mono block">
+                6 MONTHS
+              </span>
+              <div className="w-12 h-0.5 bg-neutral-400" />
+            </div>
+
+            {/* 12 Months */}
+            <div className="space-y-1.5">
+              <span className="text-xs font-bold uppercase tracking-widest text-forge-ink font-mono block">
+                12 MONTHS
+              </span>
+              <div className="w-12 h-0.5 bg-neutral-400" />
+            </div>
+
+            {/* 4th Column — Over the glowing glass monolith: CTA button */}
+            <div className="flex flex-col items-start lg:items-center justify-start lg:justify-end pt-2 sm:pt-4">
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-forge-blue text-white text-sm font-semibold shadow-lg shadow-forge-blue/30 hover:bg-forge-blue-hover transition-all duration-200 hover:-translate-y-0.5"
+              >
+                Let's Talk <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Mobile-only readable summary card so mobile users also get clear text */}
+          <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+            {consequencePeriods.map((item) => (
+              <div
+                key={item.num}
+                className="bg-white/90 backdrop-blur-sm p-4 rounded-xl border border-forge-border shadow-sm"
+              >
+                <div className="flex items-center justify-between mb-1">
+                  <h3 className="font-display font-bold text-base text-forge-ink">{item.period}</h3>
+                  <span className="text-xs font-mono text-neutral-400">{item.num}</span>
+                </div>
+                <p className="text-xs text-forge-secondary leading-relaxed">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom annotations */}
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mt-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-3">
+            <span className="flex items-center gap-2">
+              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
+              UNCLEAR BRANDS PAY A SILENT PRICE.
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
+              CLARITY CHANGES EVERYTHING.
+            </span>
+          </div>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
-          7. FAQ
-          Composition: 7-col accordion left + fractured-stone atmospheric
-          right, with editorial quote card (lg+)
-          Single-open accordion behavior (one item open at a time)
+          7. FAQ (FREQUENTLY ASKED QUESTIONS)
+          Full background composition: 07-faq.webp spans the section.
+          Accordion on left, typographic pull-quote & CTA on right,
+          fractured stone artwork anchors the right edge.
+          Reference: Reference mockups/home page/home 6th sec.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-24 lg:py-32 bg-forge-surface border-t border-forge-border relative overflow-hidden"
+        className="py-24 lg:py-32 bg-white border-t border-forge-border relative overflow-hidden min-h-[920px] flex flex-col justify-between"
         id="faq"
         aria-labelledby="faq-heading"
       >
-        {/* Fractured stone — atmospheric right bleed */}
+        {/* Full-bleed background artwork */}
         <div
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
@@ -771,30 +840,40 @@ export default function HomePage() {
           <img
             src="/assets/home/07-faq.webp"
             alt=""
-            className="absolute right-[-12%] sm:right-[-4%] lg:right-0 bottom-0 sm:top-0 w-[85%] sm:w-[65%] lg:w-[48%] h-full object-contain object-right-bottom mix-blend-multiply opacity-85 lg:opacity-100"
+            className="w-full h-full object-cover object-right mix-blend-multiply"
             loading="lazy"
             decoding="async"
           />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            {/* Left column — accordion */}
-            <div className="lg:col-span-7">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mb-auto">
+          {/* Top header row */}
+          <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-12">
+            <div>
               <Eyebrow className="mb-6">FREQUENTLY ASKED QUESTIONS</Eyebrow>
               <h2
                 id="faq-heading"
-                className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-[-0.03em] text-forge-ink mb-4"
+                className="font-display text-4xl sm:text-5xl lg:text-[56px] font-bold tracking-[-0.03em] text-forge-ink leading-[1.1] mb-4"
               >
                 You have questions.{' '}
                 <br />
                 <span className="text-forge-blue">We have answers.</span>
               </h2>
-              <p className="text-base text-forge-secondary mb-10">
+              <p className="text-base sm:text-lg text-forge-secondary max-w-xl">
                 Here are some of the most common questions we get from founders and business owners.
               </p>
+            </div>
 
-              <div className="space-y-4" role="list" aria-label="Frequently asked questions">
+            <div className="hidden lg:flex items-center gap-2 text-[10px] uppercase tracking-widest text-neutral-400 font-bold pt-2">
+              <span className="w-1.5 h-3 bg-neutral-300 rounded-full" />
+              <span>CLEAR ANSWERS. CONFIDENT DECISIONS.</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            {/* Left column — accordion */}
+            <div className="lg:col-span-7">
+              <div className="space-y-3.5" role="list" aria-label="Frequently asked questions">
                 {faqItems.map((item) => (
                   <div key={item.id} role="listitem">
                     <FaqItem
@@ -805,29 +884,43 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-
-              <div className="mt-8">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-forge-blue text-white text-sm font-semibold hover:bg-forge-blue-hover transition-all shadow-md shadow-forge-blue/20"
-                >
-                  Still Have a Question? <span aria-hidden="true">↗</span>
-                </Link>
-              </div>
             </div>
 
-            {/* Right column — editorial quote card */}
-            <div className="lg:col-span-5 flex flex-col justify-end pt-12 lg:pt-0">
-              <div className="bg-white/90 backdrop-blur-md p-8 rounded-2xl border border-forge-border shadow-lg max-w-md ml-auto">
-                <div className="w-1.5 h-6 bg-forge-blue mb-4" aria-hidden="true" />
-                <blockquote className="font-display font-bold text-xl sm:text-2xl text-forge-ink leading-snug mb-4">
+            {/* Right column — editorial quote & CTA */}
+            <div className="lg:col-span-5 flex flex-col justify-between pt-6 lg:pt-12 lg:pl-6">
+              <div className="max-w-sm mb-12">
+                <div className="w-1.5 h-6 bg-forge-blue mb-4 rounded-full" aria-hidden="true" />
+                <blockquote className="font-display font-medium text-2xl sm:text-3xl text-forge-ink leading-snug mb-4">
                   "A clear process leads to a better experience for everyone."
                 </blockquote>
                 <p className="text-xs font-bold uppercase tracking-widest text-neutral-400">
                   — FORTEX FORGE
                 </p>
               </div>
+
+              <div className="pt-4 lg:pt-16">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-forge-blue text-white text-sm font-semibold shadow-lg shadow-forge-blue/25 hover:bg-forge-blue-hover transition-all duration-200 hover:-translate-y-0.5"
+                >
+                  Still Have a Question? <span aria-hidden="true">↗</span>
+                </Link>
+              </div>
             </div>
+          </div>
+        </div>
+
+        {/* Bottom annotations */}
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mt-auto pt-12">
+          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-3">
+            <span className="flex items-center gap-2">
+              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
+              GOOD QUESTIONS BUILD GREAT BRANDS.
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
+              LET'S MAKE IT CLEAR.
+            </span>
           </div>
         </div>
       </section>
