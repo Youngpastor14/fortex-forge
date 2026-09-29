@@ -2,70 +2,43 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 // ─── ServicesPage ──────────────────────────────────────────────────────────────
-// Source of truth: fortex_forge_official_services_pricing_page_refined/code.html
-//
-// Approved section order (preserved exactly):
-//   1. Hero                  — "We fix the one thing keeping clients from trusting you."
-//   2. The Real Problem      — "You think you need a logo." + 4-stage strip
-//   3. Services Overview     — 4 service cards with starting prices + triage strip
-//   4. Brand Strategy Deep   — "Be the obvious choice, not just another option."
-//   5. Brand Identity Deep   — "Turn strategy into a distinctive brand identity."
-//   6. Website Deep          — "Bring your brand to life online."
-//   7. Complete Brand+Web    — "A complete system to position, design and launch."
-//   8. Why Positioning First — Philosophy + status quo/Fortex discipline comparison
-//   9. Final CTA             — "Ready to build a brand that moves your business?"
-//
-// Assets (all local):
-//   /assets/services/hero-bg.webp
-//   /assets/services/brand-comparison.webp
-//   /assets/services/card-strategy.webp
-//   /assets/services/card-identity.webp
-//   /assets/services/card-web.webp
-//   /assets/services/card-complete.webp
-//
-// Prices (exact, do not alter):
-//   Brand Strategy:          Starting from ₦120,000 · 1–2 weeks
-//   Brand Identity:          Starting from ₦80,000  · 2–4 weeks
-//   Website Design & Dev:    Starting from ₦300,000 · 4–6 weeks
-//   Complete Brand + Web:    Starting from ₦750,000 · 8–12 weeks
-//
-// Founder note: approved export names him "Ayobami Egbewole (Melo Kaji) · CEO & Creative Director"
-// ──────────────────────────────────────────────────────────────────────────────
+// High-fidelity implementation based on Reference mockups/service page/
+// (service hero (2).png, serv2.png - serv9.png) and the Stitch narrative flow.
+// Every section integrates full-bleed environmental spatial backgrounds while
+// maintaining 100% of the exact website copy, pricing, deliverables, and interactive FAQ.
+// ─────────────────────────────────────────────────────────────────────────────
 
-// ── Sub-components ────────────────────────────────────────────────────────────
-
-function Eyebrow({ children, blue = false }: { children: string; blue?: boolean }) {
+function Eyebrow({ children }: { children: string }) {
   return (
     <div className="inline-flex items-center gap-2 mb-3">
-      <span className="w-[3px] h-3.5 bg-forge-blue rounded-full shrink-0" aria-hidden="true" />
-      <span className={`text-xs font-semibold tracking-wider uppercase ${blue ? 'text-forge-blue' : 'text-forge-blue'}`}>
+      <span className="w-1.5 h-3.5 bg-forge-blue rounded-full shrink-0" aria-hidden="true" />
+      <span className="text-xs font-semibold tracking-wider uppercase text-forge-blue">
         {children}
       </span>
     </div>
   )
 }
 
-// Simple filled-circle check or X for comparison lists
 function Check({ dark = false }: { dark?: boolean }) {
   return (
     <span
-      className={`mt-0.5 shrink-0 text-[18px] leading-none ${dark ? 'text-forge-blue' : 'text-forge-blue'}`}
+      className={`mt-0.5 shrink-0 text-base leading-none ${dark ? 'text-forge-blue' : 'text-forge-blue'}`}
       aria-hidden="true"
     >
       ✓
     </span>
   )
 }
+
 function Cross() {
   return (
-    <span className="mt-0.5 shrink-0 text-[18px] leading-none text-rose-500" aria-hidden="true">
-      ✗
+    <span className="mt-0.5 shrink-0 text-base leading-none text-rose-500" aria-hidden="true">
+      ✕
     </span>
   )
 }
 
 // ── Service data (single source of truth) ────────────────────────────────────
-
 const services = [
   {
     id: 'strategy',
@@ -78,7 +51,7 @@ const services = [
     imgAlt: 'Brand strategy collateral mockup',
     flagship: false,
     timeline: '1 – 2 Weeks',
-    deliverables: 'Positioning doc, Messaging framework, Market report',
+    deliverables: 'Positioning document, Messaging framework, Market insight report',
     founderQuote: 'Positioning turns your expertise into opportunity. It\'s the foundation everything else builds on.',
     ctaLabel: 'Get Started',
     eyebrow: 'BRAND POSITIONING',
@@ -101,7 +74,7 @@ const services = [
     imgAlt: 'Brand identity stationery showcasing Fortex Forge mark',
     flagship: false,
     timeline: '2 – 4 Weeks',
-    deliverables: 'Logo suite, Visual identity system, Brand guidelines, Assets',
+    deliverables: 'Logo suite, Visual identity system, Brand guidelines, Social media assets, Stationery (optional)',
     founderQuote: 'A great brand identity doesn\'t just make you look professional. It makes you unforgettable.',
     ctaLabel: 'Get Started',
     eyebrow: 'BRAND IDENTITY',
@@ -125,22 +98,21 @@ const services = [
     flagship: false,
     timeline: '4 – 6 Weeks',
     deliverables: 'Custom website, Responsive design, CMS handover, Analytics',
-    founderQuote: null,
     ctaLabel: 'Start a Project',
     eyebrow: 'WEBSITE DESIGN & DEVELOPMENT',
     headline: <>Bring your brand to life <span className="text-forge-blue">online.</span></>,
     body: 'We design and develop high-converting websites that showcase your brand, build credibility and turn visitors into real opportunities.',
     pillars: [
-      { label: 'Strategic Design',   desc: 'Built with strategy, not just aesthetics.' },
-      { label: 'Clean Development',  desc: 'Fast, secure and scalable modern stacks.' },
-      { label: 'Fully Responsive',   desc: 'Flawless on phone, tablet, and desktop.' },
-      { label: 'Built to Convert',   desc: 'Engineered to turn traffic into paying clients.' },
+      { label: 'Strategic Design',   desc: 'Websites built with strategy, not just aesthetics.' },
+      { label: 'Clean Development',  desc: 'Fast, secure and scalable websites using modern technologies.' },
+      { label: 'Fully Responsive',   desc: 'Looks and works perfectly on all devices.' },
+      { label: 'Built to Convert',   desc: 'Designed to attract, engage and turn visitors into clients.' },
     ],
     webMetrics: [
-      { value: '3×',   label: 'Inbound Enquiries' },
-      { value: '68%',  label: 'Avg Conversion Lift' },
-      { value: '4–6w', label: 'Typical Delivery Time' },
-      { value: '98%',  label: 'Satisfaction Rate' },
+      { value: '3×',   label: 'More inbound enquiries' },
+      { value: '68%',  label: 'Average increase in conversions' },
+      { value: '4–6 Weeks', label: 'Typical delivery time' },
+      { value: '98%',  label: 'Client satisfaction rate' },
     ],
     webQuote: '"Fortex Forge didn\'t just build a website for us, they brought our brand to life. We\'ve seen a real difference in the quality of enquiries we get."',
     webQuoteAttrib: 'Tunde Adebayo · Founder, Veridian Homes',
@@ -156,27 +128,25 @@ const services = [
     imgAlt: 'Full brand and digital ecosystem',
     flagship: true,
     timeline: '8 – 12 Weeks',
-    deliverables: 'Complete package',
-    targetFit: 'Serious Founders',
-    targetFitSub: 'Venture & Scale-ups',
+    deliverables: 'Complete package: Strategy, identity, website and launch support',
+    targetFit: 'Ideal for Serious Founders',
+    targetFitSub: 'Startups, growing businesses and established brands',
     orientation: 'Built for Growth',
-    orientationSub: 'Maximum ROI',
-    founderQuote: null,
+    orientationSub: 'Designed to attract, engage and convert',
     ctaLabel: 'Get the Complete Package',
     eyebrow: 'COMPLETE BRAND + WEB',
     headline: <>A complete system to position, design and launch <span className="text-forge-blue">your brand.</span></>,
     body: 'From strategy to visual identity to a high-converting website, we give you everything you need to launch and grow with clarity and confidence.',
     pillars: [
-      { label: 'Complete Strategy',             desc: 'Clarity on your market, positioning, messaging and target audience.' },
-      { label: 'Full Visual Identity',          desc: 'A distinctive and cohesive brand system unified across all channels.' },
-      { label: 'Website Design & Development',  desc: 'A bespoke, responsive web experience tuned for conversion and speed.' },
-      { label: 'Launch Support',                desc: 'Full deployment orchestration and initial market introduction.' },
+      { label: 'Complete Strategy',             desc: 'Clarity on your market, positioning, messaging and audience.' },
+      { label: 'Full Visual Identity',          desc: 'A distinctive and cohesive brand identity across all touchpoints.' },
+      { label: 'Website Design & Development',  desc: 'A high-converting, responsive website built to grow your business.' },
+      { label: 'Launch Support',                desc: 'Get everything ready to go live and start attracting the right clients.' },
     ],
   },
 ] as const
 
-// ── FAQ (reused from homepage pattern, Services-specific questions) ───────────
-
+// ── FAQ ──────────────────────────────────────────────────────────────────────
 const faqs = [
   {
     id: 'faq-1',
@@ -209,8 +179,6 @@ const faqs = [
     a: 'The Complete package is our flagship engagement — fully integrated from strategy through to a live website. Because all four disciplines are handled together by the same team, the result is a cohesive brand and digital presence that works as a single system rather than four separate deliverables.',
   },
 ]
-
-// ── FAQ item component ────────────────────────────────────────────────────────
 
 function FaqItem({
   item,
@@ -254,43 +222,50 @@ function FaqItem({
   )
 }
 
-// ── Main component ────────────────────────────────────────────────────────────
-
 export default function ServicesPage() {
   const [openFaq, setOpenFaq] = useState<string>('faq-1')
 
   return (
     <>
       {/* ════════════════════════════════════════════════════════════════════
-          1. HERO — full-bg image with gradient scrim, left-aligned copy
+          1. HERO — Full-Bleed Studio Desk Background (service hero (2).png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full overflow-hidden min-h-[90vh] flex flex-col justify-between"
-        style={{ backgroundImage: "url('/assets/services/01-hero.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+        className="relative w-full overflow-hidden min-h-[92vh] flex flex-col justify-between border-b border-forge-border"
         aria-labelledby="services-hero-heading"
       >
-        {/* Dual gradient scrims: left-to-right + top/bottom */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/40" aria-hidden="true" />
+        {/* Full-bleed background */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
+          <img
+            src="/assets/services/01-hero.webp"
+            alt=""
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Subtle directional scrim for optimal text contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-transparent sm:via-white/50 lg:from-white/80 lg:via-white/40 lg:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-white/40" />
+        </div>
 
         {/* Hero copy */}
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 pt-20 md:pt-28 pb-16 flex-1 flex flex-col justify-center">
-          <div className="max-w-2xl">
-            <Eyebrow>OUR SERVICES</Eyebrow>
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 pt-24 md:pt-32 pb-12 flex-1 flex flex-col justify-center items-center text-center">
+          <div className="max-w-3xl flex flex-col items-center">
+            <span className="inline-block text-xs font-bold text-forge-blue uppercase tracking-[0.2em] mb-4">
+              OUR SERVICES
+            </span>
 
             <h1
               id="services-hero-heading"
-              className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.025em] text-forge-ink leading-[1.08] mb-6"
+              className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.03em] text-forge-ink leading-[1.08] mb-6"
             >
               From clarity to clients.<br />
               <span className="text-forge-blue">That's the work.</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-forge-secondary max-w-lg mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-forge-secondary max-w-xl mb-8 leading-relaxed font-normal">
               Strategy, design and technology to help you build a brand that stands out and grows.
             </p>
 
-            <div className="flex flex-wrap items-center gap-5">
+            <div className="flex flex-wrap items-center justify-center gap-6 mb-12">
               <a
                 href="#services-overview"
                 className="inline-flex items-center gap-2 bg-forge-blue text-white text-sm font-semibold px-7 py-3.5 rounded-full shadow-[0_8px_24px_rgba(21,87,255,0.25)] hover:bg-forge-blue-hover hover:shadow-[0_12px_28px_rgba(21,87,255,0.35)] transition-all hover:-translate-y-0.5"
@@ -304,49 +279,61 @@ export default function ServicesPage() {
                 Talk to Us
               </Link>
             </div>
+
+            {/* Floating translucent assurance badges */}
+            <div className="w-full max-w-4xl bg-white/80 backdrop-blur-md rounded-2xl p-4 sm:p-5 border border-white/60 shadow-[0_8px_30px_rgba(10,15,29,0.06)]">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-forge-border/40">
+                {[
+                  { icon: '⊞', label: 'Strategy-led approach' },
+                  { icon: '↗', label: 'Built for real results' },
+                  { icon: '🛡', label: 'Trusted by serious founders' },
+                  { icon: '📈', label: 'End-to-end support' },
+                ].map((badge, idx) => (
+                  <div key={badge.label} className={`flex items-center justify-center gap-2.5 ${idx > 0 ? 'pt-3 sm:pt-0 sm:pl-4' : ''}`}>
+                    <span className="text-forge-ink font-mono text-base font-bold shrink-0">{badge.icon}</span>
+                    <span className="text-xs sm:text-sm font-semibold text-forge-ink text-left">{badge.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Bottom assurance strip */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-8">
-          <div className="bg-white/95 backdrop-blur-md rounded-2xl p-5 md:p-6 shadow-[0_8px_30px_rgba(10,15,29,0.06)] border border-forge-border">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                { icon: '▦', label: 'Strategy-led approach',  sub: 'Rigorous commercial positioning' },
-                { icon: '↗', label: 'Built for real results', sub: 'Tangible business impact' },
-                { icon: '🛡', label: 'Trusted by serious founders', sub: 'For ambitious builders' },
-                { icon: '∞', label: 'End-to-end support',     sub: 'Complete lifecycle delivery' },
-              ].map((badge) => (
-                <div key={badge.label} className="flex items-center gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-forge-blue/10 text-forge-blue flex items-center justify-center shrink-0 font-mono font-bold text-base">
-                    {badge.icon}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-forge-ink">{badge.label}</p>
-                    <p className="text-xs text-forge-muted">{badge.sub}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="flex items-center justify-between pt-4 text-forge-muted text-xs font-semibold tracking-wider uppercase mt-2 border-t border-forge-border">
-              <span>BRANDS · WEBSITES · GROWTH</span>
-              <span className="tracking-widest">FORGING ABSOLUTE CLARITY</span>
-            </div>
+        {/* Bottom baseline strip matching mockup */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pb-6">
+          <div className="flex items-center justify-between text-forge-muted text-[11px] font-semibold tracking-widest uppercase border-t border-forge-border/50 pt-3">
+            <span className="flex items-center gap-2">
+              <span className="w-6 h-[1.5px] bg-forge-border inline-block" />
+              BRANDS WEBSITES GROWTH
+            </span>
+            <span>FORGING ABSOLUTE CLARITY</span>
           </div>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
-          2. THE REAL PROBLEM — comparison + 4-stage strip
+          2. THE REAL PROBLEM — Full-Bleed Nexora Workspace (serv2.png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="w-full py-24 lg:py-32 bg-white border-b border-forge-border"
+        className="relative w-full min-h-[850px] lg:min-h-[920px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="real-problem-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        {/* Full-bleed background */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
+          <img
+            src="/assets/services/02-brand-comparison.webp"
+            alt=""
+            className="w-full h-full object-cover object-center lg:object-right-center"
+          />
+          {/* Subtle directional scrim to ensure typography stands out */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent sm:via-white/70 lg:w-[65%]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 mb-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left — headline */}
-            <div className="lg:col-span-5 space-y-5">
+            <div className="lg:col-span-6 space-y-5 max-w-xl">
               <Eyebrow>THE REAL PROBLEM</Eyebrow>
               <h2
                 id="real-problem-heading"
@@ -362,72 +349,59 @@ export default function ServicesPage() {
               </p>
             </div>
 
-            {/* Right — visual comparison */}
-            <div className="lg:col-span-7 bg-forge-surface rounded-2xl border border-forge-border p-6 md:p-8 shadow-sm">
-              <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 bg-slate-100">
-                <img
-                  src="/assets/services/02-brand-comparison.webp"
-                  alt="Stationery comparison: superficial logo versus strategic brand identity"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-forge-ink font-display font-bold text-sm px-3.5 py-1.5 rounded-full shadow-lg border border-forge-border">
-                  VS
-                </div>
+            {/* Right — floating comparison pills that overlay the scene */}
+            <div className="lg:col-span-6 flex flex-col sm:flex-row gap-4 lg:justify-end lg:pt-12">
+              {/* Just a logo card */}
+              <div className="p-5 rounded-2xl bg-white/90 backdrop-blur-md border border-forge-border shadow-sm max-w-xs">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-forge-muted block mb-1">JUST A LOGO</span>
+                <p className="text-sm font-bold text-forge-ink mb-3">Looks nice. Says nothing.</p>
+                <ul className="space-y-2 text-xs text-forge-secondary">
+                  {['Looks like everyone else', "Doesn't communicate value", 'Harder to win trust'].map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <Cross />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Just a logo */}
-                <div className="p-5 rounded-xl bg-white border border-forge-border space-y-3">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-forge-muted">JUST A LOGO</span>
-                  <p className="text-sm font-bold text-forge-ink">Looks nice. Says nothing.</p>
-                  <ul className="space-y-2 text-xs text-forge-secondary">
-                    {['Looks like everyone else', "Doesn't communicate value", 'Harder to win trust'].map((item) => (
-                      <li key={item} className="flex items-center gap-2">
-                        <Cross />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Strategic brand */}
-                <div className="p-5 rounded-xl bg-forge-blue/5 border border-forge-blue/20 space-y-3">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-forge-blue">A STRATEGIC BRAND</span>
-                  <p className="text-sm font-bold text-forge-ink">Communicates value. Attracts the right clients.</p>
-                  <ul className="space-y-2 text-xs text-forge-ink font-medium">
-                    {['Clear positioning', 'Communicates value', 'Builds instant trust'].map((item) => (
-                      <li key={item} className="flex items-center gap-2">
-                        <Check />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              {/* Strategic brand card */}
+              <div className="p-5 rounded-2xl bg-white/95 backdrop-blur-md border-2 border-forge-blue/30 shadow-md max-w-xs">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-forge-blue block mb-1">A STRATEGIC BRAND</span>
+                <p className="text-sm font-bold text-forge-ink mb-3">Communicates value. Attracts the right clients.</p>
+                <ul className="space-y-2 text-xs text-forge-ink font-semibold">
+                  {['Clear positioning', 'Communicates value', 'Builds instant trust'].map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <Check />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* 4-stage strip */}
-          <div className="mt-16 bg-forge-surface rounded-2xl p-8 border border-forge-border">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* 4-stage strip floating at bottom matching serv2.png */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-12">
+          <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-forge-border shadow-lg">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-forge-border/40">
               {[
-                { icon: '◎', label: 'Position', desc: 'Get clear on what you do, who you serve and why it matters.' },
-                { icon: '◈', label: 'Design',   desc: 'Turn strategy into a distinctive and consistent visual identity.' },
-                { icon: '▣', label: 'Build',    desc: 'Bring your brand to life online with a high-converting website.' },
-                { icon: '▲', label: 'Launch',   desc: 'Go to market with confidence and ongoing support.' },
-              ].map((stage) => (
-                <div key={stage.label} className="space-y-2">
-                  <div className="w-11 h-11 rounded-full bg-forge-blue/10 text-forge-blue flex items-center justify-center font-mono font-bold text-lg">
+                { icon: '⏱', label: 'Position', desc: 'Get clear on what you do, who you serve and why it matters.' },
+                { icon: '🧊', label: 'Design',   desc: 'Turn strategy into a distinctive and consistent visual identity.' },
+                { icon: '🖥', label: 'Build',    desc: 'Bring your brand to life online with a high-converting website.' },
+                { icon: '↗', label: 'Launch',   desc: 'Go to market with confidence and ongoing support.' },
+              ].map((stage, idx) => (
+                <div key={stage.label} className={`space-y-2 ${idx > 0 ? 'pt-4 sm:pt-0 sm:pl-6' : ''}`}>
+                  <div className="w-10 h-10 rounded-xl bg-forge-blue/10 text-forge-blue flex items-center justify-center font-mono font-bold text-base mb-2">
                     {stage.icon}
                   </div>
                   <h3 className="font-display text-lg font-bold text-forge-ink">{stage.label}</h3>
-                  <p className="text-sm text-forge-secondary leading-normal">{stage.desc}</p>
+                  <p className="text-xs sm:text-sm text-forge-secondary leading-normal">{stage.desc}</p>
                 </div>
               ))}
             </div>
-            <div className="text-center pt-8 mt-6 border-t border-forge-border text-forge-muted font-semibold text-xs tracking-widest uppercase">
+            <div className="text-center pt-6 mt-6 border-t border-forge-border text-forge-muted font-semibold text-[11px] tracking-widest uppercase">
               — A COMPLETE SYSTEM FOR REAL GROWTH —
             </div>
           </div>
@@ -435,14 +409,24 @@ export default function ServicesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
-          3. SERVICES OVERVIEW — 4 cards + triage strip
+          3. SERVICES OVERVIEW — Desk with Stacked Blocks (serv3.png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="services-overview"
-        className="w-full py-24 lg:py-32 bg-forge-surface border-b border-forge-border"
+        className="relative w-full py-24 lg:py-32 bg-forge-surface border-b border-forge-border overflow-hidden"
         aria-labelledby="services-overview-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        {/* Environmental backdrop at the top */}
+        <div className="absolute top-0 inset-x-0 h-96 pointer-events-none select-none z-0 overflow-hidden" aria-hidden="true">
+          <img
+            src="/assets/services/03-services-overview.webp"
+            alt=""
+            className="w-full h-full object-cover object-center opacity-60 mix-blend-multiply"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-forge-surface/80 to-forge-surface" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           {/* Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
             <div>
@@ -468,7 +452,7 @@ export default function ServicesPage() {
             {services.map((service) => (
               <article
                 key={service.id}
-                className={`group bg-white rounded-2xl overflow-hidden border shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col ${
+                className={`group bg-white rounded-2xl overflow-hidden border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col ${
                   service.flagship
                     ? 'border-forge-blue/30 border-2 shadow-md'
                     : 'border-forge-border'
@@ -484,7 +468,7 @@ export default function ServicesPage() {
                     decoding="async"
                   />
                   {service.flagship && (
-                    <div className="absolute top-3 right-3 bg-forge-blue text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                    <div className="absolute top-3 right-3 bg-forge-blue text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
                       FLAGSHIP
                     </div>
                   )}
@@ -493,7 +477,6 @@ export default function ServicesPage() {
                 {/* Body */}
                 <div className="p-6 flex flex-col justify-between flex-1 space-y-6">
                   <div>
-                    {/* Icon swatch */}
                     <div className={`w-8 h-8 rounded-lg flex items-center justify-center mb-3 font-mono font-bold text-sm ${service.flagship ? 'bg-forge-blue text-white' : 'bg-forge-blue/10 text-forge-blue'}`}>
                       {service.flagship ? '✦' : service.id === 'strategy' ? '◎' : service.id === 'identity' ? '◈' : '▣'}
                     </div>
@@ -515,7 +498,7 @@ export default function ServicesPage() {
                       }`}
                       aria-label={`View ${service.name} details`}
                     >
-                      <span aria-hidden="true" className="text-base">→</span>
+                      <span aria-hidden="true" className="text-base font-bold">→</span>
                     </a>
                   </div>
                 </div>
@@ -543,94 +526,104 @@ export default function ServicesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
-          4. BRAND STRATEGY DEEP DIVE
+          4. BRAND STRATEGY DEEP DIVE — Full-Bleed Chess Room (serv4.png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="strategy-deepdive"
-        className="w-full py-24 lg:py-32 bg-white border-b border-forge-border"
+        className="relative w-full min-h-[920px] lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="strategy-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Left — copy */}
-            <div className="lg:col-span-6 space-y-6">
-              <div>
-                <Eyebrow>BRAND POSITIONING</Eyebrow>
-                <h2 id="strategy-heading" className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-forge-ink tracking-[-0.025em] leading-tight">
-                  Be the obvious choice, not just{' '}
-                  <span className="text-forge-blue">another option.</span>
-                </h2>
-                <p className="text-base sm:text-lg text-forge-secondary mt-4 leading-relaxed">
-                  We help you get clear on what you do, who you serve, and why it matters, so your brand stands out in a crowded market and attracts the right clients.
-                </p>
-              </div>
+        {/* Full-bleed background */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
+          <img
+            src="/assets/services/04-strategy-and-positioning.webp"
+            alt=""
+            className="w-full h-full object-cover object-center lg:object-right-center"
+          />
+          {/* Subtle directional scrim for pristine readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent sm:via-white/70 lg:w-[60%]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
+        </div>
 
-              <div className="space-y-4 pt-2">
-                {[
-                  { label: 'Market Clarity',      desc: 'Understand your market, audience and real opportunities.' },
-                  { label: 'Distinct Positioning', desc: 'Define what makes you different and why it matters.' },
-                  { label: 'Practical Strategy',  desc: 'Get a clear plan you can actually use to grow.' },
-                ].map((p) => (
-                  <div key={p.label} className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-forge-blue/10 text-forge-blue flex items-center justify-center shrink-0 mt-0.5 font-mono font-bold">◎</div>
-                    <div>
-                      <h4 className="font-display text-base font-bold text-forge-ink">{p.label}</h4>
-                      <p className="text-sm text-forge-secondary leading-normal mt-0.5">{p.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 mb-auto">
+          <div className="max-w-xl space-y-6">
+            <div>
+              <Eyebrow>BRAND POSITIONING</Eyebrow>
+              <h2 id="strategy-heading" className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-forge-ink tracking-[-0.025em] leading-tight">
+                Be the obvious choice, not just{' '}
+                <span className="text-forge-blue">another option.</span>
+              </h2>
+              <p className="text-base sm:text-lg text-forge-secondary mt-4 leading-relaxed">
+                We help you get clear on what you do, who you serve, and why it matters, so your brand stands out in a crowded market and attracts the right clients.
+              </p>
             </div>
 
-            {/* Right — image */}
-            <div className="lg:col-span-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-forge-border">
-                <img
-                  src="/assets/services/04-strategy-and-positioning.webp"
-                  alt="Strategic brand positioning — clear market differentiation"
-                  className="w-full aspect-[4/3] object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-xl text-right border border-forge-border shadow-sm hidden sm:block">
-                  <span className="text-[10px] font-bold text-forge-blue uppercase tracking-wider block">TACTICAL METAPHOR</span>
-                  <span className="text-xs font-semibold text-forge-ink">Same market. Distinct position.</span>
+            {/* 3 floating pill cards */}
+            <div className="space-y-3 pt-2">
+              {[
+                { icon: '🎯', label: 'Market Clarity',      desc: 'Understand your market, audience and real opportunities.' },
+                { icon: '👥', label: 'Distinct Positioning', desc: 'Define what makes you different and why it matters.' },
+                { icon: '📊', label: 'Practical Strategy',  desc: 'Get a clear plan you can actually use to grow.' },
+              ].map((p) => (
+                <div key={p.label} className="p-4 rounded-xl bg-white/90 backdrop-blur-md border border-forge-border shadow-sm flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-forge-blue/10 text-forge-blue flex items-center justify-center shrink-0 mt-0.5 text-base">
+                    {p.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-display text-base font-bold text-forge-ink">{p.label}</h4>
+                    <p className="text-xs sm:text-sm text-forge-secondary leading-normal mt-0.5">{p.desc}</p>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
+        </div>
 
-          {/* Metadata panel */}
-          <div className="mt-16 bg-forge-surface rounded-2xl p-6 md:p-8 border border-forge-border">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-              <div className="md:col-span-5 grid grid-cols-3 gap-4">
+        {/* Floating bottom container matching serv4.png */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-12">
+          <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-forge-border shadow-lg">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Stats column */}
+              <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-forge-muted">TIMELINE</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-forge-muted block">TIMELINE</span>
                   <p className="font-display text-lg font-bold text-forge-ink mt-1">1 – 2 Weeks</p>
                 </div>
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-forge-muted">INVESTMENT</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-forge-muted block">INVESTMENT</span>
                   <p className="font-display text-lg font-bold text-forge-ink mt-1">From ₦120,000</p>
                 </div>
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-forge-muted">DELIVERABLES</span>
-                  <p className="text-xs text-forge-secondary mt-1 leading-normal">Positioning doc, Messaging framework, Market report</p>
+                  <span className="text-xs font-bold uppercase tracking-wider text-forge-muted block">DELIVERABLES</span>
+                  <p className="text-xs text-forge-secondary mt-1 leading-normal">Positioning document, Messaging framework, Market insight report</p>
                 </div>
               </div>
-              <div className="md:col-span-7 flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t md:border-t-0 md:border-l border-forge-border pt-6 md:pt-0 md:pl-8">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-forge-surface ring-2 ring-forge-blue/20 flex items-center justify-center font-display font-bold text-forge-blue shrink-0">AE</div>
+
+              {/* Actions & Founder Quote */}
+              <div className="lg:col-span-7 flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t lg:border-t-0 lg:border-l border-forge-border pt-6 lg:pt-0 lg:pl-8">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-forge-surface ring-2 ring-forge-blue/20 flex items-center justify-center font-display font-bold text-forge-blue shrink-0">
+                    AE
+                  </div>
                   <div>
                     <p className="text-xs italic text-forge-ink max-w-sm">"Positioning turns your expertise into opportunity. It's the foundation everything else builds on."</p>
-                    <p className="text-[11px] text-forge-muted font-medium mt-1">Ayobami Egbewole (Melo Kaji) · CEO & Creative Director</p>
+                    <p className="text-[11px] text-forge-muted font-medium mt-1">Ayobami Egbewole (Melo Kaji) · CEO & Creative Director, Fortex Forge</p>
                   </div>
                 </div>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 bg-forge-ink text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-neutral-800 transition-colors shadow-sm shrink-0"
-                >
-                  Get Started <span aria-hidden="true">→</span>
-                </Link>
+                <div className="flex items-center gap-3 shrink-0">
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 bg-forge-ink text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-neutral-800 transition-colors shadow-sm"
+                  >
+                    Get Started <span aria-hidden="true">→</span>
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center text-xs font-semibold text-forge-ink hover:text-forge-blue px-3 py-2"
+                  >
+                    Talk to Us
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -638,90 +631,102 @@ export default function ServicesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
-          5. BRAND IDENTITY DEEP DIVE
+          5. BRAND IDENTITY DEEP DIVE — Full-Bleed Stationery Studio (serv5.png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="identity-deepdive"
-        className="w-full py-24 lg:py-32 bg-forge-surface border-b border-forge-border"
+        className="relative w-full min-h-[920px] lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="identity-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Visual left (reversed on mobile) */}
-            <div className="lg:col-span-6 order-2 lg:order-1">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-forge-border">
-                <img
-                  src="/assets/services/05-brand-identity.webp"
-                  alt="Brand identity suite — stationery and guidelines"
-                  className="w-full aspect-[4/3] object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+        {/* Full-bleed background */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
+          <img
+            src="/assets/services/05-brand-identity.webp"
+            alt=""
+            className="w-full h-full object-cover object-center lg:object-right-center"
+          />
+          {/* Directional scrim */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent sm:via-white/70 lg:w-[60%]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 mb-auto">
+          <div className="max-w-xl space-y-6">
+            <div>
+              <Eyebrow>BRAND IDENTITY</Eyebrow>
+              <h2 id="identity-heading" className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-forge-ink tracking-[-0.025em] leading-tight">
+                Turn strategy into a distinctive{' '}
+                <span className="text-forge-blue">brand identity.</span>
+              </h2>
+              <p className="text-base sm:text-lg text-forge-secondary mt-4 leading-relaxed">
+                We design visual identities that do more than look good. They communicate your value, build recognition and create trust from the first impression.
+              </p>
             </div>
 
-            {/* Content right */}
-            <div className="lg:col-span-6 order-1 lg:order-2 space-y-6">
-              <div>
-                <Eyebrow>BRAND IDENTITY</Eyebrow>
-                <h2 id="identity-heading" className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-forge-ink tracking-[-0.025em] leading-tight">
-                  Turn strategy into a distinctive{' '}
-                  <span className="text-forge-blue">brand identity.</span>
-                </h2>
-                <p className="text-base sm:text-lg text-forge-secondary mt-4 leading-relaxed">
-                  We design visual identities that do more than look good. They communicate your value, build recognition and create trust from the first impression.
-                </p>
-              </div>
-
-              <div className="space-y-4 pt-2">
-                {[
-                  { label: 'Strategic Design',        desc: 'Every visual element is intentional and aligned with your business goals.' },
-                  { label: 'Distinctive & Memorable', desc: 'Stand out in a crowded market with a cohesive, recognizable identity.' },
-                  { label: 'Ready for Real Use',       desc: 'Get a complete identity system that works seamlessly across digital and print touchpoints.' },
-                ].map((p) => (
-                  <div key={p.label} className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-forge-blue/10 text-forge-blue flex items-center justify-center shrink-0 mt-0.5 font-mono font-bold">◈</div>
-                    <div>
-                      <h4 className="font-display text-base font-bold text-forge-ink">{p.label}</h4>
-                      <p className="text-sm text-forge-secondary leading-normal mt-0.5">{p.desc}</p>
-                    </div>
+            {/* 3 floating pill cards */}
+            <div className="space-y-3 pt-2">
+              {[
+                { icon: '✒️', label: 'Strategic Design',         desc: 'Every visual element is intentional and aligned with your business goals.' },
+                { icon: '💎', label: 'Distinctive & Memorable',  desc: 'Stand out in a crowded market with a cohesive, recognizable identity.' },
+                { icon: '⊞', label: 'Ready for Real Use',        desc: 'Get a complete identity system that works seamlessly across digital and print touchpoints.' },
+              ].map((p) => (
+                <div key={p.label} className="p-4 rounded-xl bg-white/90 backdrop-blur-md border border-forge-border shadow-sm flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-forge-blue/10 text-forge-blue flex items-center justify-center shrink-0 mt-0.5 text-base">
+                    {p.icon}
                   </div>
-                ))}
-              </div>
+                  <div>
+                    <h4 className="font-display text-base font-bold text-forge-ink">{p.label}</h4>
+                    <p className="text-xs sm:text-sm text-forge-secondary leading-normal mt-0.5">{p.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
+        </div>
 
-          {/* Metadata panel */}
-          <div className="mt-16 bg-white rounded-2xl p-6 md:p-8 border border-forge-border shadow-sm">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-              <div className="md:col-span-5 grid grid-cols-3 gap-4">
+        {/* Floating bottom container matching serv5.png */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-12">
+          <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-forge-border shadow-lg">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-forge-muted">TIMELINE</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-forge-muted block">TIMELINE</span>
                   <p className="font-display text-lg font-bold text-forge-ink mt-1">2 – 4 Weeks</p>
                 </div>
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-forge-muted">INVESTMENT</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-forge-muted block">INVESTMENT</span>
                   <p className="font-display text-lg font-bold text-forge-ink mt-1">From ₦80,000</p>
                 </div>
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-forge-muted">DELIVERABLES</span>
-                  <p className="text-xs text-forge-secondary mt-1 leading-normal">Logo suite, Visual identity system, Brand guidelines, Assets</p>
+                  <span className="text-xs font-bold uppercase tracking-wider text-forge-muted block">DELIVERABLES</span>
+                  <p className="text-xs text-forge-secondary mt-1 leading-normal">Logo suite, Visual identity system, Brand guidelines, Social media assets, Stationery (optional)</p>
                 </div>
               </div>
-              <div className="md:col-span-7 flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t md:border-t-0 md:border-l border-forge-border pt-6 md:pt-0 md:pl-8">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-forge-surface ring-2 ring-forge-blue/20 flex items-center justify-center font-display font-bold text-forge-blue shrink-0">AE</div>
+
+              <div className="lg:col-span-7 flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-t lg:border-t-0 lg:border-l border-forge-border pt-6 lg:pt-0 lg:pl-8">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-forge-surface ring-2 ring-forge-blue/20 flex items-center justify-center font-display font-bold text-forge-blue shrink-0">
+                    AE
+                  </div>
                   <div>
                     <p className="text-xs italic text-forge-ink max-w-sm">"A great brand identity doesn't just make you look professional. It makes you unforgettable."</p>
-                    <p className="text-[11px] text-forge-muted font-medium mt-1">Ayobami Egbewole · CEO & Creative Director</p>
+                    <p className="text-[11px] text-forge-muted font-medium mt-1">Ayobami Egbewole (Melo Kaji) · CEO & Creative Director, Fortex Forge</p>
                   </div>
                 </div>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 bg-forge-ink text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-neutral-800 transition-colors shadow-sm shrink-0"
-                >
-                  Get Started <span aria-hidden="true">→</span>
-                </Link>
+                <div className="flex items-center gap-3 shrink-0">
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 bg-forge-ink text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-neutral-800 transition-colors shadow-sm"
+                  >
+                    Get Started <span aria-hidden="true">→</span>
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center text-xs font-semibold text-forge-ink hover:text-forge-blue px-3 py-2"
+                  >
+                    Talk to Us
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -729,170 +734,182 @@ export default function ServicesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
-          6. WEBSITE DESIGN & DEV DEEP DIVE
+          6. WEBSITE DESIGN & DEV — Full-Bleed Digital Desk (ser6.png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="web-deepdive"
-        className="w-full py-24 lg:py-32 bg-white border-b border-forge-border"
+        className="relative w-full min-h-[920px] lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="web-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Left — copy */}
-            <div className="lg:col-span-6 space-y-6">
-              <div>
-                <Eyebrow>WEBSITE DESIGN & DEVELOPMENT</Eyebrow>
-                <h2 id="web-heading" className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-forge-ink tracking-[-0.025em] leading-tight">
-                  Bring your brand to life{' '}
-                  <span className="text-forge-blue">online.</span>
-                </h2>
-                <p className="text-base sm:text-lg text-forge-secondary mt-4 leading-relaxed">
-                  We design and develop high-converting websites that showcase your brand, build credibility and turn visitors into real opportunities.
-                </p>
-              </div>
+        {/* Full-bleed background */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
+          <img
+            src="/assets/services/06-web-design-and-development.webp"
+            alt=""
+            className="w-full h-full object-cover object-center lg:object-right-center"
+          />
+          {/* Directional scrim */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent sm:via-white/70 lg:w-[60%]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
+        </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                {[
-                  { icon: '▣', label: 'Strategic Design',  desc: 'Built with strategy, not just aesthetics.' },
-                  { icon: '</>', label: 'Clean Development', desc: 'Fast, secure and scalable modern stacks.' },
-                  { icon: '⊡', label: 'Fully Responsive',  desc: 'Flawless on phone, tablet, and desktop.' },
-                  { icon: '↑', label: 'Built to Convert',  desc: 'Engineered to turn traffic into paying clients.' },
-                ].map((f) => (
-                  <div key={f.label} className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-forge-blue/10 text-forge-blue flex items-center justify-center shrink-0 font-mono text-sm font-bold">{f.icon}</div>
-                    <div>
-                      <h5 className="text-sm font-bold text-forge-ink">{f.label}</h5>
-                      <p className="text-xs text-forge-secondary mt-0.5">{f.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 mb-auto">
+          <div className="max-w-xl space-y-6">
+            <div>
+              <Eyebrow>WEBSITE DESIGN & DEVELOPMENT</Eyebrow>
+              <h2 id="web-heading" className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-forge-ink tracking-[-0.025em] leading-tight">
+                Bring your brand to life{' '}
+                <span className="text-forge-blue">online.</span>
+              </h2>
+              <p className="text-base sm:text-lg text-forge-secondary mt-4 leading-relaxed">
+                We design and develop high-converting websites that showcase your brand, build credibility and turn visitors into real opportunities.
+              </p>
             </div>
 
-            {/* Right — image */}
-            <div className="lg:col-span-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-forge-border">
-                <img
-                  src="/assets/services/06-web-design-and-development.webp"
-                  alt="High-performance digital experience displayed on modern device"
-                  className="w-full aspect-[4/3] object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+            {/* 4 floating pill cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              {[
+                { icon: '🖥', label: 'Strategic Design',  desc: 'Websites built with strategy, not just aesthetics.' },
+                { icon: '</>', label: 'Clean Development', desc: 'Fast, secure and scalable websites using modern technologies.' },
+                { icon: '📱', label: 'Fully Responsive',  desc: 'Looks and works perfectly on all devices.' },
+                { icon: '📈', label: 'Built to Convert',  desc: 'Designed to attract, engage and turn visitors into clients.' },
+              ].map((f) => (
+                <div key={f.label} className="p-3.5 rounded-xl bg-white/90 backdrop-blur-md border border-forge-border shadow-sm flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-forge-blue/10 text-forge-blue flex items-center justify-center shrink-0 font-mono text-xs font-bold">
+                    {f.icon}
+                  </div>
+                  <div>
+                    <h5 className="text-xs sm:text-sm font-bold text-forge-ink">{f.label}</h5>
+                    <p className="text-[11px] text-forge-secondary mt-0.5 leading-snug">{f.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
+        </div>
 
-          {/* Web metrics + testimonial panel */}
-          <div className="mt-16 bg-forge-surface rounded-2xl p-6 md:p-8 border border-forge-border">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 pb-8 border-b border-forge-border">
+        {/* Floating bottom container matching ser6.png */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-12">
+          <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-forge-border shadow-lg">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-6 pb-6 border-b border-forge-border">
               {[
-                { value: '3×',   label: 'Inbound Enquiries',    blue: true },
-                { value: '68%',  label: 'Avg Conversion Lift',  blue: false },
-                { value: '4–6w', label: 'Typical Delivery Time', blue: false },
-                { value: '98%',  label: 'Satisfaction Rate',     blue: true },
+                { value: '3×',   label: 'More inbound enquiries',    blue: true },
+                { value: '68%',  label: 'Average increase in conversions',  blue: false },
+                { value: '4–6w', label: 'Typical delivery time',      blue: false },
+                { value: '98%',  label: 'Client satisfaction rate',     blue: true },
               ].map((m) => (
                 <div key={m.label}>
-                  <span className={`font-display text-4xl lg:text-5xl font-bold ${m.blue ? 'text-forge-blue' : 'text-forge-ink'}`}>{m.value}</span>
+                  <span className={`font-display text-3xl sm:text-4xl lg:text-5xl font-bold ${m.blue ? 'text-forge-blue' : 'text-forge-ink'}`}>
+                    {m.value}
+                  </span>
                   <p className="text-xs font-bold text-forge-muted mt-1 uppercase tracking-wider">{m.label}</p>
                 </div>
               ))}
             </div>
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="max-w-xl">
-                <p className="text-sm italic text-forge-ink">
+                <p className="text-xs sm:text-sm italic text-forge-ink">
                   "Fortex Forge didn't just build a website for us, they brought our brand to life. We've seen a real difference in the quality of enquiries we get."
                 </p>
                 <p className="text-xs text-forge-muted font-semibold mt-1">Tunde Adebayo · Founder, Veridian Homes</p>
               </div>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 bg-forge-ink text-white text-xs font-semibold px-6 py-3 rounded-full hover:bg-neutral-800 transition-colors shadow-sm shrink-0"
-              >
-                Start a Project <span aria-hidden="true">→</span>
-              </Link>
+              <div className="flex items-center gap-3 shrink-0">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 bg-forge-ink text-white text-xs font-semibold px-6 py-3 rounded-full hover:bg-neutral-800 transition-colors shadow-sm"
+                >
+                  Start a Project <span aria-hidden="true">→</span>
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center text-xs font-semibold text-forge-ink hover:text-forge-blue px-3 py-2"
+                >
+                  Talk to Us
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
-          7. COMPLETE BRAND + WEB DEEP DIVE
+          7. COMPLETE BRAND + WEB — Full-Bleed Complete Workspace (ser7.png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="complete-deepdive"
-        className="w-full py-24 lg:py-32 bg-forge-surface border-b border-forge-border"
+        className="relative w-full min-h-[920px] lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="complete-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Visual left */}
-            <div className="lg:col-span-6 order-2 lg:order-1">
-              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-forge-border">
-                <img
-                  src="/assets/services/07-complete-brand-and-web.webp"
-                  alt="Unified brand identity and digital platform multi-screen display"
-                  className="w-full aspect-[4/3] object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+        {/* Full-bleed background */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
+          <img
+            src="/assets/services/07-complete-brand-and-web.webp"
+            alt=""
+            className="w-full h-full object-cover object-center lg:object-right-center"
+          />
+          {/* Directional scrim */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent sm:via-white/70 lg:w-[60%]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 mb-auto">
+          <div className="max-w-xl space-y-6">
+            <div>
+              <Eyebrow>COMPLETE BRAND + WEB</Eyebrow>
+              <h2 id="complete-heading" className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-forge-ink tracking-[-0.025em] leading-tight">
+                A complete system to position, design and launch{' '}
+                <span className="text-forge-blue">your brand.</span>
+              </h2>
+              <p className="text-base sm:text-lg text-forge-secondary mt-4 leading-relaxed">
+                From strategy to visual identity to a high-converting website, we give you everything you need to launch and grow with clarity and confidence.
+              </p>
             </div>
 
-            {/* Content right */}
-            <div className="lg:col-span-6 order-1 lg:order-2 space-y-6">
-              <div>
-                <Eyebrow>COMPLETE BRAND + WEB</Eyebrow>
-                <h2 id="complete-heading" className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-forge-ink tracking-[-0.025em] leading-tight">
-                  A complete system to position, design and launch{' '}
-                  <span className="text-forge-blue">your brand.</span>
-                </h2>
-                <p className="text-base sm:text-lg text-forge-secondary mt-4 leading-relaxed">
-                  From strategy to visual identity to a high-converting website, we give you everything you need to launch and grow with clarity and confidence.
-                </p>
-              </div>
-
-              <div className="space-y-4 pt-2">
-                {[
-                  { icon: '◎', label: 'Complete Strategy',            desc: 'Clarity on your market, positioning, messaging and target audience.' },
-                  { icon: '◈', label: 'Full Visual Identity',         desc: 'A distinctive and cohesive brand system unified across all channels.' },
-                  { icon: '▣', label: 'Website Design & Development', desc: 'A bespoke, responsive web experience tuned for conversion and speed.' },
-                  { icon: '▲', label: 'Launch Support',               desc: 'Full deployment orchestration and initial market introduction.' },
-                ].map((p) => (
-                  <div key={p.label} className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-forge-blue/10 text-forge-blue flex items-center justify-center shrink-0 mt-0.5 font-mono font-bold">{p.icon}</div>
-                    <div>
-                      <h4 className="font-display text-base font-bold text-forge-ink">{p.label}</h4>
-                      <p className="text-sm text-forge-secondary leading-normal mt-0.5">{p.desc}</p>
-                    </div>
+            {/* 4 floating pill cards */}
+            <div className="space-y-3 pt-2">
+              {[
+                { icon: '☰', label: 'Complete Strategy',             desc: 'Clarity on your market, positioning, messaging and audience.' },
+                { icon: '✒️', label: 'Full Visual Identity',          desc: 'A distinctive and cohesive brand identity across all touchpoints.' },
+                { icon: '🖥', label: 'Website Design & Development',  desc: 'A high-converting, responsive website built to grow your business.' },
+                { icon: '🚀', label: 'Launch Support',                desc: 'Get everything ready to go live and start attracting the right clients.' },
+              ].map((p) => (
+                <div key={p.label} className="p-3.5 rounded-xl bg-white/90 backdrop-blur-md border border-forge-border shadow-sm flex items-start gap-4">
+                  <div className="w-9 h-9 rounded-xl bg-forge-blue/10 text-forge-blue flex items-center justify-center shrink-0 mt-0.5 text-sm">
+                    {p.icon}
                   </div>
-                ))}
-              </div>
+                  <div>
+                    <h4 className="font-display text-sm font-bold text-forge-ink">{p.label}</h4>
+                    <p className="text-xs text-forge-secondary leading-normal mt-0.5">{p.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
+        </div>
 
-          {/* Package metadata */}
-          <div className="mt-16 bg-white rounded-2xl p-6 md:p-8 border border-forge-border shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
+        {/* Floating bottom container matching ser7.png */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-12">
+          <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-forge-border shadow-lg flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full md:w-auto">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-forge-muted">TIMELINE</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-forge-muted block">TIMELINE</span>
                 <p className="font-display text-lg font-bold text-forge-ink mt-1">8 – 12 Weeks</p>
-                <p className="text-xs text-forge-muted">Full delivery cycle</p>
+                <p className="text-xs text-forge-muted">Typical timeline</p>
               </div>
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-forge-muted">INVESTMENT</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-forge-muted block">A COMPLETE SYSTEM</span>
                 <p className="font-display text-lg font-bold text-forge-ink mt-1">From ₦750,000</p>
-                <p className="text-xs text-forge-muted">Complete package</p>
+                <p className="text-xs text-forge-muted">Strategy, identity, web & launch</p>
               </div>
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-forge-muted">TARGET FIT</span>
-                <p className="font-display text-lg font-bold text-forge-ink mt-1">Serious Founders</p>
-                <p className="text-xs text-forge-muted">Venture & Scale-ups</p>
-              </div>
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-forge-muted">ORIENTATION</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-forge-muted block">ORIENTATION</span>
                 <p className="font-display text-lg font-bold text-forge-ink mt-1">Built for Growth</p>
-                <p className="text-xs text-forge-muted">Maximum ROI</p>
+                <p className="text-xs text-forge-muted">Attract, engage & convert</p>
+              </div>
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-forge-muted block">TARGET FIT</span>
+                <p className="font-display text-lg font-bold text-forge-ink mt-1">Serious Founders</p>
+                <p className="text-xs text-forge-muted">Venture & scale-ups</p>
               </div>
             </div>
             <div className="shrink-0 flex flex-col items-center sm:items-end w-full md:w-auto">
@@ -909,16 +926,28 @@ export default function ServicesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
-          8. WHY POSITIONING COMES FIRST
+          8. WHY POSITIONING COMES FIRST — Full-Bleed Comparison Stand (serv8.png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="w-full py-24 lg:py-32 bg-white border-b border-forge-border"
+        className="relative w-full min-h-[920px] lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="positioning-heading"
       >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        {/* Full-bleed background */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
+          <img
+            src="/assets/services/08-positioning-comparison.webp"
+            alt=""
+            className="w-full h-full object-cover object-center lg:object-right-center"
+          />
+          {/* Directional scrim */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent sm:via-white/70 lg:w-[58%]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 mb-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left — philosophy */}
-            <div className="lg:col-span-5 space-y-6">
+            <div className="lg:col-span-6 space-y-6 max-w-xl">
               <div>
                 <Eyebrow>WHY POSITIONING COMES FIRST</Eyebrow>
                 <h2 id="positioning-heading" className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-forge-ink tracking-[-0.025em] leading-tight">
@@ -929,91 +958,103 @@ export default function ServicesPage() {
                   Before the logo. Before the website. Before the design. Positioning gives everything direction — so your brand looks right, sounds right and attracts the right people.
                 </p>
               </div>
+
               <div className="space-y-3 pt-2">
                 {[
-                  { label: 'Clarity',              desc: 'Know exactly who you serve, what you offer and why it matters.' },
-                  { label: 'Consistency',           desc: 'Every element of your brand works together with a clear direction.' },
-                  { label: 'Better Results',        desc: 'Attract the right audience, close more deals and grow faster.' },
-                  { label: 'Fewer Costly Mistakes', desc: 'Avoid rebranding, mixed messaging and wasted spend.' },
+                  { icon: '🎯', label: 'Clarity',              desc: 'Know exactly who you serve, what you offer and why it matters.' },
+                  { icon: '👥', label: 'Consistency',           desc: 'Every element of your brand works together with a clear direction.' },
+                  { icon: '📊', label: 'Better Results',        desc: 'Attract the right audience, close more deals and grow faster.' },
+                  { icon: '🛡', label: 'Fewer Costly Mistakes', desc: 'Avoid rebranding, mixed messaging and wasted spend.' },
                 ].map((b) => (
-                  <div key={b.label} className="p-4 bg-forge-surface rounded-xl border border-forge-border">
-                    <h5 className="font-display text-sm font-bold text-forge-ink">{b.label}</h5>
-                    <p className="text-xs text-forge-secondary mt-0.5">{b.desc}</p>
+                  <div key={b.label} className="p-3.5 bg-white/90 backdrop-blur-md rounded-xl border border-forge-border shadow-sm flex items-start gap-3.5">
+                    <div className="w-8 h-8 rounded-lg bg-forge-blue/10 text-forge-blue flex items-center justify-center shrink-0 mt-0.5 text-sm">
+                      {b.icon}
+                    </div>
+                    <div>
+                      <h5 className="font-display text-sm font-bold text-forge-ink">{b.label}</h5>
+                      <p className="text-xs text-forge-secondary mt-0.5">{b.desc}</p>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right — comparison matrix */}
-            <div className="lg:col-span-7 rounded-2xl border border-forge-border overflow-hidden shadow-sm">
-              <div className="grid grid-cols-1 sm:grid-cols-2">
-                {/* Without positioning */}
-                <div className="p-6 md:p-8 bg-forge-surface">
-                  <span className="text-xs font-bold uppercase tracking-wider text-forge-muted block mb-2">STATUS QUO</span>
-                  <h4 className="font-display text-xl font-bold text-forge-ink mb-6">Without Positioning</h4>
-                  <ul className="space-y-4 text-xs text-forge-secondary">
-                    {[
-                      'Generic messaging that echoes competitors',
-                      "Design that looks good but doesn't convert",
-                      'Attracts the wrong audience and leads',
-                      'Price-based competition and margin pressure',
-                      'Constant rebranding and market confusion',
-                    ].map((item) => (
-                      <li key={item} className="flex items-start gap-2.5">
-                        <Cross />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* With positioning */}
-                <div className="p-6 md:p-8 bg-forge-ink text-white">
-                  <span className="text-xs font-bold uppercase tracking-wider text-forge-blue block mb-2">FORTEX DISCIPLINE</span>
-                  <h4 className="font-display text-xl font-bold text-white mb-6">With Positioning</h4>
-                  <ul className="space-y-4 text-xs text-slate-300">
-                    {[
-                      'Clear and compelling message',
-                      'Design that drives trust and action',
-                      'Attracts the right audience clearly',
-                      'Greater pricing power and premium feel',
-                      'A scalable and cohesive brand identity',
-                    ].map((item) => (
-                      <li key={item} className="flex items-start gap-2.5">
-                        <Check dark />
-                        <span className="text-white font-medium">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            {/* Right — floating responsive matrix mirroring the physical stand */}
+            <div className="lg:col-span-6 flex flex-col sm:flex-row gap-4 lg:justify-end lg:pt-8">
+              {/* Without positioning */}
+              <div className="p-6 rounded-2xl bg-white/95 backdrop-blur-md border border-forge-border shadow-md max-w-xs flex-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-forge-muted block mb-2">STATUS QUO</span>
+                <h4 className="font-display text-lg font-bold text-forge-ink mb-4">Without Positioning</h4>
+                <ul className="space-y-3 text-xs text-forge-secondary">
+                  {[
+                    'Generic messaging that echoes competitors',
+                    "Design that looks good but doesn't convert",
+                    'Attracts the wrong audience and leads',
+                    'Price-based competition and margin pressure',
+                    'Constant rebranding and market confusion',
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <Cross />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              {/* Matrix callout */}
-              <div className="p-6 bg-forge-blue/5 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-forge-blue/10">
-                <div>
-                  <span className="text-xs font-bold uppercase text-forge-blue tracking-wider block">THE BOTTOM LINE</span>
-                  <p className="font-display text-sm md:text-base font-bold text-forge-ink">
-                    A strong brand doesn't start with a logo.{' '}
-                    <span className="text-forge-blue">It starts with a clear position.</span>
-                  </p>
-                </div>
-                <a
-                  href="#strategy-deepdive"
-                  className="shrink-0 inline-flex items-center gap-2 bg-forge-blue text-white text-xs font-semibold px-5 py-2.5 rounded-full shadow-sm hover:bg-forge-blue-hover transition-all"
-                >
-                  Start with Strategy <span aria-hidden="true">→</span>
-                </a>
+              {/* With positioning */}
+              <div className="p-6 rounded-2xl bg-forge-ink text-white shadow-xl max-w-xs flex-1 border border-forge-ink">
+                <span className="text-xs font-bold uppercase tracking-wider text-forge-blue block mb-2">FORTEX DISCIPLINE</span>
+                <h4 className="font-display text-lg font-bold text-white mb-4">With Positioning</h4>
+                <ul className="space-y-3 text-xs text-slate-300">
+                  {[
+                    'Clear and compelling message',
+                    'Design that drives trust and action',
+                    'Attracts the right audience clearly',
+                    'Greater pricing power and premium feel',
+                    'A scalable and cohesive brand identity',
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <Check dark />
+                      <span className="text-white font-medium">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Floating bottom container matching serv8.png */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-12">
+          <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-forge-border shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <span className="text-xs font-bold uppercase text-forge-blue tracking-wider block mb-1">THE BOTTOM LINE</span>
+              <p className="font-display text-lg sm:text-xl font-bold text-forge-ink">
+                A strong brand doesn't start with a logo.{' '}
+                <span className="text-forge-blue">It starts with a clear position.</span>
+              </p>
+              <p className="text-xs sm:text-sm text-forge-secondary mt-1">
+                When your position is clear, everything else becomes easier — and more effective.
+              </p>
+            </div>
+            <div className="flex flex-col items-center sm:items-end shrink-0">
+              <a
+                href="#strategy-deepdive"
+                className="inline-flex items-center gap-2 bg-forge-ink text-white text-xs font-semibold px-6 py-3 rounded-full shadow-sm hover:bg-neutral-800 transition-all"
+              >
+                Start with Strategy <span aria-hidden="true">→</span>
+              </a>
+              <span className="text-[11px] text-forge-muted mt-1.5">Let's build it right.</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
-          FAQ — Services-specific accordion (reuses global pattern)
+          9. FAQ — Services-specific accordion
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="w-full py-24 lg:py-32 bg-forge-surface border-b border-forge-border"
+        className="w-full py-20 lg:py-28 bg-forge-surface border-b border-forge-border"
         aria-labelledby="services-faq-heading"
       >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -1057,17 +1098,26 @@ export default function ServicesPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
-          9. FINAL CTA — full-bg image, left-aligned copy, dual actions
+          10. FINAL CTA — Full-Bleed Desk & Partner Ribbon (serv9.png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full overflow-hidden bg-cover bg-center py-24 lg:py-32"
-        style={{ backgroundImage: "url('/assets/services/09-closing.webp')" }}
+        className="relative w-full overflow-hidden min-h-[850px] lg:min-h-[920px] py-20 lg:py-28 bg-white flex flex-col justify-between"
         aria-labelledby="services-cta-heading"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/60" aria-hidden="true" />
+        {/* Full-bleed background */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
+          <img
+            src="/assets/services/09-closing.webp"
+            alt=""
+            className="w-full h-full object-cover object-center lg:object-right-center"
+          />
+          {/* Directional scrim */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent sm:via-white/70 lg:w-[60%]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
+        </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="max-w-2xl space-y-6">
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 mb-auto">
+          <div className="max-w-xl space-y-6">
             <Eyebrow>LET'S BUILD TOGETHER</Eyebrow>
             <h2
               id="services-cta-heading"
@@ -1095,26 +1145,28 @@ export default function ServicesPage() {
               </Link>
             </div>
 
-            {/* Trust chips */}
-            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-forge-border">
+            {/* Trust chips matching serv9.png */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-forge-border">
               {[
-                { label: 'Fast Response', sub: 'Within 24 hours' },
-                { label: 'Clear Process', sub: 'No hidden costs' },
-                { label: 'Built for Growth', sub: 'Beyond aesthetics' },
+                { icon: '⚡', label: 'Fast Response', sub: 'Within 24 hours' },
+                { icon: '🛡', label: 'Clear Process', sub: 'No hidden costs' },
+                { icon: '👥', label: 'Built for Growth', sub: 'More than just design' },
               ].map((chip) => (
-                <div key={chip.label}>
+                <div key={chip.label} className="p-3 bg-white/80 backdrop-blur-sm rounded-xl border border-forge-border/60">
                   <div className="flex items-center gap-1.5 text-forge-blue mb-0.5">
-                    <span className="text-sm" aria-hidden="true">✦</span>
+                    <span className="text-sm" aria-hidden="true">{chip.icon}</span>
                     <span className="text-xs font-bold text-forge-ink">{chip.label}</span>
                   </div>
-                  <p className="text-xs text-forge-muted">{chip.sub}</p>
+                  <p className="text-[11px] text-forge-muted">{chip.sub}</p>
                 </div>
               ))}
             </div>
           </div>
+        </div>
 
-          {/* Trusted by builders bar */}
-          <div className="mt-16 bg-white/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-forge-border shadow-sm">
+        {/* Trusted by builders bar at bottom matching serv9.png */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-12">
+          <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-forge-border shadow-lg">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
               <div className="lg:col-span-4">
                 <span className="text-xs font-bold uppercase tracking-wider text-forge-muted block">TRUSTED BY BUILDERS</span>
@@ -1131,11 +1183,17 @@ export default function ServicesPage() {
                   { initial: '✦', name: 'The Forgers Clan' },
                 ].map((client) => (
                   <div key={client.name} className="flex items-center gap-2 text-forge-ink font-bold text-sm">
-                    <span className="w-6 h-6 rounded-md bg-forge-blue/10 text-forge-blue flex items-center justify-center font-display text-xs font-bold">{client.initial}</span>
+                    <span className="w-7 h-7 rounded-md bg-forge-blue/10 text-forge-blue flex items-center justify-center font-display text-xs font-bold">
+                      {client.initial}
+                    </span>
                     <span>{client.name}</span>
                   </div>
                 ))}
               </div>
+            </div>
+            <div className="flex items-center justify-between text-forge-muted text-[11px] font-semibold tracking-widest uppercase border-t border-forge-border pt-4 mt-6">
+              <span>FORTEX FORGE</span>
+              <span>FOR BRANDS THAT MEAN MORE</span>
             </div>
           </div>
         </div>
