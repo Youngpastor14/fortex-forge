@@ -349,7 +349,7 @@ export default function ContactPage() {
           Reference: Reference mockups/contact page/02.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
+        className="relative py-16 lg:py-20 bg-white border-b border-forge-border overflow-hidden min-h-[960px] lg:min-h-[1080px] flex flex-col justify-between"
         aria-labelledby="what-happens-heading"
       >
         {/* Full-bleed what happens next background artwork */}
@@ -360,78 +360,121 @@ export default function ContactPage() {
           <img
             src="/assets/contact/02-what-happens-next.webp"
             alt=""
-            className="w-full h-full object-cover object-center mix-blend-multiply"
+            className="w-full h-full object-cover object-center"
             loading="lazy"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
+          <div className="absolute inset-0 bg-white/80 lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
           {/* Top header row */}
-          <div className="flex items-center justify-between gap-8 mb-10 lg:mb-14">
-            <Eyebrow className="mb-0">WHAT HAPPENS NEXT</Eyebrow>
+          <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-6 lg:mb-0">
+            <div className="max-w-xl">
+              <Eyebrow className="mb-3">WHAT HAPPENS NEXT</Eyebrow>
+              <h2
+                id="what-happens-heading"
+                className="text-4xl sm:text-5xl font-display font-bold text-forge-ink tracking-[-0.03em] leading-[1.12] mb-4"
+              >
+                A clear process.{' '}
+                <br />
+                From conversation to <span className="text-forge-blue">progress.</span>
+              </h2>
+              <p className="text-sm sm:text-base text-forge-secondary leading-relaxed">
+                No guesswork. No endless back and forth. Just a straightforward process designed to respect your time and get things moving.
+              </p>
+            </div>
 
-            <div className="hidden lg:flex items-start gap-2.5 shrink-0 text-left border-l-[1.5px] border-forge-blue pl-2.5">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-forge-ink/70 leading-snug">
-                SAME MISSION.<br />DIFFERENT CONVERSATIONS.
+            {/* Handwritten / serif italic script in top right */}
+            <div className="hidden lg:flex flex-col items-end pt-2 select-none">
+              <div className="font-serif italic text-2xl xl:text-3xl text-neutral-500/90 leading-tight text-right">
+                Same<br />mission.<br />Different<br />conversations.
               </div>
+              <div className="w-8 h-[2px] bg-forge-blue -rotate-12 mt-3 mr-4 rounded-full" aria-hidden="true" />
             </div>
           </div>
 
-          <div className="max-w-2xl mb-12">
-            <h2
-              id="what-happens-heading"
-              className="text-4xl sm:text-5xl font-display font-bold text-forge-ink tracking-[-0.03em] leading-tight mb-4"
-            >
-              A clear process.{' '}
-              <br />
-              From conversation to <span className="text-forge-blue">progress.</span>
-            </h2>
-            <p className="text-base sm:text-lg text-forge-secondary leading-relaxed">
-              No guesswork. No endless back and forth. Just a straightforward process designed to respect your time and get things moving.
-            </p>
-          </div>
+          {/* Dedicated vertical spacer so the 3D artifacts and marble pedestals are completely visible */}
+          <div className="hidden lg:block h-48 xl:h-60 2xl:h-68" aria-hidden="true" />
 
-          {/* 5 Process Columns aligned with background milestones */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
+          {/* 5 Process Columns — pure transparent typography directly under each marble pedestal */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8 pt-6 lg:pt-0 mb-10 lg:mb-12">
             {PROCESS_STEPS.map((s) => (
-              <div
-                key={s.num}
-                className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 border border-forge-border shadow-sm flex flex-col justify-between"
-              >
-                <div>
-                  <span className="font-display text-3xl font-extrabold text-neutral-300 block mb-2">{s.num}</span>
-                  <h3 className="font-display font-bold text-lg text-forge-ink mb-2">{s.title}</h3>
-                  <p className="text-xs text-forge-secondary leading-relaxed">{s.desc}</p>
-                </div>
+              <div key={s.num} className="space-y-1.5">
+                <span className="font-display text-4xl lg:text-[42px] font-extrabold text-neutral-400/80 block leading-none mb-2">
+                  {s.num}
+                </span>
+                <h3 className="font-display font-bold text-lg lg:text-xl text-forge-ink">
+                  {s.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-forge-secondary leading-relaxed">
+                  {s.desc}
+                </p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Bottom assurance footer */}
+        {/* Bottom assurance footer card */}
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto">
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 border border-neutral-200/80 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-forge-blue/10 text-forge-blue flex items-center justify-center font-bold text-lg">
-                🛡️
+          <div className="bg-white rounded-2xl p-5 sm:p-6 lg:px-8 lg:py-6 border border-neutral-200/90 shadow-sm flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="w-11 h-11 rounded-xl bg-blue-50 text-forge-blue flex items-center justify-center shrink-0 border border-blue-100/80">
+                <svg className="w-6 h-6 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
               </div>
               <div>
-                <h4 className="font-display font-bold text-sm text-forge-ink">A Better Way to Start</h4>
+                <h4 className="font-display font-bold text-base text-forge-ink leading-snug">A Better Way to Start</h4>
                 <p className="text-xs text-forge-secondary">We keep the process simple, transparent and professional from the very first conversation.</p>
               </div>
             </div>
-            <div className="flex flex-wrap items-center gap-8 text-xs font-semibold text-forge-ink">
-              <span className="flex items-center gap-2">
-                <span className="text-forge-blue">⚡</span> Fast responses
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="text-forge-blue">🔒</span> Confidential and secure
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="text-forge-blue">👥</span> Built for founders
-              </span>
+
+            <div className="hidden lg:block w-px h-10 bg-neutral-200/80 shrink-0" aria-hidden="true" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-10 w-full lg:w-auto">
+              {/* Fast responses */}
+              <div className="flex items-start gap-3">
+                <div className="text-forge-blue shrink-0 mt-0.5">
+                  <svg className="w-5 h-5 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                  </svg>
+                </div>
+                <div>
+                  <span className="text-xs sm:text-sm font-bold text-forge-ink block leading-snug">Fast responses</span>
+                  <span className="text-[11px] text-forge-muted block">No long wait times.</span>
+                </div>
+              </div>
+
+              {/* Confidential and secure */}
+              <div className="flex items-start gap-3">
+                <div className="text-forge-blue shrink-0 mt-0.5">
+                  <svg className="w-5 h-5 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <polyline points="9 12 11 14 15 10" />
+                  </svg>
+                </div>
+                <div>
+                  <span className="text-xs sm:text-sm font-bold text-forge-ink block leading-snug">Confidential and secure</span>
+                  <span className="text-[11px] text-forge-muted block">Your information is safe with us.</span>
+                </div>
+              </div>
+
+              {/* Built for founders */}
+              <div className="flex items-start gap-3">
+                <div className="text-forge-blue shrink-0 mt-0.5">
+                  <svg className="w-5 h-5 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+                <div>
+                  <span className="text-xs sm:text-sm font-bold text-forge-ink block leading-snug">Built for founders</span>
+                  <span className="text-[11px] text-forge-muted block">From idea to execution.</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
