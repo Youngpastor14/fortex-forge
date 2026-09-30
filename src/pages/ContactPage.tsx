@@ -220,7 +220,7 @@ export default function ContactPage() {
           <img
             src="/assets/contact/01-hero.webp"
             alt=""
-            className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply"
+            className="w-full h-full object-cover object-bottom lg:object-right-bottom"
             fetchPriority="high"
             decoding="async"
           />
@@ -228,15 +228,9 @@ export default function ContactPage() {
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
-          {/* Top header row */}
-          <div className="flex items-center justify-between gap-8 mb-10 lg:mb-14">
+          {/* Top eyebrow row */}
+          <div className="mb-10 lg:mb-14">
             <Eyebrow className="mb-0">LET'S TALK</Eyebrow>
-
-            <div className="hidden lg:flex items-start gap-2.5 shrink-0 text-left border-l-[1.5px] border-forge-blue pl-2.5">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-forge-ink/70 leading-snug">
-                SAME MISSION.<br />DIFFERENT CONVERSATIONS.
-              </div>
-            </div>
           </div>
 
           <div className="max-w-2xl mb-12">
@@ -259,7 +253,12 @@ export default function ContactPage() {
                 className="p-4 rounded-2xl bg-white/95 backdrop-blur-sm border border-forge-border hover:border-slate-300 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="text-lg" aria-hidden="true">✉️</span>
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-forge-blue flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <rect width="20" height="16" x="2" y="4" rx="2" />
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                  </div>
                   <span className="font-display font-bold text-xs text-forge-ink">Send an email</span>
                 </div>
                 <span className="text-[11px] text-forge-muted truncate font-mono">fortexforge@gmail.com</span>
@@ -272,7 +271,11 @@ export default function ContactPage() {
                 className="p-4 rounded-2xl bg-white/95 backdrop-blur-sm border border-forge-border hover:border-slate-300 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="text-lg" aria-hidden="true">💬</span>
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-forge-blue flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                    </svg>
+                  </div>
                   <span className="font-display font-bold text-xs text-forge-ink">Chat on WhatsApp</span>
                 </div>
                 <span className="text-[11px] text-forge-muted font-medium">Quick responses</span>
@@ -285,7 +288,13 @@ export default function ContactPage() {
                 className="p-4 rounded-2xl bg-white/95 backdrop-blur-sm border border-forge-border hover:border-slate-300 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="flex items-center gap-3 mb-2">
-                  <span className="text-lg font-bold text-forge-blue" aria-hidden="true">in</span>
+                  <div className="w-8 h-8 rounded-lg bg-blue-50 text-forge-blue flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                      <rect width="4" height="12" x="2" y="9" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg>
+                  </div>
                   <span className="font-display font-bold text-xs text-forge-ink">Connect on LinkedIn</span>
                 </div>
                 <span className="text-[11px] text-forge-muted font-medium">Let's network</span>
@@ -312,30 +321,45 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Bottom Assurance Strip matching mockup */}
+        {/* Bottom Assurance Strip matching mockup 01.png */}
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-forge-blue" aria-hidden="true">⚡</span>
+          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-4">
+            <div className="flex items-center gap-3">
+              <div className="text-forge-blue shrink-0">
+                <svg className="w-5 h-5 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+              </div>
               <div>
                 <span className="text-forge-ink font-bold block text-[11px]">Fast responses</span>
-                <span className="text-[10px] text-neutral-400 lowercase">No long wait times.</span>
+                <span className="text-[10px] text-neutral-400 font-normal">No long wait times.</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
-              <span className="text-forge-blue" aria-hidden="true">🛡️</span>
+            <div className="flex items-center gap-3">
+              <div className="text-forge-blue shrink-0">
+                <svg className="w-5 h-5 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
               <div>
                 <span className="text-forge-ink font-bold block text-[11px]">Serious about your project</span>
-                <span className="text-[10px] text-neutral-400 lowercase">Confidential and professional.</span>
+                <span className="text-[10px] text-neutral-400 font-normal">Confidential and professional.</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
-              <span className="text-forge-blue" aria-hidden="true">👥</span>
+            <div className="flex items-center gap-3">
+              <div className="text-forge-blue shrink-0">
+                <svg className="w-5 h-5 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
               <div>
                 <span className="text-forge-ink font-bold block text-[11px]">Built for founders</span>
-                <span className="text-[10px] text-neutral-400 lowercase">From idea to execution.</span>
+                <span className="text-[10px] text-neutral-400 font-normal">From idea to execution.</span>
               </div>
             </div>
           </div>
@@ -501,28 +525,22 @@ export default function ContactPage() {
           <img
             src="/assets/contact/03-project-diagnostic.webp"
             alt=""
-            className="w-full h-full object-cover object-bottom lg:object-left-bottom mix-blend-multiply"
+            className="w-full h-full object-cover object-center"
             loading="lazy"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
+          <div className="absolute inset-0 bg-white/80 lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
           {/* Top header row */}
-          <div className="flex items-center justify-between gap-8 mb-10 lg:mb-14">
+          <div className="mb-8 lg:mb-12">
             <Eyebrow className="mb-0">PROJECT DIAGNOSTIC</Eyebrow>
-
-            <div className="hidden lg:flex items-start gap-2.5 shrink-0 text-left border-l-[1.5px] border-forge-blue pl-2.5">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-forge-ink/70 leading-snug">
-                SAME MISSION.<br />DIFFERENT CONVERSATIONS.
-              </div>
-            </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Left Narrative Block */}
-            <div className="lg:col-span-5">
+          <div className="flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-8">
+            {/* Left Narrative Block — strictly constrained to stay clear of the central basalt rock */}
+            <div className="w-full lg:max-w-[360px] xl:max-w-[400px] shrink-0">
               <h2
                 id="diagnostic-heading"
                 className="text-4xl sm:text-5xl font-display font-bold text-forge-ink leading-[1.08] mb-6 tracking-[-0.03em]"
@@ -530,15 +548,18 @@ export default function ContactPage() {
                 Tell us about <br />
                 your <span className="text-forge-blue">project.</span>
               </h2>
-              <p className="text-base sm:text-lg text-forge-secondary leading-relaxed mb-10">
+              <p className="text-sm sm:text-base text-forge-secondary leading-relaxed mb-8">
                 A few questions to help us understand your business, your goals, and how we can create the most impact together.
               </p>
 
-              {/* 3 bullet benefits matching mockup */}
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/90 border border-neutral-200 flex items-center justify-center text-forge-blue shrink-0 shadow-sm">
-                    ⏱️
+              {/* 3 bullet benefits matching mockup 03.png */}
+              <div className="space-y-4">
+                <div className="flex items-start gap-3.5">
+                  <div className="w-10 h-10 rounded-xl bg-white/90 border border-neutral-200/90 flex items-center justify-center text-forge-ink shrink-0 shadow-xs">
+                    <svg className="w-5 h-5 text-forge-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
                   </div>
                   <div>
                     <h4 className="font-display font-bold text-sm text-forge-ink">Takes 3–5 minutes</h4>
@@ -546,9 +567,11 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/90 border border-neutral-200 flex items-center justify-center text-forge-blue shrink-0 shadow-sm">
-                    🛡️
+                <div className="flex items-start gap-3.5">
+                  <div className="w-10 h-10 rounded-xl bg-white/90 border border-neutral-200/90 flex items-center justify-center text-forge-ink shrink-0 shadow-xs">
+                    <svg className="w-5 h-5 text-forge-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
                   </div>
                   <div>
                     <h4 className="font-display font-bold text-sm text-forge-ink">Confidential</h4>
@@ -556,9 +579,15 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/90 border border-neutral-200 flex items-center justify-center text-forge-blue shrink-0 shadow-sm">
-                    🎯
+                <div className="flex items-start gap-3.5">
+                  <div className="w-10 h-10 rounded-xl bg-white/90 border border-neutral-200/90 flex items-center justify-center text-forge-ink shrink-0 shadow-xs">
+                    <svg className="w-5 h-5 text-forge-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="22" x2="18" y1="12" y2="12" />
+                      <line x1="6" x2="2" y1="12" y2="12" />
+                      <line x1="12" x2="12" y1="6" y2="2" />
+                      <line x1="12" x2="12" y1="22" y2="18" />
+                    </svg>
                   </div>
                   <div>
                     <h4 className="font-display font-bold text-sm text-forge-ink">Better recommendations</h4>
@@ -566,11 +595,19 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Handwritten / serif italic script on blueprint paper at bottom left matching 03.png */}
+              <div className="pt-8 lg:pt-10 select-none hidden lg:block">
+                <div className="font-serif italic text-2xl xl:text-3xl text-neutral-600/90 leading-tight">
+                  Same<br />mission.<br />Different<br />conversations.
+                </div>
+                <div className="w-8 h-[2px] bg-forge-blue -rotate-12 mt-3 rounded-full" aria-hidden="true" />
+              </div>
             </div>
 
             {/* Right Interactive Form Container matching 03.png */}
-            <div className="lg:col-span-7">
-              <div className="bg-white/95 backdrop-blur-md rounded-3xl border border-slate-200/80 p-8 sm:p-10 shadow-2xl">
+            <div className="w-full lg:max-w-[580px] xl:max-w-[640px] shrink-0 lg:ml-auto">
+              <div className="bg-white rounded-3xl border border-neutral-200/90 p-7 sm:p-10 shadow-xl">
                 {/* Honeypot field for bot spam prevention */}
                 <input
                   ref={honeypotRef}
@@ -600,24 +637,41 @@ export default function ContactPage() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-8">
-                    {/* Top step progress indicator */}
-                    <div className="flex items-center justify-between pb-4 border-b border-neutral-200/80">
-                      <div>
-                        <span className="font-mono text-xs uppercase tracking-wider font-bold text-forge-blue">
-                          STEP {step} OF 3
-                        </span>
-                        <h3 className="font-display font-bold text-xl text-forge-ink mt-0.5">
-                          {step === 1 && "Let's start with the basics."}
-                          {step === 2 && "What are you looking to achieve?"}
-                          {step === 3 && "Budget & timeline expectations."}
-                        </h3>
+                    {/* Top step progress indicator matching 03.png */}
+                    <div className="pb-6 border-b border-neutral-200/80">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-3">
+                          <span className="font-mono text-xs uppercase tracking-wider font-bold text-forge-blue">
+                            STEP {step} OF 3
+                          </span>
+                          <div className="flex items-center gap-1.5" aria-hidden="true">
+                            {[1, 2, 3].map((s) => (
+                              <div
+                                key={s}
+                                className={`h-1.5 rounded-full transition-all duration-300 ${
+                                  s <= step ? 'w-8 bg-forge-blue' : 'w-8 bg-neutral-200'
+                                }`}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                        <div className="text-right flex items-center gap-2">
+                          <span className="font-mono text-[10px] font-bold tracking-wider text-neutral-400">PROJECT CLARITY</span>
+                          <span className="font-display font-extrabold text-xl text-forge-blue">
+                            {step === 1 ? '33%' : step === 2 ? '66%' : '100%'}
+                          </span>
+                        </div>
                       </div>
-                      <div className="text-right">
-                        <span className="font-mono text-xs font-bold text-neutral-400 block">PROJECT CLARITY</span>
-                        <span className="font-display font-extrabold text-2xl text-forge-blue">
-                          {step === 1 ? '33%' : step === 2 ? '66%' : '100%'}
-                        </span>
-                      </div>
+                      <h3 className="font-display font-bold text-2xl text-forge-ink tracking-tight">
+                        {step === 1 && "Let's start with the basics."}
+                        {step === 2 && "What are you looking to achieve?"}
+                        {step === 3 && "Budget & timeline expectations."}
+                      </h3>
+                      <p className="text-xs text-forge-secondary mt-1">
+                        {step === 1 && "Help us get to know you and your business."}
+                        {step === 2 && "Select the services and challenges that match your goals."}
+                        {step === 3 && "Help us calibrate our scope recommendations to your reality."}
+                      </p>
                     </div>
 
                     {/* Step 1: Basics */}
@@ -700,7 +754,8 @@ export default function ContactPage() {
                           </select>
                         </div>
 
-                        <div className="flex justify-end pt-4">
+                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
+                          <span className="text-xs text-forge-secondary font-medium">Step 2: Your Current Situation</span>
                           <button
                             type="button"
                             onClick={() => {
@@ -710,7 +765,7 @@ export default function ContactPage() {
                               }
                               setStep(2)
                             }}
-                            className="px-8 py-3.5 rounded-full bg-forge-blue text-white text-sm font-semibold hover:bg-forge-blue-hover transition-all flex items-center gap-2"
+                            className="px-8 py-3.5 rounded-full bg-forge-blue text-white text-sm font-semibold hover:bg-forge-blue-hover transition-all flex items-center gap-2 shadow-md shadow-forge-blue/20"
                           >
                             Next Step <span aria-hidden="true">→</span>
                           </button>
@@ -883,6 +938,21 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+
+        {/* Bottom bar matching mockup 03.png */}
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto pt-10">
+          <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-forge-secondary border-t border-neutral-200/80 pt-6 gap-4">
+            <div className="flex items-center gap-2">
+              <span className="font-display font-bold tracking-wider text-forge-ink uppercase">FORTEX FORGE</span>
+            </div>
+            <div className="text-neutral-400">
+              Strategy-led. Results-driven. <span className="mx-2">—</span>
+            </div>
+            <div className="text-forge-secondary">
+              Your brand's next chapter starts here.
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
@@ -903,7 +973,7 @@ export default function ContactPage() {
           <img
             src="/assets/contact/04-alternative-contact.webp"
             alt=""
-            className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply"
+            className="w-full h-full object-cover object-bottom lg:object-right-bottom"
             loading="lazy"
             decoding="async"
           />
@@ -912,14 +982,8 @@ export default function ContactPage() {
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
           {/* Top header row */}
-          <div className="flex items-center justify-between gap-8 mb-10 lg:mb-14">
+          <div className="mb-10 lg:mb-14">
             <Eyebrow className="mb-0">OTHER WAYS TO REACH US</Eyebrow>
-
-            <div className="hidden lg:flex items-start gap-2.5 shrink-0 text-left border-l-[1.5px] border-forge-blue pl-2.5">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-forge-ink/70 leading-snug">
-                BRANDS. WEBSITES.<br />STRATEGY. REAL RESULTS.
-              </div>
-            </div>
           </div>
 
           <div className="max-w-2xl mb-12">
@@ -939,7 +1003,12 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mb-10">
             <div className="p-6 rounded-2xl bg-white/95 backdrop-blur-sm border border-forge-border shadow-sm flex flex-col justify-between">
               <div>
-                <span className="text-2xl mb-3 block" aria-hidden="true">✉️</span>
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-forge-blue flex items-center justify-center mb-4">
+                  <svg className="w-5 h-5 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                </div>
                 <h3 className="font-display font-bold text-lg text-forge-ink mb-1">Email</h3>
                 <p className="text-xs text-forge-secondary leading-relaxed mb-4">
                   Send us a detailed message and we'll get back to you.
@@ -956,7 +1025,11 @@ export default function ContactPage() {
 
             <div className="p-6 rounded-2xl bg-white/95 backdrop-blur-sm border border-forge-border shadow-sm flex flex-col justify-between">
               <div>
-                <span className="text-2xl mb-3 block" aria-hidden="true">💬</span>
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-forge-blue flex items-center justify-center mb-4">
+                  <svg className="w-5 h-5 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                  </svg>
+                </div>
                 <h3 className="font-display font-bold text-lg text-forge-ink mb-1">WhatsApp</h3>
                 <p className="text-xs text-forge-secondary leading-relaxed mb-4">
                   Prefer a casual chat? Message us on WhatsApp.
@@ -975,7 +1048,13 @@ export default function ContactPage() {
 
             <div className="p-6 rounded-2xl bg-white/95 backdrop-blur-sm border border-forge-border shadow-sm flex flex-col justify-between">
               <div>
-                <span className="text-2xl mb-3 block text-forge-blue font-bold" aria-hidden="true">in</span>
+                <div className="w-10 h-10 rounded-xl bg-blue-50 text-forge-blue flex items-center justify-center mb-4">
+                  <svg className="w-5 h-5 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                    <rect width="4" height="12" x="2" y="9" />
+                    <circle cx="4" cy="4" r="2" />
+                  </svg>
+                </div>
                 <h3 className="font-display font-bold text-lg text-forge-ink mb-1">LinkedIn</h3>
                 <p className="text-xs text-forge-secondary leading-relaxed mb-4">
                   Let's connect professionally and talk about opportunities.
@@ -993,23 +1072,40 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Assurance card matching mockup */}
-          <div className="max-w-4xl bg-white/90 backdrop-blur-sm rounded-2xl p-6 border border-neutral-200/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <span className="text-xl text-forge-blue" aria-hidden="true">⏱️</span>
+          {/* Assurance card matching mockup 04.png */}
+          <div className="max-w-4xl bg-white/95 backdrop-blur-sm rounded-2xl p-6 border border-neutral-200/90 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-forge-blue flex items-center justify-center shrink-0">
+                <svg className="w-5 h-5 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
               <div>
                 <h4 className="font-display font-bold text-sm text-forge-ink">Response Time</h4>
                 <p className="text-xs text-forge-secondary">We typically respond within 24 hours (Mon – Fri).</p>
               </div>
             </div>
             <div className="hidden sm:block w-px h-8 bg-neutral-200" aria-hidden="true" />
-            <div className="flex items-center gap-3">
-              <span className="text-xl text-forge-blue" aria-hidden="true">🔒</span>
+            <div className="flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-forge-blue flex items-center justify-center shrink-0">
+                <svg className="w-5 h-5 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
               <div>
                 <h4 className="font-display font-bold text-sm text-forge-ink">Your Information is Safe</h4>
                 <p className="text-xs text-forge-secondary">We respect your privacy. Your details will only be used to discuss your project.</p>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Bottom bar matching mockup 04.png */}
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto pt-10">
+          <div className="flex items-center justify-between text-xs text-forge-secondary border-t border-neutral-200/80 pt-6">
+            <span className="font-display font-bold tracking-wider text-forge-ink uppercase">FORTEX FORGE</span>
+            <span className="text-neutral-400">Forging Absolute Clarity</span>
           </div>
         </div>
       </section>
@@ -1032,7 +1128,7 @@ export default function ContactPage() {
           <img
             src="/assets/contact/05-closing.webp"
             alt=""
-            className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply"
+            className="w-full h-full object-cover object-bottom lg:object-right-bottom"
             loading="lazy"
             decoding="async"
           />
@@ -1041,14 +1137,8 @@ export default function ContactPage() {
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
           {/* Top header row */}
-          <div className="flex items-center justify-between gap-8 mb-10 lg:mb-14">
+          <div className="mb-10 lg:mb-14">
             <Eyebrow className="mb-0">FINAL THOUGHT</Eyebrow>
-
-            <div className="hidden lg:flex items-start gap-2.5 shrink-0 text-left border-l-[1.5px] border-forge-blue pl-2.5">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-forge-ink/70 leading-snug">
-                SAME MISSION.<br />DIFFERENT CONVERSATIONS.
-              </div>
-            </div>
           </div>
 
           <div className="max-w-xl lg:max-w-2xl mb-12">
@@ -1081,48 +1171,60 @@ export default function ContactPage() {
               </button>
             </div>
 
-            {/* Badges row matching mockup */}
+            {/* Badges row matching mockup 05.png */}
             <div className="flex flex-wrap items-center gap-8 pt-4">
-              <div className="flex items-center gap-2">
-                <span className="text-forge-blue" aria-hidden="true">⚡</span>
+              <div className="flex items-center gap-3">
+                <div className="text-forge-blue shrink-0">
+                  <svg className="w-5 h-5 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                  </svg>
+                </div>
                 <div>
                   <span className="text-forge-ink font-bold block text-xs">Fast responses</span>
-                  <span className="text-[11px] text-forge-muted">No long wait times.</span>
+                  <span className="text-[11px] text-forge-muted block">No long wait times.</span>
                 </div>
               </div>
 
-              <div className="hidden sm:block w-px h-6 bg-neutral-300" aria-hidden="true" />
+              <div className="hidden sm:block w-px h-6 bg-neutral-200" aria-hidden="true" />
 
-              <div className="flex items-center gap-2">
-                <span className="text-forge-blue" aria-hidden="true">🔒</span>
+              <div className="flex items-center gap-3">
+                <div className="text-forge-blue shrink-0">
+                  <svg className="w-5 h-5 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <polyline points="9 12 11 14 15 10" />
+                  </svg>
+                </div>
                 <div>
                   <span className="text-forge-ink font-bold block text-xs">Confidential and secure</span>
-                  <span className="text-[11px] text-forge-muted">Your information is safe.</span>
+                  <span className="text-[11px] text-forge-muted block">Your information is safe with us.</span>
                 </div>
               </div>
 
-              <div className="hidden sm:block w-px h-6 bg-neutral-300" aria-hidden="true" />
+              <div className="hidden sm:block w-px h-6 bg-neutral-200" aria-hidden="true" />
 
-              <div className="flex items-center gap-2">
-                <span className="text-forge-blue" aria-hidden="true">👥</span>
+              <div className="flex items-center gap-3">
+                <div className="text-forge-blue shrink-0">
+                  <svg className="w-5 h-5 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
                 <div>
                   <span className="text-forge-ink font-bold block text-xs">Built for founders</span>
-                  <span className="text-[11px] text-forge-muted">From idea to execution.</span>
+                  <span className="text-[11px] text-forge-muted block">From idea to execution.</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-4">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
-              FORTEX FORGE
-            </span>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
-              FORGING ABSOLUTE CLARITY
-            </span>
+        {/* Bottom bar matching mockup 05.png */}
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto pt-10">
+          <div className="flex items-center justify-between text-xs text-forge-secondary border-t border-neutral-200/80 pt-6">
+            <span className="font-display font-bold tracking-wider text-forge-ink uppercase">FORTEX FORGE</span>
+            <span className="text-neutral-400">Forging Absolute Clarity</span>
           </div>
         </div>
       </section>
