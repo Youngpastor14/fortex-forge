@@ -375,3 +375,142 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ─── Mobile Responsiveness Overrides ───────────────────────────────────────
+   Comprehensive fixes for small-screen viewports (< 768px).
+   Prevents horizontal scroll, fixes text sizing, improves touch targets,
+   and ensures text on background images has proper contrast.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Prevent horizontal overflow on any viewport */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ── Section height: collapse tall min-heights on mobile ── */
+@media (max-width: 1023px) {
+  section[class*="min-h-[820px]"],
+  section[class*="min-h-[860px]"],
+  section[class*="min-h-[920px]"],
+  section[class*="min-h-[960px]"],
+  section[class*="min-h-[1080px]"] {
+    min-height: auto !important;
+  }
+}
+
+/* ── Background image contrast: stronger gradient scrims on mobile ──
+   The Tailwind "from-white via-white/85 to-transparent lg:hidden" class applies
+   a gradient that protects copy on large screens, but on very small phones the
+   semi-transparent right side can still bleed through. This overrides the
+   gradient on small screens to be fully opaque so text always reads cleanly. */
+@media (max-width: 767px) {
+  /* The gradient div rendered as absolute inside each section */
+  .absolute.inset-0.bg-gradient-to-r {
+    background: linear-gradient(
+      to right,
+      rgba(255,255,255,1)   0%,
+      rgba(255,255,255,0.98) 60%,
+      rgba(255,255,255,0.90) 85%,
+      rgba(255,255,255,0.70) 100%
+    ) !important;
+  }
+
+  /* For sections with a plain white overlay (bg-white/80) — make fully opaque */
+  .absolute.inset-0.bg-white\/80 {
+    background: rgba(255,255,255,0.95) !important;
+  }
+}
+
+/* ── Typography: clamp fluid sizes to avoid overflow on tiny screens ── */
+@media (max-width: 480px) {
+  h1 { font-size: clamp(1.75rem, 8vw, 2.5rem) !important; line-height: 1.15 !important; }
+  h2 { font-size: clamp(1.4rem, 7vw, 2rem) !important; line-height: 1.2 !important; }
+  h3 { font-size: clamp(1.1rem, 5vw, 1.4rem) !important; }
+
+  /* Prevent very large display headings from overflowing */
+  .font-display {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Reduce huge tracking on mobile — doesn't need as much spread */
+  [class*="tracking-[0.2em]"] { letter-spacing: 0.1em !important; }
+}
+
+/* ── Touch targets: ensure interactive elements are at least 44px tall ── */
+@media (max-width: 767px) {
+  a[class*="rounded-full"],
+  button[class*="rounded-full"],
+  .btn-primary,
+  .btn-inverse,
+  .btn-ghost {
+    min-height: 44px;
+  }
+
+  /* Form controls — prevents iOS auto-zoom on focus (requires 16px min) */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+  input:not([type="radio"]):not([type="checkbox"]),
+  select {
+    min-height: 48px;
+  }
+  textarea { min-height: 96px !important; }
+}
+
+/* ── Grid collapse: force single column on very small screens ── */
+@media (max-width: 400px) {
+  [class*="grid-cols-2"]:not([class*="sm:grid-cols"]) {
+    grid-template-columns: 1fr !important;
+  }
+  [class*="grid-cols-4"] { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ── Image contrast: reduce mix-blend-multiply images on tablets ── */
+@media (max-width: 1023px) {
+  img[class*="mix-blend-multiply"] {
+    opacity: 0.25 !important;
+  }
+}
+
+/* ── Prevent the 5-col process section from overflowing on tablet ── */
+@media (min-width: 640px) and (max-width: 1023px) {
+  [class*="lg:grid-cols-5"] { grid-template-columns: repeat(3, 1fr) !important; }
+}
+@media (max-width: 639px) {
+  [class*="lg:grid-cols-5"] { grid-template-columns: 1fr 1fr !important; }
+  [class*="lg:grid-cols-5"] > :last-child { grid-column: 1 / -1; }
+}
+
+/* ── Work / Portfolio: stack cards on small screens ── */
+@media (max-width: 767px) {
+  [class*="md:grid-cols-3"] { grid-template-columns: 1fr !important; }
+}
+
+/* ── Footer: stack on small screens ── */
+@media (max-width: 639px) {
+  footer [class*="grid-cols-"] { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ── Insight / blog card horizontal scroll — smooth touch ── */
+@media (max-width: 767px) {
+  [class*="overflow-x-auto"] {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  [class*="overflow-x-auto"]::-webkit-scrollbar { display: none; }
+  [class*="overflow-x-auto"] > * { scroll-snap-align: start; }
+}
+
+/* ── FAQ accordion: improve touch usability ── */
+@media (max-width: 767px) {
+  button[class*="text-left"] { min-height: 52px; padding-top: 14px; padding-bottom: 14px; }
+}
+
+/* ── Form multi-step: prevent button row from overflowing on narrow screens ── */
+@media (max-width: 400px) {
+  .flex.justify-between.items-center { flex-direction: column !important; gap: 12px !important; align-items: stretch !important; }
+  .flex.justify-between.items-center button { width: 100% !important; justify-content: center !important; }
+}

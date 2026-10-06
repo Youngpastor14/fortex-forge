@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import PageShell from '@/components/layout/PageShell'
 import HomePage from '@/pages/HomePage'
 import AboutPage from '@/pages/AboutPage'
@@ -13,6 +14,16 @@ import ContactPage from '@/pages/ContactPage'
 // Root router and route table.
 // All pages wrapped in PageShell (skip link + GlobalHeader + GlobalFooter).
 // ─────────────────────────────────────────────────────────────────────────────
+
+// Scrolls to top of page on every route change so navigation always starts
+// at the first section of the new page, not wherever the user was before.
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  }, [pathname])
+  return null
+}
 
 function NotFound() {
   return (
@@ -34,6 +45,7 @@ function NotFound() {
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <PageShell>
         <Routes>
           <Route path="/"                element={<HomePage />}          />

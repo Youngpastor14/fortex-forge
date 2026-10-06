@@ -1,4 +1,5 @@
-import { useState, useRef, type FormEvent } from 'react'
+import { useState, useEffect, useRef, type FormEvent } from 'react'
+import { useFormspree } from '@/hooks/useFormspree'
 
 // ─── ContactPage ──────────────────────────────────────────────────────────────
 // High-fidelity implementation based on Reference mockups/contact page/ (01.png - 05.png)
@@ -6,7 +7,7 @@ import { useState, useRef, type FormEvent } from 'react'
 // while keeping all functional form submission, honeypot spam protection, and copy intact.
 // ─────────────────────────────────────────────────────────────────────────────
 
-type FormStatus = 'idle' | 'submitting' | 'success' | 'error' | 'misconfigured'
+
 
 interface FormState {
   fullName:       string
@@ -113,12 +114,26 @@ function Eyebrow({ children, className = '' }: { children: React.ReactNode; clas
 
 export default function ContactPage() {
   const [form, setForm] = useState<FormState>(INITIAL)
-  const [status, setStatus] = useState<FormStatus>('idle')
   const [errors, setErrors] = useState<Partial<Record<keyof FormState | '_general', string>>>({})
   const [step, setStep] = useState<number>(1)
 
+  // ── Formspree Integration ─────────────────────────────────────────────────
+  // Form ID: myekkzkz — configured to forward to fortexforge@gmail.com
+  // To upgrade to the official package: npm install @formspree/react, then
+  // change the import above to: import { useForm as useFormspree } from '@formspree/react'
+  const [formspreeState, submitToFormspree] = useFormspree('myekkzkz')
+
   const honeypotRef = useRef<HTMLInputElement>(null)
   const formRef = useRef<HTMLDivElement>(null)
+
+  // Reset form fields when submission succeeds
+  useEffect(() => {
+    if (formspreeState.succeeded) {
+      setForm(INITIAL)
+      setStep(1)
+      setErrors({})
+    }
+  }, [formspreeState.succeeded])
 
   const scrollToDiagnostic = () => {
     formRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -153,51 +168,26 @@ export default function ContactPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
-    if (honeypotRef.current?.value) {
-      setStatus('success')
-      return
-    }
+    // Honeypot spam guard — silently succeed without submitting
+    if (honeypotRef.current?.value) return
 
     if (!validate()) return
 
-    const endpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT as string | undefined
-    if (!endpoint) {
-      console.warn('[ContactPage] VITE_CONTACT_FORM_ENDPOINT not set. Showing success simulation.')
-      setStatus('success')
-      return
-    }
-
-    setStatus('submitting')
-    try {
-      const payload = {
-        'Full Name': form.fullName.trim(),
-        'Work Email': form.workEmail.trim(),
-        'Phone': form.phone.trim() || '(not provided)',
-        'Company': form.companyName.trim(),
-        'Website': form.website.trim() || '(not provided)',
-        'Business Type': form.businessType || '(not specified)',
-        'Scope': form.scopes.join(', '),
-        'Primary Barrier': form.primaryBarrier || '(not specified)',
-        'Project Notes': form.projectNotes.trim(),
-        'Budget': form.budgetRange,
-        'Launch Window': form.launchWindow,
-      }
-
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-
-      if (res.ok) {
-        setStatus('success')
-        setForm(INITIAL)
-      } else {
-        setStatus('error')
-      }
-    } catch {
-      setStatus('error')
-    }
+    await submitToFormspree({
+      _replyto:  form.workEmail.trim(),
+      _subject:  `New Project Inquiry from ${form.fullName.trim()} — ${form.companyName.trim()}`,
+      'Full Name':        form.fullName.trim(),
+      'Work Email':       form.workEmail.trim(),
+      'Phone':            form.phone.trim()        || '(not provided)',
+      'Company':          form.companyName.trim(),
+      'Website':          form.website.trim()       || '(not provided)',
+      'Business Type':    form.businessType         || '(not specified)',
+      'Scope':            form.scopes.join(', '),
+      'Primary Barrier':  form.primaryBarrier        || '(not specified)',
+      'Project Notes':    form.projectNotes.trim(),
+      'Budget':           form.budgetRange,
+      'Launch Window':    form.launchWindow,
+    })
   }
 
   return (
@@ -259,13 +249,13 @@ export default function ContactPage() {
                       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                     </svg>
                   </div>
-                  <span className="font-display font-bold text-xs text-forge-ink">Send an email</span>
+                  <span className="font-display font-bold text-xs text-forge-ink">Send an Email</span>
                 </div>
-                <span className="text-[11px] text-forge-muted truncate font-mono">fortexforge@gmail.com</span>
+                <span className="text-[11px] text-forge-muted font-medium">We respond within 24 hours.</span>
               </a>
 
               <a
-                href="https://wa.me/2348160402987"
+                href="https://wa.me/2347068811791"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 rounded-2xl bg-white/95 backdrop-blur-sm border border-forge-border hover:border-slate-300 hover:shadow-md transition-all flex flex-col justify-between"
@@ -278,26 +268,22 @@ export default function ContactPage() {
                   </div>
                   <span className="font-display font-bold text-xs text-forge-ink">Chat on WhatsApp</span>
                 </div>
-                <span className="text-[11px] text-forge-muted font-medium">Quick responses</span>
+                <span className="text-[11px] text-forge-muted font-medium">07068811791 · Quick responses</span>
               </a>
 
               <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="tel:+2347068811791"
                 className="p-4 rounded-2xl bg-white/95 backdrop-blur-sm border border-forge-border hover:border-slate-300 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-8 rounded-lg bg-blue-50 text-forge-blue flex items-center justify-center shrink-0">
                     <svg className="w-4 h-4 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                      <rect width="4" height="12" x="2" y="9" />
-                      <circle cx="4" cy="4" r="2" />
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.4a16 16 0 0 0 6.29 6.29l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
                     </svg>
                   </div>
-                  <span className="font-display font-bold text-xs text-forge-ink">Connect on LinkedIn</span>
+                  <span className="font-display font-bold text-xs text-forge-ink">Call / Hotline</span>
                 </div>
-                <span className="text-[11px] text-forge-muted font-medium">Let's network</span>
+                <span className="text-[11px] text-forge-muted font-medium">07068811791</span>
               </a>
             </div>
 
@@ -618,7 +604,7 @@ export default function ContactPage() {
                   className="sr-only"
                 />
 
-                {status === 'success' ? (
+                {formspreeState.succeeded ? (
                   <div className="text-center py-12">
                     <div className="w-16 h-16 rounded-full bg-forge-blue/10 text-forge-blue flex items-center justify-center mx-auto mb-6 text-2xl font-bold">
                       ✓
@@ -627,13 +613,12 @@ export default function ContactPage() {
                     <p className="text-sm text-forge-secondary max-w-md mx-auto mb-6 leading-relaxed">
                       Thank you for submitting your project diagnostic. We review every brief within 24 hours and will reach out with recommendations.
                     </p>
-                    <button
-                      type="button"
-                      onClick={() => setStatus('idle')}
-                      className="px-6 py-2.5 rounded-full bg-forge-ink text-white text-xs font-semibold hover:bg-neutral-800 transition-all"
+                    <a
+                      href="/contact"
+                      className="px-6 py-2.5 rounded-full bg-forge-ink text-white text-xs font-semibold hover:bg-neutral-800 transition-all inline-block"
                     >
                       Submit Another Brief
-                    </button>
+                    </a>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-8">
@@ -725,6 +710,21 @@ export default function ContactPage() {
                           </div>
                           <div>
                             <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
+                              Phone Number
+                            </label>
+                            <input
+                              type="tel"
+                              value={form.phone}
+                              onChange={e => setForm({ ...form, phone: e.target.value })}
+                              placeholder="e.g. 07068811791"
+                              className="w-full bg-white border border-neutral-300 rounded-xl px-4 py-3 text-sm text-forge-ink focus:outline-none focus:border-forge-blue focus:ring-1 focus:ring-forge-blue transition-all"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                          <div>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
                               Website (if available)
                             </label>
                             <input
@@ -735,24 +735,24 @@ export default function ContactPage() {
                               className="w-full bg-white border border-neutral-300 rounded-xl px-4 py-3 text-sm text-forge-ink focus:outline-none focus:border-forge-blue focus:ring-1 focus:ring-forge-blue transition-all"
                             />
                           </div>
+                          <div>
+                            <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
+                              What best describes your business?
+                            </label>
+                            <select
+                              value={form.businessType}
+                              onChange={e => setForm({ ...form, businessType: e.target.value })}
+                              className="w-full bg-white border border-neutral-300 rounded-xl px-4 py-3 text-sm text-forge-ink focus:outline-none focus:border-forge-blue focus:ring-1 focus:ring-forge-blue transition-all"
+                            >
+                              <option value="">Select an option</option>
+                              <option value="early-stage">Early-Stage Startup</option>
+                              <option value="scaling">Growing / Venture-Backed Scaleup</option>
+                              <option value="established">Established Mid-Sized Enterprise</option>
+                              <option value="rebrand">Executive Rebrand / Transformation</option>
+                            </select>
+                          </div>
                         </div>
 
-                        <div>
-                          <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
-                            What best describes your business?
-                          </label>
-                          <select
-                            value={form.businessType}
-                            onChange={e => setForm({ ...form, businessType: e.target.value })}
-                            className="w-full bg-white border border-neutral-300 rounded-xl px-4 py-3 text-sm text-forge-ink focus:outline-none focus:border-forge-blue focus:ring-1 focus:ring-forge-blue transition-all"
-                          >
-                            <option value="">Select an option</option>
-                            <option value="early-stage">Early-Stage Startup</option>
-                            <option value="scaling">Growing / Venture-Backed Scaleup</option>
-                            <option value="established">Established Mid-Sized Enterprise</option>
-                            <option value="rebrand">Executive Rebrand / Transformation</option>
-                          </select>
-                        </div>
 
                         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
                           <span className="text-xs text-forge-secondary font-medium">Step 2: Your Current Situation</span>
@@ -914,7 +914,7 @@ export default function ContactPage() {
                           </div>
                         </div>
 
-                        <div className="flex justify-between items-center pt-4">
+                        <div className="flex justify-between items-center pt-4 flex-wrap gap-4">
                           <button
                             type="button"
                             onClick={() => setStep(2)}
@@ -924,12 +924,29 @@ export default function ContactPage() {
                           </button>
                           <button
                             type="submit"
-                            disabled={status === 'submitting'}
-                            className="px-9 py-4 rounded-full bg-forge-blue text-white text-sm font-semibold shadow-lg shadow-forge-blue/25 hover:bg-forge-blue-hover transition-all flex items-center gap-2 hover:-translate-y-0.5 disabled:opacity-50"
+                            disabled={formspreeState.submitting}
+                            className="px-9 py-4 rounded-full bg-forge-blue text-white text-sm font-semibold shadow-lg shadow-forge-blue/25 hover:bg-forge-blue-hover transition-all flex items-center gap-2 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
                           >
-                            {status === 'submitting' ? 'Submitting...' : 'Submit Diagnostic Brief ↗'}
+                            {formspreeState.submitting ? (
+                              <>
+                                <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+                                </svg>
+                                Sending…
+                              </>
+                            ) : 'Submit Diagnostic Brief ↗'}
                           </button>
                         </div>
+
+                        {/* Formspree server-side error display */}
+                        {formspreeState.errors.length > 0 && (
+                          <div className="mt-4 p-4 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700" role="alert">
+                            {formspreeState.errors.map((err, i) => (
+                              <p key={i}>{err.message}</p>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     )}
                   </form>
@@ -1034,10 +1051,10 @@ export default function ContactPage() {
                 <p className="text-xs text-forge-secondary leading-relaxed mb-4">
                   Prefer a casual chat? Message us on WhatsApp.
                 </p>
-                <span className="font-mono text-xs font-bold text-forge-blue block mb-6">+234 816 040 2987</span>
+                <span className="font-mono text-xs font-bold text-forge-blue block mb-6">07068811791</span>
               </div>
               <a
-                href="https://wa.me/2348160402987"
+                href="https://wa.me/2347068811791"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-forge-ink hover:text-forge-blue transition-colors"
@@ -1059,15 +1076,15 @@ export default function ContactPage() {
                 <p className="text-xs text-forge-secondary leading-relaxed mb-4">
                   Let's connect professionally and talk about opportunities.
                 </p>
-                <span className="font-mono text-xs font-bold text-forge-blue block mb-6">Connect on LinkedIn</span>
+                <span className="font-mono text-xs font-bold text-forge-blue block mb-6">fortexforge</span>
               </div>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/fortexforge/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-forge-ink hover:text-forge-blue transition-colors"
               >
-                View Profile <span aria-hidden="true">↗</span>
+                View Company Page <span aria-hidden="true">↗</span>
               </a>
             </div>
           </div>
