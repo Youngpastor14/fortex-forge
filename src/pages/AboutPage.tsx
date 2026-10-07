@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import ResponsiveImage from '@/components/ui/ResponsiveImage'
 
 // ─── AboutPage ─────────────────────────────────────────────────────────────────
 // Composition: High-fidelity implementation based on Reference mockups/About page
@@ -169,8 +170,9 @@ export default function AboutPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/about/01-hero.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/about/01-hero.webp"
+            mobileSrc="/assets/about/01-hero-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right mix-blend-multiply opacity-95 lg:opacity-100"
             fetchPriority="high"
@@ -274,8 +276,9 @@ export default function AboutPage() {
             {/* Right — transformation graphic */}
             <div className="lg:col-span-3">
               <div className="relative rounded-2xl overflow-hidden shadow-sm border border-forge-border bg-slate-50 p-2">
-                <img
-                  src="/assets/about/07-process.webp"
+                <ResponsiveImage
+                  desktopSrc="/assets/about/07-process.webp"
+                  mobileSrc="/assets/about/07-process-mobile.webp"
                   alt="Unclear Positioning to Opportunity Revealed"
                   className="w-full h-auto object-contain"
                   loading="lazy"
@@ -306,8 +309,9 @@ export default function AboutPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/about/02-story.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/about/02-story.webp"
+            mobileSrc="/assets/about/02-story-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply"
             loading="lazy"
@@ -404,8 +408,9 @@ export default function AboutPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/about/03-philosophy.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/about/03-philosophy.webp"
+            mobileSrc="/assets/about/03-philosophy-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply"
             loading="lazy"
@@ -484,8 +489,9 @@ export default function AboutPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/about/04-founder-background.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/about/04-founder-background.webp"
+            mobileSrc="/assets/about/04-founder-background-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-bottom mix-blend-multiply"
             loading="lazy"
@@ -609,8 +615,9 @@ export default function AboutPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/about/values.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/about/values.webp"
+            mobileSrc="/assets/about/06-values-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-left-bottom lg:object-center mix-blend-multiply"
             loading="lazy"
@@ -717,8 +724,9 @@ export default function AboutPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/about/06-values.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/about/06-values.webp"
+            mobileSrc="/assets/about/06-values-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply"
             loading="lazy"
@@ -807,8 +815,9 @@ export default function AboutPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/about/08-principles-background.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/about/08-principles-background.webp"
+            mobileSrc="/assets/about/08-principles-background-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center mix-blend-multiply"
             loading="lazy"
@@ -902,8 +911,9 @@ export default function AboutPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/about/09-partner-fit.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/about/09-partner-fit.webp"
+            mobileSrc="/assets/about/09-partner-fit-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply"
             loading="lazy"
@@ -1022,8 +1032,9 @@ export default function AboutPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/about/10-journey.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/about/10-journey.webp"
+            mobileSrc="/assets/about/10-journey-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply"
             loading="lazy"
@@ -1108,8 +1119,9 @@ export default function AboutPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/about/11-testimonials.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/about/11-testimonials.webp"
+            mobileSrc="/assets/about/11-testimonials-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-top lg:object-right-top mix-blend-multiply"
             loading="lazy"
@@ -1228,8 +1240,9 @@ export default function AboutPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/about/12-mission.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/about/12-mission.webp"
+            mobileSrc="/assets/about/12-mission-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply"
             loading="lazy"
@@ -1328,8 +1341,9 @@ export default function AboutPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/about/14-closing.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/about/14-closing.webp"
+            mobileSrc="/assets/about/14-closing-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply"
             loading="lazy"

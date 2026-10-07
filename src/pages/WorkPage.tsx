@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { projects } from '@/data/projects'
 import type { ProjectCategory } from '@/types/content'
+import ResponsiveImage from '@/components/ui/ResponsiveImage'
 
 // ─── WorkPage ──────────────────────────────────────────────────────────────────
 // High-fidelity implementation based on Reference mockups/Portfolio/
@@ -55,8 +56,9 @@ export default function WorkPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/work/01-portfolio-hero.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/work/01-portfolio-hero.webp"
+            mobileSrc="/assets/work/01-portfolio-hero-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
             fetchPriority="high"
@@ -297,8 +299,9 @@ export default function WorkPage() {
 
             {/* Rocky mountain right image */}
             <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-1/3 pointer-events-none z-0">
-              <img
-                src="/assets/work/03-results.webp"
+              <ResponsiveImage
+                desktopSrc="/assets/work/03-results.webp"
+                mobileSrc="/assets/work/03-results-mobile.webp"
                 alt=""
                 className="w-full h-full object-cover object-right"
               />
@@ -317,8 +320,9 @@ export default function WorkPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/work/02-featured-case-study.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/work/02-featured-case-study.webp"
+            mobileSrc="/assets/work/02-featured-case-study-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
           />
@@ -594,8 +598,9 @@ export default function WorkPage() {
                 <h3 className="font-display text-2xl font-bold text-forge-ink">Looks good. Little impact.</h3>
               </div>
               <div className="rounded-xl overflow-hidden mb-8 border border-forge-border bg-forge-surface aspect-[16/10]">
-                <img
-                  src="/assets/home/approach.webp"
+                <ResponsiveImage
+                  desktopSrc="/assets/home/approach.webp"
+                  mobileSrc="/assets/work/05-process-mobile.webp"
                   alt="Generic brand work without strategic foundation"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -684,8 +689,9 @@ export default function WorkPage() {
           {/* Bottom CTA banner with concrete F-cube background (06-cta-banner.webp) */}
           <div className="relative rounded-2xl overflow-hidden border border-forge-border shadow-lg min-h-[160px] flex items-center justify-between p-8 sm:p-10 bg-white">
             <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-              <img
-                src="/assets/work/06-cta-banner.webp"
+              <ResponsiveImage
+                desktopSrc="/assets/work/06-cta-banner.webp"
+                mobileSrc="/assets/work/06-cta-banner-mobile.webp"
                 alt=""
                 className="w-full h-full object-cover object-right"
               />
@@ -721,8 +727,9 @@ export default function WorkPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/work/07-closing-scene.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/work/07-closing-scene.webp"
+            mobileSrc="/assets/work/07-closing-scene-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
             loading="lazy"

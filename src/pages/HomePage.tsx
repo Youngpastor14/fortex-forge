@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import ResponsiveImage from '@/components/ui/ResponsiveImage'
 
 // ─── HomePage ─────────────────────────────────────────────────────────────────
 // Source of truth: fortex_forge_official_homepage_integrated_backgrounds/code.html
@@ -221,8 +222,9 @@ export default function HomePage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/home/hero-bg.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/home/hero-bg.webp"
+            mobileSrc="/assets/home/01-hero-mobile.webp"
             alt=""
             className="absolute right-[-10%] sm:right-[-5%] lg:right-0 top-0 w-[95%] sm:w-[80%] lg:w-[62%] h-full object-contain object-right-bottom mix-blend-multiply opacity-95 lg:opacity-100"
             fetchPriority="high"
@@ -295,8 +297,9 @@ export default function HomePage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/home/02-hidden-cost.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/home/02-hidden-cost.webp"
+            mobileSrc="/assets/home/02-hidden-cost-mobile.webp"
             alt=""
             className="absolute right-[-10%] sm:right-0 bottom-0 w-full sm:w-[75%] lg:w-[58%] h-full object-contain object-right-bottom mix-blend-multiply opacity-85 sm:opacity-95 lg:opacity-100"
             loading="lazy"
@@ -386,8 +389,9 @@ export default function HomePage() {
           className="absolute inset-x-0 bottom-0 pointer-events-none select-none z-0"
           aria-hidden="true"
         >
-          <img
-            src="/assets/home/03-trust-and-proof.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/home/03-trust-and-proof.webp"
+            mobileSrc="/assets/home/03-trust-and-proof-mobile.webp"
             alt=""
             className="w-full h-44 md:h-60 lg:h-80 object-cover object-bottom mix-blend-multiply opacity-85"
             loading="lazy"
@@ -479,8 +483,9 @@ export default function HomePage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/home/04-our-approach.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/home/04-our-approach.webp"
+            mobileSrc="/assets/home/04-our-approach-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center mix-blend-multiply"
             loading="lazy"
@@ -598,8 +603,9 @@ export default function HomePage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/home/05-how-we-work.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/home/05-how-we-work.webp"
+            mobileSrc="/assets/home/05-how-we-work-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center mix-blend-multiply"
             loading="lazy"
@@ -732,8 +738,9 @@ export default function HomePage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/home/06-consequence-with-lettering.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/home/06-consequence-with-lettering.webp"
+            mobileSrc="/assets/home/06-consequence-with-lettering-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-bottom mix-blend-multiply"
             loading="lazy"
@@ -851,8 +858,9 @@ export default function HomePage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/home/07-faq.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/home/07-faq.webp"
+            mobileSrc="/assets/home/07-faq-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-right mix-blend-multiply"
             loading="lazy"
@@ -954,8 +962,9 @@ export default function HomePage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/home/08-closing.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/home/08-closing.webp"
+            mobileSrc="/assets/home/08-closing-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply"
             loading="lazy"

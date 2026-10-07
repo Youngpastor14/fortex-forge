@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { insights } from '@/data/insights'
+import ResponsiveImage from '@/components/ui/ResponsiveImage'
 
 // ─── InsightsPage ─────────────────────────────────────────────────────────────
 // High-fidelity implementation based on Reference mockups/insight page/
@@ -102,8 +103,9 @@ export default function InsightsPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/insights/01-hero.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/insights/01-hero.webp"
+            mobileSrc="/assets/insights/01-hero-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
             fetchPriority="high"
@@ -175,8 +177,9 @@ export default function InsightsPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/insights/02-featured-article.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/insights/02-featured-article.webp"
+            mobileSrc="/assets/insights/02-featured-article-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
           />
@@ -441,8 +444,9 @@ export default function InsightsPage() {
           {/* Newsletter Banner with Basalt Block background (05-newsletter-banner.webp) */}
           <div className="relative rounded-2xl overflow-hidden border border-forge-border shadow-lg min-h-[180px] p-8 sm:p-10 bg-white flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-              <img
-                src="/assets/insights/05-newsletter-banner.webp"
+              <ResponsiveImage
+                desktopSrc="/assets/insights/05-newsletter-banner.webp"
+                mobileSrc="/assets/insights/05-newsletter-banner-mobile.webp"
                 alt=""
                 className="w-full h-full object-cover object-left"
               />
@@ -493,8 +497,9 @@ export default function InsightsPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/insights/06-founder-background.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/insights/06-founder-background.webp"
+            mobileSrc="/assets/insights/06-founder-background-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
           />
@@ -569,8 +574,9 @@ export default function InsightsPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/insights/07-newsletter.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/insights/07-newsletter.webp"
+            mobileSrc="/assets/insights/07-newsletter-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
           />

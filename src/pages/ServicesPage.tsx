@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import ResponsiveImage from '@/components/ui/ResponsiveImage'
 
 // ─── ServicesPage ──────────────────────────────────────────────────────────────
 // High-fidelity implementation based on Reference mockups/service page/
@@ -236,8 +237,9 @@ export default function ServicesPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/services/01-hero.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/services/01-hero.webp"
+            mobileSrc="/assets/services/01-hero-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center"
           />
@@ -320,8 +322,9 @@ export default function ServicesPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/services/02-brand-comparison.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/services/02-brand-comparison.webp"
+            mobileSrc="/assets/services/02-brand-comparison-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
           />
@@ -418,8 +421,9 @@ export default function ServicesPage() {
       >
         {/* Environmental backdrop at the top */}
         <div className="absolute top-0 inset-x-0 h-96 pointer-events-none select-none z-0 overflow-hidden" aria-hidden="true">
-          <img
-            src="/assets/services/03-services-overview.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/services/03-services-overview.webp"
+            mobileSrc="/assets/services/03-services-overview-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center opacity-60 mix-blend-multiply"
           />
@@ -535,8 +539,9 @@ export default function ServicesPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/services/04-strategy-and-positioning.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/services/04-strategy-and-positioning.webp"
+            mobileSrc="/assets/services/04-strategy-and-positioning-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
           />
@@ -640,8 +645,9 @@ export default function ServicesPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/services/05-brand-identity.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/services/05-brand-identity.webp"
+            mobileSrc="/assets/services/05-brand-identity-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
           />
@@ -743,8 +749,9 @@ export default function ServicesPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/services/06-web-design-and-development.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/services/06-web-design-and-development.webp"
+            mobileSrc="/assets/services/06-web-design-and-development-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
           />
@@ -842,8 +849,9 @@ export default function ServicesPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/services/07-complete-brand-and-web.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/services/07-complete-brand-and-web.webp"
+            mobileSrc="/assets/services/07-complete-brand-and-web-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
           />
@@ -934,8 +942,9 @@ export default function ServicesPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/services/08-positioning-comparison.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/services/08-positioning-comparison.webp"
+            mobileSrc="/assets/services/08-positioning-comparison-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
           />
@@ -1106,8 +1115,9 @@ export default function ServicesPage() {
       >
         {/* Full-bleed background */}
         <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
-          <img
-            src="/assets/services/09-closing.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/services/09-closing.webp"
+            mobileSrc="/assets/services/09-closing-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
           />

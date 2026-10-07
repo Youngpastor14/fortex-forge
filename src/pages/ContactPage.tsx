@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, type FormEvent } from 'react'
 import { useFormspree } from '@/hooks/useFormspree'
+import ResponsiveImage from '@/components/ui/ResponsiveImage'
 
 // ─── ContactPage ──────────────────────────────────────────────────────────────
 // High-fidelity implementation based on Reference mockups/contact page/ (01.png - 05.png)
@@ -207,8 +208,9 @@ export default function ContactPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/contact/01-hero.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/contact/01-hero.webp"
+            mobileSrc="/assets/contact/01-hero-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-bottom lg:object-right-bottom"
             fetchPriority="high"
@@ -371,8 +373,9 @@ export default function ContactPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/contact/02-what-happens-next.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/contact/02-what-happens-next.webp"
+            mobileSrc="/assets/contact/02-what-happens-next-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center"
             loading="lazy"
@@ -512,8 +515,9 @@ export default function ContactPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/contact/03-project-diagnostic.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/contact/03-project-diagnostic.webp"
+            mobileSrc="/assets/contact/03-project-diagnostic-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-center"
             loading="lazy"
@@ -991,8 +995,9 @@ export default function ContactPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/contact/04-alternative-contact.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/contact/04-alternative-contact.webp"
+            mobileSrc="/assets/contact/04-alternative-contact-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-bottom lg:object-right-bottom"
             loading="lazy"
@@ -1146,8 +1151,9 @@ export default function ContactPage() {
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/contact/05-closing.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/contact/05-closing.webp"
+            mobileSrc="/assets/contact/05-closing-mobile.webp"
             alt=""
             className="w-full h-full object-cover object-bottom lg:object-right-bottom"
             loading="lazy"
