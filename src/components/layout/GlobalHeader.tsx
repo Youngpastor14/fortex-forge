@@ -23,15 +23,21 @@ export default function GlobalHeader() {
     setMobileOpen(false)
   }, [location.pathname])
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll when mobile menu is open without causing layout shift
   useEffect(() => {
     if (mobileOpen) {
-      document.body.style.overflow = 'hidden'
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+      document.documentElement.style.overflow = 'hidden'
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`
+      }
     } else {
-      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+      document.body.style.paddingRight = ''
     }
     return () => {
-      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+      document.body.style.paddingRight = ''
     }
   }, [mobileOpen])
 
@@ -56,7 +62,7 @@ export default function GlobalHeader() {
         role="banner"
         className={[
           'fixed top-0 inset-x-0 z-50',
-          'transition-all duration-standard',
+          'transition-[background-color,border-color,box-shadow] duration-standard',
           scrolled
             ? 'bg-forge-canvas/95 backdrop-blur-sm border-b border-forge-border shadow-nav'
             : 'bg-forge-canvas border-b border-forge-border',
@@ -140,7 +146,7 @@ export default function GlobalHeader() {
                   className={[
                     'block w-[18px] h-[1.5px] bg-forge-ink rounded-full',
                     'transition-all duration-standard origin-center',
-                    mobileOpen ? 'translate-y-[4px] rotate-45' : '',
+                    mobileOpen ? 'translate-y-[6.5px] rotate-45' : '',
                   ].join(' ')}
                 />
                 <span

@@ -74,7 +74,7 @@ export default function MobileMenu({ id, isOpen, onClose }: MobileMenuProps) {
       <div
         ref={overlayRef}
         className={[
-          'fixed inset-0 z-40 bg-forge-ink/20 backdrop-blur-[2px]',
+          'fixed inset-0 z-[60] bg-forge-ink/40 backdrop-blur-sm',
           'transition-opacity duration-standard',
           isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none',
         ].join(' ')}
@@ -88,23 +88,26 @@ export default function MobileMenu({ id, isOpen, onClose }: MobileMenuProps) {
         id={id}
         role="dialog"
         aria-modal="true"
+        aria-hidden={!isOpen}
         aria-label="Navigation menu"
         onKeyDown={handleKeyDown}
         className={[
-          'fixed top-0 right-0 z-50 h-full w-[min(320px,88vw)]',
+          'fixed top-0 right-0 z-[70] h-[100dvh] w-full sm:w-[360px] sm:max-w-[85vw]',
           'bg-forge-canvas flex flex-col',
-          'shadow-xl',
-          'transition-transform duration-standard ease-forge',
-          isOpen ? 'translate-x-0' : 'translate-x-full',
+          'shadow-2xl border-l border-forge-border',
+          'transition-all duration-standard ease-forge',
+          isOpen
+            ? 'translate-x-0 visible pointer-events-auto'
+            : 'translate-x-full invisible pointer-events-none',
         ].join(' ')}
       >
         {/* Header row */}
-        <div className="flex items-center justify-between px-6 h-[72px] border-b border-forge-border flex-shrink-0">
+        <div className="flex items-center justify-between px-6 sm:px-8 h-[72px] border-b border-forge-border flex-shrink-0">
           <BrandLogo
             to="/"
-            className="flex items-center gap-3"
-            iconClassName="w-[30px] h-[30px]"
-            textClassName="font-display font-bold text-forge-ink text-[15px] tracking-[0.05em] uppercase leading-none"
+            className="flex items-center gap-3.5"
+            iconClassName="w-[34px] h-[34px]"
+            textClassName="font-display font-bold text-forge-ink text-[16px] tracking-[0.05em] uppercase leading-none"
             variant="dark"
             onClick={onClose}
           />
@@ -112,14 +115,14 @@ export default function MobileMenu({ id, isOpen, onClose }: MobileMenuProps) {
           <button
             ref={firstFocusableRef}
             type="button"
-            className="flex items-center justify-center w-9 h-9 rounded-md
+            className="flex items-center justify-center w-10 h-10 rounded-md
                        text-forge-muted transition-colors hover:bg-forge-surface hover:text-forge-ink
                        focus-visible:outline-2 focus-visible:outline-forge-blue focus-visible:outline-offset-2"
             onClick={onClose}
             aria-label="Close navigation menu"
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M2 2L14 14M14 2L2 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M2 2L14 14M14 2L2 14" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
             </svg>
           </button>
         </div>
