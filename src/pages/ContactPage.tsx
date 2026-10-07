@@ -268,22 +268,26 @@ export default function ContactPage() {
                   </div>
                   <span className="font-display font-bold text-xs text-forge-ink">Chat on WhatsApp</span>
                 </div>
-                <span className="text-[11px] text-forge-muted font-medium">07068811791 · Quick responses</span>
+                <span className="text-[11px] text-forge-muted font-medium">Quick responses</span>
               </a>
 
               <a
-                href="tel:+2347068811791"
+                href="https://www.linkedin.com/company/fortexforge/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-4 rounded-2xl bg-white/95 backdrop-blur-sm border border-forge-border hover:border-slate-300 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-8 rounded-lg bg-blue-50 text-forge-blue flex items-center justify-center shrink-0">
                     <svg className="w-4 h-4 text-forge-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.4a16 16 0 0 0 6.29 6.29l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                      <rect width="4" height="12" x="2" y="9" />
+                      <circle cx="4" cy="4" r="2" />
                     </svg>
                   </div>
-                  <span className="font-display font-bold text-xs text-forge-ink">Call / Hotline</span>
+                  <span className="font-display font-bold text-xs text-forge-ink">Connect on LinkedIn</span>
                 </div>
-                <span className="text-[11px] text-forge-muted font-medium">07068811791</span>
+                <span className="text-[11px] text-forge-muted font-medium">Let's network</span>
               </a>
             </div>
 
@@ -1051,7 +1055,7 @@ export default function ContactPage() {
                 <p className="text-xs text-forge-secondary leading-relaxed mb-4">
                   Prefer a casual chat? Message us on WhatsApp.
                 </p>
-                <span className="font-mono text-xs font-bold text-forge-blue block mb-6">07068811791</span>
+                <span className="font-mono text-xs font-bold text-forge-blue block mb-6">Quick responses</span>
               </div>
               <a
                 href="https://wa.me/2347068811791"

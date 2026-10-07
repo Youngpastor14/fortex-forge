@@ -72,7 +72,7 @@ export default function GlobalHeader() {
           <nav
             role="navigation"
             aria-label="Primary navigation"
-            className="flex items-center justify-between h-[72px]"
+            className="flex flex-row flex-nowrap items-center justify-between h-[72px] w-full"
           >
             {/* ── Brand Mark ────────────────────────────────────────────── */}
             <BrandLogo

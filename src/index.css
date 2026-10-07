@@ -459,41 +459,7 @@ html, body {
   textarea { min-height: 96px !important; }
 }
 
-/* ── Grid collapse: force single column on very small screens ── */
-@media (max-width: 400px) {
-  [class*="grid-cols-2"]:not([class*="sm:grid-cols"]) {
-    grid-template-columns: 1fr !important;
-  }
-  [class*="grid-cols-4"] { grid-template-columns: 1fr 1fr !important; }
-}
-
-/* ── Image contrast: reduce mix-blend-multiply images on tablets ── */
-@media (max-width: 1023px) {
-  img[class*="mix-blend-multiply"] {
-    opacity: 0.25 !important;
-  }
-}
-
-/* ── Prevent the 5-col process section from overflowing on tablet ── */
-@media (min-width: 640px) and (max-width: 1023px) {
-  [class*="lg:grid-cols-5"] { grid-template-columns: repeat(3, 1fr) !important; }
-}
-@media (max-width: 639px) {
-  [class*="lg:grid-cols-5"] { grid-template-columns: 1fr 1fr !important; }
-  [class*="lg:grid-cols-5"] > :last-child { grid-column: 1 / -1; }
-}
-
-/* ── Work / Portfolio: stack cards on small screens ── */
-@media (max-width: 767px) {
-  [class*="md:grid-cols-3"] { grid-template-columns: 1fr !important; }
-}
-
-/* ── Footer: stack on small screens ── */
-@media (max-width: 639px) {
-  footer [class*="grid-cols-"] { grid-template-columns: 1fr 1fr !important; }
-}
-
-/* ── Insight / blog card horizontal scroll — smooth touch ── */
+/* ── Prevent horizontal scroll on mobile containers ── */
 @media (max-width: 767px) {
   [class*="overflow-x-auto"] {
     -webkit-overflow-scrolling: touch;
@@ -502,15 +468,4 @@ html, body {
   }
   [class*="overflow-x-auto"]::-webkit-scrollbar { display: none; }
   [class*="overflow-x-auto"] > * { scroll-snap-align: start; }
-}
-
-/* ── FAQ accordion: improve touch usability ── */
-@media (max-width: 767px) {
-  button[class*="text-left"] { min-height: 52px; padding-top: 14px; padding-bottom: 14px; }
-}
-
-/* ── Form multi-step: prevent button row from overflowing on narrow screens ── */
-@media (max-width: 400px) {
-  .flex.justify-between.items-center { flex-direction: column !important; gap: 12px !important; align-items: stretch !important; }
-  .flex.justify-between.items-center button { width: 100% !important; justify-content: center !important; }
 }
