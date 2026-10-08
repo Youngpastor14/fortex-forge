@@ -63,12 +63,11 @@ export default function WorkPage() {
             className="w-full h-full object-cover object-center lg:object-right-center"
             fetchPriority="high"
           />
-          {/* Subtle directional scrim to ensure typography has pristine contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent sm:via-white/70 lg:w-[60%]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
+          {/* Directional scrim to ensure typography has pristine contrast (Desktop) */}
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:w-[60%]" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 pt-24 md:pt-32 pb-12 flex-1 flex flex-col justify-center">
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 pt-20 md:pt-32 pb-12 flex-1 flex flex-col justify-center">
           <div className="max-w-xl">
             <Eyebrow>OUR WORK</Eyebrow>
 
@@ -85,7 +84,7 @@ export default function WorkPage() {
               A look at the brands, websites and products we've helped build, from early ideas to real results.
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 mb-10">
+            <div className="flex flex-wrap items-center gap-4 mb-8">
               <a
                 href="#selected-work"
                 className="inline-flex items-center gap-2 bg-forge-blue text-white text-sm font-semibold px-8 py-3.5 rounded-full shadow-[0_8px_24px_rgba(21,87,255,0.25)] hover:bg-forge-blue-hover hover:shadow-[0_12px_28px_rgba(21,87,255,0.35)] transition-all hover:-translate-y-0.5 group"
@@ -93,6 +92,16 @@ export default function WorkPage() {
                 <span>View Our Work</span>
                 <span className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-xs" aria-hidden="true">↗</span>
               </a>
+            </div>
+
+            {/* Mobile Hero Studio Desk Asset — matches mobile mockup (01-hero-selected-work.webp) */}
+            <div className="lg:hidden mb-8 w-full max-w-md mx-auto aspect-[16/10] relative rounded-2xl overflow-hidden shadow-sm flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+              <img
+                src="/assets/work/01-portfolio-hero-mobile.webp"
+                alt=""
+                className="w-full h-full object-cover object-center"
+                fetchPriority="high"
+              />
             </div>
 
             {/* Stats row matching work.png */}
@@ -735,9 +744,8 @@ export default function WorkPage() {
             loading="lazy"
             decoding="async"
           />
-          {/* Directional scrim to protect left copy */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent sm:via-white/70 lg:w-[60%]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
+          {/* Directional scrim to protect left copy (Desktop) */}
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent lg:w-[60%]" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 mb-auto">

@@ -203,25 +203,23 @@ export default function ContactPage() {
         className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
         aria-labelledby="contact-hero-heading"
       >
-        {/* Full-bleed background artwork */}
+        {/* Full-bleed background artwork (Desktop) */}
         <div
-          className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
+          className="hidden lg:block absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <ResponsiveImage
-            desktopSrc="/assets/contact/01-hero.webp"
-            mobileSrc="/assets/contact/01-hero-mobile.webp"
+          <img
+            src="/assets/contact/01-hero.webp"
             alt=""
-            className="w-full h-full object-cover object-bottom lg:object-right-bottom"
+            className="w-full h-full object-cover object-right-bottom"
             fetchPriority="high"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
           {/* Top eyebrow row */}
-          <div className="mb-10 lg:mb-14">
+          <div className="mb-6 lg:mb-14">
             <Eyebrow className="mb-0">LET'S TALK</Eyebrow>
           </div>
 
@@ -309,6 +307,16 @@ export default function ContactPage() {
               >
                 Ask a Question
               </button>
+            </div>
+
+            {/* Mobile Hero Executive Desk Asset — matches mobile mockup (01-hero-next.webp) */}
+            <div className="lg:hidden mt-10 -mb-4 w-full max-w-md mx-auto aspect-[16/10] relative rounded-2xl overflow-hidden shadow-sm flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+              <img
+                src="/assets/contact/01-hero-mobile.webp"
+                alt=""
+                className="w-full h-full object-cover object-bottom"
+                fetchPriority="high"
+              />
             </div>
           </div>
         </div>
@@ -1159,7 +1167,6 @@ export default function ContactPage() {
             loading="lazy"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">

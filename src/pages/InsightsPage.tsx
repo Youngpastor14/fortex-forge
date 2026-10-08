@@ -110,12 +110,11 @@ export default function InsightsPage() {
             className="w-full h-full object-cover object-center lg:object-right-center"
             fetchPriority="high"
           />
-          {/* Subtle directional scrim to protect text */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent sm:via-white/70 lg:w-[60%]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
+          {/* Directional scrim (Desktop) */}
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:w-[60%]" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 pt-24 md:pt-32 pb-12 flex-1 flex flex-col justify-center">
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 pt-20 md:pt-32 pb-12 flex-1 flex flex-col justify-center">
           <div className="max-w-xl">
             <span className="inline-block text-xs font-bold text-forge-blue uppercase tracking-[0.25em] mb-4">
               I N S I G H T S
@@ -151,7 +150,7 @@ export default function InsightsPage() {
             </div>
 
             {/* Category pill tags */}
-            <div className="flex flex-wrap items-center gap-2 max-w-lg">
+            <div className="flex flex-wrap items-center gap-2 max-w-lg mb-8">
               {['Branding', 'Business', 'Web & Tech', 'Marketing', 'Founder Journey'].map((topic) => (
                 <button
                   key={topic}
@@ -162,6 +161,16 @@ export default function InsightsPage() {
                   {topic}
                 </button>
               ))}
+            </div>
+
+            {/* Mobile Hero Studio Desk Asset — matches mobile mockup (01-hero-featured.webp) */}
+            <div className="lg:hidden w-full max-w-md mx-auto aspect-[16/11] relative rounded-2xl overflow-hidden shadow-sm flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+              <img
+                src="/assets/insights/01-hero-mobile.webp"
+                alt=""
+                className="w-full h-full object-cover object-center"
+                fetchPriority="high"
+              />
             </div>
           </div>
         </div>
@@ -580,9 +589,8 @@ export default function InsightsPage() {
             alt=""
             className="w-full h-full object-cover object-center lg:object-right-center"
           />
-          {/* Scrim */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent sm:via-white/70 lg:w-[60%]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent lg:hidden" />
+          {/* Scrim (Desktop) */}
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent lg:w-[60%]" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 mb-auto">

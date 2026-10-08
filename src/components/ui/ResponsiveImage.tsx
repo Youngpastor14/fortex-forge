@@ -14,7 +14,7 @@ interface ResponsiveImageProps extends ImgHTMLAttributes<HTMLImageElement> {
 export default function ResponsiveImage({
   mobileSrc,
   desktopSrc,
-  breakpoint = 767,
+  breakpoint = 1023,
   alt = '',
   className = '',
   loading = 'lazy',

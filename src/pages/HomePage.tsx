@@ -217,23 +217,22 @@ export default function HomePage() {
         id="hero"
         aria-labelledby="hero-heading"
       >
-        {/* Atmospheric background — monolith bleeds from right */}
+        {/* Atmospheric background — monolith bleeds from right (Desktop only) */}
         <div
-          className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
+          className="hidden lg:block absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <ResponsiveImage
-            desktopSrc="/assets/home/hero-bg.webp"
-            mobileSrc="/assets/home/01-hero-mobile.webp"
+          <img
+            src="/assets/home/hero-bg.webp"
             alt=""
-            className="absolute right-[-10%] sm:right-[-5%] lg:right-0 top-0 w-[95%] sm:w-[80%] lg:w-[62%] h-full object-contain object-right-bottom mix-blend-multiply opacity-95 lg:opacity-100"
+            className="absolute right-0 top-0 w-[62%] h-full object-contain object-right-bottom mix-blend-multiply opacity-100"
             fetchPriority="high"
             decoding="async"
             width={900}
             height={760}
           />
           {/* White gradient — protects left copy */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent w-full lg:w-1/2 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent w-1/2 pointer-events-none" />
         </div>
 
         {/* Hero copy — left column */}
@@ -261,6 +260,16 @@ export default function HomePage() {
                 Fix This Now <span aria-hidden="true" className="text-xs">↗</span>
               </Link>
             </div>
+          </div>
+
+          {/* Mobile Hero Scene Asset — positioned below copy matching mobile mockup (01-hero-cost-proof.webp) */}
+          <div className="lg:hidden mt-8 -mb-4 w-full max-w-sm mx-auto aspect-[4/5] relative flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+            <img
+              src="/assets/home/01-hero-mobile.webp"
+              alt=""
+              className="w-full h-full object-contain object-bottom drop-shadow-md"
+              fetchPriority="high"
+            />
           </div>
         </div>
 
@@ -305,8 +314,8 @@ export default function HomePage() {
             loading="lazy"
             decoding="async"
           />
-          {/* White gradient — protects left copy */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent w-full lg:w-1/2 pointer-events-none" />
+          {/* White gradient — protects left copy (desktop only) */}
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent w-1/2 pointer-events-none" />
 
           {/* Blueprint annotations — large screens only, purely decorative */}
           <div className="hidden lg:block absolute right-[28%] top-[14%] text-[10px] font-mono font-bold text-neutral-400 tracking-wider leading-tight">
@@ -364,6 +373,16 @@ export default function HomePage() {
             >
               Stop Leaving Money Behind <span aria-hidden="true" className="text-xs">↗</span>
             </Link>
+
+            {/* Mobile Visual Asset for Hidden Cost */}
+            <div className="lg:hidden mt-8 w-full max-w-xs mx-auto aspect-square relative flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+              <img
+                src="/assets/home/02-hidden-cost-mobile.webp"
+                alt=""
+                className="w-full h-full object-contain drop-shadow-sm"
+                loading="lazy"
+              />
+            </div>
           </div>
 
           {/* Section annotation footer */}
@@ -515,6 +534,15 @@ export default function HomePage() {
               <span className="translate-y-2">01</span>
               <span className="translate-y-2">02</span>
               <span className="translate-y-2">03</span>
+            </div>
+            {/* Mobile-visible 3 monolith stages image */}
+            <div className="lg:hidden w-full h-full flex items-center justify-center">
+              <img
+                src="/assets/home/04-our-approach-mobile.webp"
+                alt="Three disciplines: Positioning, Identity, Website"
+                className="w-full h-full object-contain object-bottom"
+                loading="lazy"
+              />
             </div>
           </div>
 
@@ -740,7 +768,7 @@ export default function HomePage() {
         >
           <ResponsiveImage
             desktopSrc="/assets/home/06-consequence-with-lettering.webp"
-            mobileSrc="/assets/home/06-consequence-with-lettering-mobile.webp"
+            mobileSrc="/assets/home/06-consequence-with-lettering.webp"
             alt=""
             className="w-full h-full object-cover object-bottom mix-blend-multiply"
             loading="lazy"
@@ -970,13 +998,11 @@ export default function HomePage() {
             loading="lazy"
             decoding="async"
           />
-          {/* Responsive scrim on mobile/tablet to ensure copy readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
           {/* Top header row */}
-          <div className="flex items-center justify-between gap-8 mb-10 lg:mb-14">
+          <div className="flex items-center justify-between gap-8 mb-6 lg:mb-14">
             <div className="inline-flex items-center gap-2">
               <span className="w-1 h-3.5 bg-forge-blue rounded-full" aria-hidden="true" />
               <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-forge-ink/70">
@@ -989,6 +1015,16 @@ export default function HomePage() {
                 BETTER BRANDS.<br />BRIGHTER OPPORTUNITIES.
               </div>
             </div>
+          </div>
+
+          {/* Mobile Closing Emblem Asset — matches mobile mockup (03-faq-closing-footer.webp) */}
+          <div className="lg:hidden mb-8 w-full max-w-xs mx-auto aspect-[4/5] relative flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+            <img
+              src="/assets/home/08-closing-mobile.webp"
+              alt=""
+              className="w-full h-full object-contain object-bottom drop-shadow-md"
+              loading="lazy"
+            />
           </div>
 
           {/* Left copy block */}

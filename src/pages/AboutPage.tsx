@@ -165,21 +165,18 @@ export default function AboutPage() {
         id="hero"
         aria-labelledby="about-hero-heading"
       >
-        {/* Full-bleed blueprint artwork */}
+        {/* Full-bleed blueprint artwork (Desktop) */}
         <div
-          className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
+          className="hidden lg:block absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <ResponsiveImage
-            desktopSrc="/assets/about/01-hero.webp"
-            mobileSrc="/assets/about/01-hero-mobile.webp"
+          <img
+            src="/assets/about/01-hero.webp"
             alt=""
-            className="w-full h-full object-cover object-center lg:object-right mix-blend-multiply opacity-95 lg:opacity-100"
+            className="w-full h-full object-cover object-right mix-blend-multiply opacity-100"
             fetchPriority="high"
             decoding="async"
           />
-          {/* Soft gradient scrim on mobile/tablet to ensure copy legibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
         </div>
 
         {/* Blueprint coordinate numbers — matching reference mockup */}
@@ -202,7 +199,7 @@ export default function AboutPage() {
         </div>
 
         {/* Hero copy — left column */}
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 py-20 lg:py-28 relative z-20 w-full mb-auto">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 py-16 lg:py-28 relative z-20 w-full mb-auto">
           <div className="max-w-2xl">
             <Eyebrow>THE THINKING BEHIND THE FORGE.</Eyebrow>
 
@@ -225,6 +222,16 @@ export default function AboutPage() {
             >
               Our Story <span className="text-sm font-mono" aria-hidden="true">↗</span>
             </a>
+          </div>
+
+          {/* Mobile Hero Blueprint Monolith — matches mobile mockup (01-hero-why-story.webp) */}
+          <div className="lg:hidden mt-10 -mb-4 w-full max-w-sm mx-auto aspect-[4/5] relative flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+            <img
+              src="/assets/about/01-hero-mobile.webp"
+              alt=""
+              className="w-full h-full object-contain object-bottom drop-shadow-md"
+              fetchPriority="high"
+            />
           </div>
         </div>
 
@@ -1349,12 +1356,11 @@ export default function AboutPage() {
             loading="lazy"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
           {/* Top header row */}
-          <div className="flex items-center justify-between gap-8 mb-10 lg:mb-14">
+          <div className="flex items-center justify-between gap-8 mb-6 lg:mb-14">
             <Eyebrow className="mb-0">READY FOR WHAT'S NEXT?</Eyebrow>
 
             <div className="hidden lg:flex items-start gap-2.5 shrink-0 text-left border-l-[1.5px] border-forge-blue pl-2.5">
@@ -1362,6 +1368,16 @@ export default function AboutPage() {
                 SAME VISION.<br />BIGGER POSSIBILITIES.
               </div>
             </div>
+          </div>
+
+          {/* Mobile Closing Emblem Asset */}
+          <div className="lg:hidden mb-8 w-full max-w-xs mx-auto aspect-[4/5] relative flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+            <img
+              src="/assets/about/14-closing-mobile.webp"
+              alt=""
+              className="w-full h-full object-contain object-bottom drop-shadow-md"
+              loading="lazy"
+            />
           </div>
 
           {/* Left copy block */}
