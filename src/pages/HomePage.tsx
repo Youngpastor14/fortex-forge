@@ -215,7 +215,7 @@ export default function HomePage() {
           Protected by white-to-transparent gradient overlay
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative min-h-[560px] lg:min-h-[760px] flex flex-col justify-between pt-12 sm:pt-16 pb-12 overflow-hidden bg-white"
+        className="relative min-h-[640px] sm:min-h-[700px] lg:min-h-[760px] flex flex-col justify-between pt-12 sm:pt-16 pb-12 overflow-hidden bg-white"
         id="hero"
         aria-labelledby="hero-heading"
       >
@@ -228,14 +228,15 @@ export default function HomePage() {
             desktopSrc="/assets/home/hero-bg.webp"
             mobileSrc="/assets/home/01-hero-mobile.webp"
             alt=""
-            className="absolute inset-0 w-full h-full object-contain object-bottom sm:object-right-bottom lg:w-[62%] lg:left-auto lg:right-0 lg:top-0 mix-blend-multiply opacity-35 sm:opacity-60 lg:opacity-100"
+            className="absolute inset-0 w-full h-full object-cover object-center sm:object-right-bottom lg:object-right lg:object-top mix-blend-multiply opacity-60 sm:opacity-75 lg:opacity-100"
             fetchPriority="high"
             loading="eager"
             decoding="async"
           />
-          {/* Subtle gradient overlays to guarantee copy contrast */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent lg:hidden pointer-events-none" />
-          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent w-1/2 pointer-events-none" />
+          {/* Mobile: strong top-to-bottom white wash so copy always reads clearly */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/75 to-white/20 lg:hidden pointer-events-none" />
+          {/* Desktop: left-side white fade for left-column copy */}
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent w-[55%] pointer-events-none" />
         </div>
 
         {/* Hero copy — left column */}
@@ -267,17 +268,18 @@ export default function HomePage() {
         </div>
 
         {/* Client proof ribbon — grounded at base of hero */}
-        <div className="max-w-7xl mx-auto px-6 w-full relative z-10 pt-16 mt-8 border-t border-forge-border/80">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-forge-secondary">
-            <span className="text-[11px] font-bold tracking-widest uppercase text-neutral-400">
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10 pt-8 mt-6 border-t border-forge-border/80">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span className="text-[11px] font-bold tracking-widest uppercase text-neutral-400 shrink-0">
               TRUSTED BY AMBITIOUS BRANDS
             </span>
-            <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-12 opacity-85 font-display font-bold text-lg text-neutral-800 grayscale hover:grayscale-0 transition-all duration-300">
-              <span className="flex items-center gap-1">◀ Risevest</span>
-              <span className="flex items-center gap-1">◎ ahados <span className="text-[9px] font-normal uppercase ml-0.5">Capital</span></span>
-              <span className="flex items-center gap-1">d dukka</span>
-              <span className="flex items-center gap-1 font-mono tracking-tight font-extrabold">Blockex.</span>
-              <span className="flex items-center gap-1">♣ Paylite</span>
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 sm:gap-x-8 lg:gap-x-12 font-display font-bold text-sm sm:text-base text-neutral-700">
+              <span>Tiziano</span>
+              <span>Stonex</span>
+              <span>Merci Solar</span>
+              <span>Chike's Kitchen</span>
+              <span>Wagora</span>
+              <span>Eniluxe Care</span>
             </div>
           </div>
         </div>
@@ -303,12 +305,12 @@ export default function HomePage() {
             desktopSrc="/assets/home/02-hidden-cost.webp"
             mobileSrc="/assets/home/02-hidden-cost-mobile.webp"
             alt=""
-            className="absolute right-0 bottom-0 w-full sm:w-[75%] lg:w-[58%] h-full object-contain object-bottom sm:object-right-bottom mix-blend-multiply opacity-35 sm:opacity-75 lg:opacity-100"
+            className="absolute inset-0 w-full h-full object-cover object-bottom sm:object-right-bottom mix-blend-multiply opacity-20 sm:opacity-60 lg:opacity-100"
             loading="lazy"
             decoding="async"
           />
           {/* Protective scrim for mobile and desktop readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent lg:hidden pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/85 to-white/30 lg:hidden pointer-events-none" />
           <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent w-1/2 pointer-events-none" />
 
           {/* Blueprint annotations — large screens only, purely decorative */}
@@ -341,7 +343,7 @@ export default function HomePage() {
               <span className="text-forge-blue">than your brand.</span>
             </h2>
 
-            <p className="text-base sm:text-lg text-forge-secondary leading-relaxed max-w-xl mb-10">
+            <p className="text-base sm:text-lg text-neutral-700 leading-relaxed max-w-xl mb-10">
               You have a great product, a capable team and real potential. But when your brand doesn't communicate that clearly, you lose opportunities, trust and revenue every month.
             </p>
 
@@ -418,12 +420,13 @@ export default function HomePage() {
             <span className="text-[11px] font-bold tracking-widest uppercase text-neutral-400 block mb-6">
               TRUSTED BY AMBITIOUS BRANDS
             </span>
-            <div className="flex flex-wrap items-center justify-around gap-8 text-neutral-800 font-display font-bold text-lg sm:text-xl">
-              <span>◀ Risevest</span>
-              <span>◎ ahados <span className="text-[10px] font-normal uppercase">CAPITAL</span></span>
-              <span>d dukka</span>
-              <span className="font-mono tracking-tight font-extrabold">Blockex.</span>
-              <span>♣ Paylite</span>
+            <div className="flex flex-wrap items-center justify-around gap-x-6 gap-y-4 sm:gap-x-8 text-neutral-800 font-display font-bold text-base sm:text-lg">
+              <span>Tiziano</span>
+              <span>Stonex</span>
+              <span>Merci Solar</span>
+              <span>Chike's Kitchen</span>
+              <span>Wagora</span>
+              <span>Eniluxe Care</span>
             </div>
           </div>
 
@@ -474,7 +477,7 @@ export default function HomePage() {
         id="approach"
         aria-labelledby="what-works-heading"
       >
-        {/* Full-bleed background artwork */}
+        {/* Full-bleed background artwork — object-cover so it fills the section on every breakpoint */}
         <div
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
@@ -483,14 +486,14 @@ export default function HomePage() {
             desktopSrc="/assets/home/04-our-approach.webp"
             mobileSrc="/assets/home/04-our-approach-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-center mix-blend-multiply opacity-40 sm:opacity-70 lg:opacity-100"
+            className="absolute inset-0 w-full h-full object-cover object-center mix-blend-multiply opacity-30 sm:opacity-60 lg:opacity-100"
             loading="lazy"
             decoding="async"
           />
-          {/* Strong top scrim so heading text always reads clearly on mobile & desktop */}
-          <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-white via-white/90 to-transparent pointer-events-none" />
-          {/* Bottom scrim to protect content columns text */}
-          <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-white/95 via-white/60 to-transparent pointer-events-none" />
+          {/* Top scrim — tall on mobile so headline sits in clean white zone */}
+          <div className="absolute inset-x-0 top-0 h-80 sm:h-64 bg-gradient-to-b from-white via-white/92 to-transparent pointer-events-none" />
+          {/* Bottom scrim — protects discipline columns */}
+          <div className="absolute inset-x-0 bottom-0 h-72 sm:h-56 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
@@ -512,19 +515,15 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Stone zone — large gap where the 3 monoliths in the background image live.
-              01 / 02 / 03 numerals are absolutely positioned to sit on each stone.
-              Stone 1 (left):   ~17% from left
-              Stone 2 (centre): ~50% from left (hatched face)
-              Stone 3 (right):  ~83% from left */}
-          <div className="relative w-full max-w-5xl mx-auto h-20 sm:h-32 lg:h-52 pointer-events-none select-none" aria-hidden="true">
+          {/* Stone zone — desktop only gap where monoliths live in artwork */}
+          <div className="relative w-full max-w-5xl mx-auto h-8 sm:h-16 lg:h-52 pointer-events-none select-none" aria-hidden="true">
             <span className="hidden lg:block absolute font-display font-bold text-4xl text-white/70 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] leading-none" style={{ left: '10%', bottom: '12%' }}>01</span>
             <span className="hidden lg:block absolute font-display font-bold text-4xl text-white/70 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] leading-none" style={{ left: '46%', bottom: '18%', transform: 'translateX(-50%)' }}>02</span>
             <span className="hidden lg:block absolute font-display font-bold text-4xl text-white/70 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] leading-none" style={{ right: '8%', bottom: '12%' }}>03</span>
           </div>
 
-          {/* 3-discipline breakdown — max-w-5xl so columns align under each stone */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-0 max-w-5xl mx-auto mt-2 mb-12">
+          {/* 3-discipline breakdown — full-width cards on mobile, grid on tablet+ */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-0 max-w-5xl mx-auto mt-2 mb-12">
             {[
               {
                 num: '01',
@@ -547,7 +546,7 @@ export default function HomePage() {
             ].map((item) => (
               <div
                 key={item.num}
-                className="space-y-3 pt-5 border-t border-neutral-300/80 bg-white/80 backdrop-blur-sm p-5 rounded-2xl md:rounded-none md:bg-transparent md:backdrop-blur-none lg:px-4"
+                className="space-y-3 p-6 rounded-2xl bg-white/90 backdrop-blur-sm border border-neutral-200/60 shadow-sm md:rounded-none md:bg-white/80 md:border-0 md:shadow-none md:border-t md:border-neutral-300/80 md:pt-5 lg:px-4"
               >
                 <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest font-mono block">
                   {item.num}
@@ -598,10 +597,14 @@ export default function HomePage() {
             desktopSrc="/assets/home/05-how-we-work.webp"
             mobileSrc="/assets/home/05-how-we-work-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-center mix-blend-multiply opacity-40 sm:opacity-75 lg:opacity-100"
+            className="absolute inset-0 w-full h-full object-cover object-center mix-blend-multiply opacity-20 sm:opacity-55 lg:opacity-100"
             loading="lazy"
             decoding="async"
           />
+          {/* Top scrim — shields header copy on all viewports */}
+          <div className="absolute inset-x-0 top-0 h-72 sm:h-60 bg-gradient-to-b from-white via-white/90 to-transparent pointer-events-none" />
+          {/* Bottom scrim — shields deliverables text */}
+          <div className="absolute inset-x-0 bottom-0 h-64 sm:h-48 bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
@@ -636,18 +639,18 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* 4 Process Columns aligned over the 4 rocks */}
+          {/* 4 Process steps */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 xl:gap-8 max-w-[1360px] mx-auto my-4 lg:my-8">
             {processSteps.map((step) => (
-              <div key={step.num} className="flex flex-col justify-between">
-                {/* Top: 01 Discover */}
+              <div key={step.num} className="flex flex-col">
+                {/* Top: number + title */}
                 <div>
                   <div className="flex items-baseline gap-3.5 mb-1.5">
-                    <span className="font-display text-5xl lg:text-[54px] font-extrabold text-neutral-300 leading-none select-none">
+                    <span className="font-display text-5xl lg:text-[54px] font-extrabold text-neutral-400 leading-none select-none">
                       {step.num}
                     </span>
                     <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 block mb-0.5">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 block mb-0.5">
                         {step.week}
                       </span>
                       <h3 className="font-display font-bold text-xl sm:text-2xl text-forge-ink tracking-tight">
@@ -660,11 +663,11 @@ export default function HomePage() {
                   </p>
                 </div>
 
-                {/* Middle spacing revealing the rocks & connecting blue line from background */}
-                <div className="h-6 sm:h-12 lg:h-52 xl:h-60 pointer-events-none select-none" aria-hidden="true" />
+                {/* Spacer: collapses to nothing on mobile, expands to reveal rocks on desktop */}
+                <div className="h-0 lg:h-52 xl:h-60 pointer-events-none select-none" aria-hidden="true" />
 
-                {/* Bottom: body text + bullet points on marble floor */}
-                <div className="pt-2">
+                {/* Bottom: body + bullets — on a light surface so it reads over artwork */}
+                <div className="pt-4 mt-4 lg:mt-0 lg:pt-2 bg-white/80 lg:bg-transparent rounded-xl lg:rounded-none p-4 lg:p-0">
                   <p className="text-xs sm:text-[13px] text-forge-secondary leading-relaxed mb-4">
                     {step.body}
                   </p>

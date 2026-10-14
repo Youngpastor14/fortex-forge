@@ -273,12 +273,12 @@ export default function ContactPage() {
             desktopSrc="/assets/contact/01-hero.webp"
             mobileSrc="/assets/contact/01-hero-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-bottom sm:object-right-bottom mix-blend-multiply opacity-30 sm:opacity-75 lg:opacity-100"
+            className="w-full h-full object-cover object-center sm:object-right-bottom mix-blend-multiply opacity-50 sm:opacity-75 lg:opacity-100"
             fetchPriority="high"
             loading="eager"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent lg:hidden pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/75 to-white/20 lg:hidden pointer-events-none" />
           <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent w-1/2 pointer-events-none" />
         </div>
 

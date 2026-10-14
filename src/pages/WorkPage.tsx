@@ -107,12 +107,12 @@ export default function WorkPage() {
             desktopSrc="/assets/work/01-portfolio-hero.webp"
             mobileSrc="/assets/work/01-portfolio-hero-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-bottom sm:object-right-center opacity-35 sm:opacity-75 lg:opacity-100"
+            className="w-full h-full object-cover object-center sm:object-right-center opacity-55 sm:opacity-75 lg:opacity-100"
             fetchPriority="high"
             loading="eager"
           />
           {/* Directional scrim to ensure typography has pristine contrast */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent lg:hidden pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/75 to-white/30 lg:hidden pointer-events-none" />
           <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:w-[60%]" />
         </div>
 
@@ -440,7 +440,7 @@ export default function WorkPage() {
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="featured-case-study"
-        className="relative w-full min-h-[920px] lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
+        className="relative w-full min-h-0 lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="case-study-heading"
       >
         {/* Full-bleed background */}
@@ -873,7 +873,7 @@ export default function WorkPage() {
           6. CLOSING CTA — Full-Bleed Carved Granite Monument (06.png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full min-h-[850px] lg:min-h-[920px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
+        className="relative w-full min-h-0 lg:min-h-[920px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="work-cta-heading"
       >
         {/* Full-bleed background */}

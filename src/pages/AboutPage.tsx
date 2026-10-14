@@ -174,13 +174,13 @@ export default function AboutPage() {
             desktopSrc="/assets/about/01-hero.webp"
             mobileSrc="/assets/about/01-hero-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-bottom sm:object-right mix-blend-multiply opacity-35 sm:opacity-80 lg:opacity-100"
+            className="w-full h-full object-cover object-center sm:object-right mix-blend-multiply opacity-55 sm:opacity-80 lg:opacity-100"
             fetchPriority="high"
             loading="eager"
             decoding="async"
           />
           {/* Subtle gradient to protect copy contrast on mobile */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent lg:hidden pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/75 to-white/30 lg:hidden pointer-events-none" />
         </div>
 
         {/* Blueprint coordinate numbers — matching reference mockup */}
@@ -302,7 +302,7 @@ export default function AboutPage() {
           Reference: Reference mockups/About page/about 2.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[780px] lg:min-h-[860px] flex flex-col justify-between"
+        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-0 lg:min-h-[860px] flex flex-col justify-between"
         aria-labelledby="our-story-heading"
       >
         {/* Full-bleed background artwork */}
@@ -319,7 +319,7 @@ export default function AboutPage() {
             decoding="async"
           />
           {/* Subtle responsive scrim on mobile */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white/20 lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
@@ -400,7 +400,7 @@ export default function AboutPage() {
           Reference: Reference mockups/About page/03.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[820px] lg:min-h-[900px] flex flex-col justify-between"
+        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-0 lg:min-h-[900px] flex flex-col justify-between"
         id="philosophy"
         aria-labelledby="philosophy-heading"
       >
@@ -417,7 +417,7 @@ export default function AboutPage() {
             loading="lazy"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white/20 lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
@@ -481,7 +481,7 @@ export default function AboutPage() {
           Reference: Reference mockups/About page/04.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
+        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-0 lg:min-h-[920px] flex flex-col justify-between"
         id="founder"
         aria-labelledby="founder-heading"
       >
@@ -498,7 +498,7 @@ export default function AboutPage() {
             loading="lazy"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white/20 lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
@@ -607,7 +607,7 @@ export default function AboutPage() {
           Reference: Reference mockups/About page/about-our value.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
+        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-0 lg:min-h-[920px] flex flex-col justify-between"
         id="values"
         aria-labelledby="values-heading"
       >
@@ -624,7 +624,7 @@ export default function AboutPage() {
             loading="lazy"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white/20 lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
@@ -716,7 +716,7 @@ export default function AboutPage() {
           Reference: Reference mockups/About page/how we work.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
+        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-0 lg:min-h-[920px] flex flex-col justify-between"
         id="process"
         aria-labelledby="how-we-work-heading"
       >
@@ -733,7 +733,7 @@ export default function AboutPage() {
             loading="lazy"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white/20 lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
@@ -807,7 +807,7 @@ export default function AboutPage() {
           Reference: Reference mockups/About page/06.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[860px] lg:min-h-[960px] flex flex-col justify-between"
+        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-0 lg:min-h-[960px] flex flex-col justify-between"
         id="principles"
         aria-labelledby="principles-heading"
       >
@@ -824,7 +824,7 @@ export default function AboutPage() {
             loading="lazy"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white/20 lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
@@ -903,7 +903,7 @@ export default function AboutPage() {
           Reference: Reference mockups/About page/07.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
+        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-0 lg:min-h-[920px] flex flex-col justify-between"
         id="audience"
         aria-labelledby="partner-fit-heading"
       >
@@ -920,7 +920,7 @@ export default function AboutPage() {
             loading="lazy"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white/20 lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
@@ -1010,7 +1010,7 @@ export default function AboutPage() {
           Reference: Reference mockups/About page/08.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
+        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-0 lg:min-h-[920px] flex flex-col justify-between"
         id="journey"
         aria-labelledby="journey-heading"
       >
@@ -1027,7 +1027,7 @@ export default function AboutPage() {
             loading="lazy"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white/20 lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
@@ -1097,7 +1097,7 @@ export default function AboutPage() {
           Reference: Reference mockups/About page/review.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
+        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-0 lg:min-h-[920px] flex flex-col justify-between"
         id="testimonials"
         aria-labelledby="testimonials-heading"
       >
@@ -1114,7 +1114,7 @@ export default function AboutPage() {
             loading="lazy"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white/20 lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
@@ -1218,7 +1218,7 @@ export default function AboutPage() {
           Reference: Reference mockups/About page/our mission.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
+        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-0 lg:min-h-[920px] flex flex-col justify-between"
         id="mission"
         aria-labelledby="mission-heading"
       >
@@ -1235,7 +1235,7 @@ export default function AboutPage() {
             loading="lazy"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:hidden" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white/20 lg:hidden" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
@@ -1332,10 +1332,12 @@ export default function AboutPage() {
             desktopSrc="/assets/about/14-closing.webp"
             mobileSrc="/assets/about/14-closing-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply opacity-40 sm:opacity-75 lg:opacity-100"
+            className="w-full h-full object-cover object-center lg:object-right-bottom mix-blend-multiply opacity-40 sm:opacity-75 lg:opacity-100"
             loading="lazy"
             decoding="async"
           />
+          {/* Mobile scrim to protect copy */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/75 to-white/20 lg:hidden pointer-events-none" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">

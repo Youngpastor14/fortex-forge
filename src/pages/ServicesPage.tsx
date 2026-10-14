@@ -243,12 +243,12 @@ export default function ServicesPage() {
             desktopSrc="/assets/services/01-hero.webp"
             mobileSrc="/assets/services/01-hero-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-bottom sm:object-center opacity-35 sm:opacity-75 lg:opacity-100"
+            className="w-full h-full object-cover object-center opacity-55 sm:opacity-75 lg:opacity-100"
             fetchPriority="high"
             loading="eager"
           />
           {/* Directional scrim for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent lg:hidden pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/75 to-white/30 lg:hidden pointer-events-none" />
           <div className="hidden lg:block absolute inset-0 bg-gradient-to-r lg:from-white/80 lg:via-white/40 lg:to-transparent" />
         </div>
 
@@ -321,7 +321,7 @@ export default function ServicesPage() {
           2. THE REAL PROBLEM — Full-Bleed Nexora Workspace (serv2.png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full min-h-[850px] lg:min-h-[920px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
+        className="relative w-full min-h-0 lg:min-h-[920px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="real-problem-heading"
       >
         {/* Full-bleed background */}
@@ -538,7 +538,7 @@ export default function ServicesPage() {
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="strategy-deepdive"
-        className="relative w-full min-h-[920px] lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
+        className="relative w-full min-h-0 lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="strategy-heading"
       >
         {/* Full-bleed background */}
@@ -644,7 +644,7 @@ export default function ServicesPage() {
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="identity-deepdive"
-        className="relative w-full min-h-[920px] lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
+        className="relative w-full min-h-0 lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="identity-heading"
       >
         {/* Full-bleed background */}
@@ -748,7 +748,7 @@ export default function ServicesPage() {
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="web-deepdive"
-        className="relative w-full min-h-[920px] lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
+        className="relative w-full min-h-0 lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="web-heading"
       >
         {/* Full-bleed background */}
@@ -848,7 +848,7 @@ export default function ServicesPage() {
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="complete-deepdive"
-        className="relative w-full min-h-[920px] lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
+        className="relative w-full min-h-0 lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="complete-heading"
       >
         {/* Full-bleed background */}
@@ -941,7 +941,7 @@ export default function ServicesPage() {
           8. WHY POSITIONING COMES FIRST — Full-Bleed Comparison Stand (serv8.png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full min-h-[920px] lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
+        className="relative w-full min-h-0 lg:min-h-[1020px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="positioning-heading"
       >
         {/* Full-bleed background */}
@@ -1114,7 +1114,7 @@ export default function ServicesPage() {
           10. FINAL CTA — Full-Bleed Desk & Partner Ribbon (serv9.png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full overflow-hidden min-h-[850px] lg:min-h-[920px] py-20 lg:py-28 bg-white flex flex-col justify-between"
+        className="relative w-full overflow-hidden min-h-0 lg:min-h-[920px] py-20 lg:py-28 bg-white flex flex-col justify-between"
         aria-labelledby="services-cta-heading"
       >
         {/* Full-bleed background */}

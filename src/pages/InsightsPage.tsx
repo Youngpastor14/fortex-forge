@@ -134,12 +134,12 @@ export default function InsightsPage() {
             desktopSrc="/assets/insights/01-hero.webp"
             mobileSrc="/assets/insights/01-hero-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-bottom sm:object-right-center mix-blend-multiply opacity-25 sm:opacity-75 lg:opacity-100"
+            className="w-full h-full object-cover object-center sm:object-right-center mix-blend-multiply opacity-50 sm:opacity-75 lg:opacity-100"
             fetchPriority="high"
             loading="eager"
             decoding="async"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent lg:hidden pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/75 to-white/20 lg:hidden pointer-events-none" />
           <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:w-[60%] pointer-events-none" />
         </div>
 
