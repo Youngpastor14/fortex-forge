@@ -4,11 +4,12 @@ interface ResponsiveImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   mobileSrc?: string
   desktopSrc: string
   breakpoint?: number
+  fetchPriority?: 'high' | 'low' | 'auto'
 }
 
 /**
  * Renders an image that seamlessly swaps to a portrait/mobile-optimized asset
- * on screen widths <= breakpoint (default 767px).
+ * on screen widths <= breakpoint (default 1023px).
  * Uses native <picture className="contents"> so styles and positioning apply directly to <img>.
  */
 export default function ResponsiveImage({
@@ -19,6 +20,7 @@ export default function ResponsiveImage({
   className = '',
   loading = 'lazy',
   decoding = 'async',
+  fetchPriority,
   ...props
 }: ResponsiveImageProps) {
   if (!mobileSrc) {
@@ -29,6 +31,7 @@ export default function ResponsiveImage({
         className={className}
         loading={loading}
         decoding={decoding}
+        fetchPriority={fetchPriority}
         {...props}
       />
     )
@@ -43,6 +46,7 @@ export default function ResponsiveImage({
         className={className}
         loading={loading}
         decoding={decoding}
+        fetchPriority={fetchPriority}
         {...props}
       />
     </picture>

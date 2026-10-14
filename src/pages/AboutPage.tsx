@@ -161,22 +161,26 @@ export default function AboutPage() {
           Reference: Reference mockups/About page/about hero.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative min-h-[720px] lg:min-h-[820px] bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
+        className="relative min-h-0 py-16 sm:py-20 lg:py-28 lg:min-h-[820px] bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         id="hero"
         aria-labelledby="about-hero-heading"
       >
-        {/* Full-bleed blueprint artwork (Desktop) */}
+        {/* Full-bleed blueprint artwork — single responsive background layer */}
         <div
-          className="hidden lg:block absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
+          className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/about/01-hero.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/about/01-hero.webp"
+            mobileSrc="/assets/about/01-hero-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-right mix-blend-multiply opacity-100"
+            className="w-full h-full object-cover object-bottom sm:object-right mix-blend-multiply opacity-35 sm:opacity-80 lg:opacity-100"
             fetchPriority="high"
+            loading="eager"
             decoding="async"
           />
+          {/* Subtle gradient to protect copy contrast on mobile */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent lg:hidden pointer-events-none" />
         </div>
 
         {/* Blueprint coordinate numbers — matching reference mockup */}
@@ -199,7 +203,7 @@ export default function AboutPage() {
         </div>
 
         {/* Hero copy — left column */}
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 py-16 lg:py-28 relative z-20 w-full mb-auto">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 py-12 lg:py-28 relative z-20 w-full mb-auto">
           <div className="max-w-2xl">
             <Eyebrow>THE THINKING BEHIND THE FORGE.</Eyebrow>
 
@@ -222,16 +226,6 @@ export default function AboutPage() {
             >
               Our Story <span className="text-sm font-mono" aria-hidden="true">↗</span>
             </a>
-          </div>
-
-          {/* Mobile Hero Blueprint Monolith — matches mobile mockup (01-hero-why-story.webp) */}
-          <div className="lg:hidden mt-10 -mb-4 w-full max-w-sm mx-auto aspect-[4/5] relative flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
-            <img
-              src="/assets/about/01-hero-mobile.webp"
-              alt=""
-              className="w-full h-full object-contain object-bottom drop-shadow-md"
-              fetchPriority="high"
-            />
           </div>
         </div>
 
@@ -1007,20 +1001,6 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-
-        {/* Bottom action bar */}
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-neutral-200/80">
-            <span className="font-mono text-xs uppercase text-forge-secondary font-medium">READY TO BUILD SOMETHING MEANINGFUL?</span>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-forge-ink text-white rounded-full text-sm font-semibold hover:bg-neutral-800 transition-all hover:-translate-y-0.5 shadow-sm"
-            >
-              Let's Talk <span aria-hidden="true" className="text-xs font-mono">↗</span>
-            </Link>
-            <span className="font-mono text-xs uppercase text-forge-muted">GOOD FOUNDERS MAKE BOLDER MOVES.</span>
-          </div>
-        </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
@@ -1339,7 +1319,7 @@ export default function AboutPage() {
           Reference: Reference mockups/About page/09.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-t border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
+        className="relative py-16 sm:py-20 lg:py-28 bg-white border-t border-forge-border overflow-hidden min-h-0 lg:min-h-[860px]"
         id="contact"
         aria-labelledby="about-cta-heading"
       >
@@ -1352,7 +1332,7 @@ export default function AboutPage() {
             desktopSrc="/assets/about/14-closing.webp"
             mobileSrc="/assets/about/14-closing-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply"
+            className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply opacity-40 sm:opacity-75 lg:opacity-100"
             loading="lazy"
             decoding="async"
           />
@@ -1368,16 +1348,6 @@ export default function AboutPage() {
                 SAME VISION.<br />BIGGER POSSIBILITIES.
               </div>
             </div>
-          </div>
-
-          {/* Mobile Closing Emblem Asset */}
-          <div className="lg:hidden mb-8 w-full max-w-xs mx-auto aspect-[4/5] relative flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
-            <img
-              src="/assets/about/14-closing-mobile.webp"
-              alt=""
-              className="w-full h-full object-contain object-bottom drop-shadow-md"
-              loading="lazy"
-            />
           </div>
 
           {/* Left copy block */}
@@ -1439,23 +1409,6 @@ export default function AboutPage() {
                   <div className="font-display font-bold text-xs text-forge-ink">No Obligation</div>
                   <div className="text-[11px] text-forge-muted">Just Clarity</div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom annotation footer matching mockup */}
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-4">
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
-              <span className="text-[10px] font-bold uppercase tracking-wider text-neutral-400">
-                BETTER BRANDS. BRIGHTER BUSINESSES.
-              </span>
-            </div>
-            <div className="flex items-start gap-2 text-left border-l-[1.5px] border-forge-blue pl-2.5">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 leading-tight">
-                SAME VISION.<br />BIGGER POSSIBILITIES.
               </div>
             </div>
           </div>

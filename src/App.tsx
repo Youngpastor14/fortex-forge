@@ -9,6 +9,8 @@ import WorkDetailPage from '@/pages/WorkDetailPage'
 import InsightsPage from '@/pages/InsightsPage'
 import InsightDetailPage from '@/pages/InsightDetailPage'
 import ContactPage from '@/pages/ContactPage'
+import PrivacyPage from '@/pages/PrivacyPage'
+import TermsPage from '@/pages/TermsPage'
 
 // ─── App ─────────────────────────────────────────────────────────────────────
 // Root router and route table.
@@ -56,6 +58,8 @@ export default function App() {
           <Route path="/insights"        element={<InsightsPage />}      />
           <Route path="/insights/:slug"  element={<InsightDetailPage />} />
           <Route path="/contact"         element={<ContactPage />}       />
+          <Route path="/privacy"         element={<PrivacyPage />}       />
+          <Route path="/terms"           element={<TermsPage />}         />
           <Route path="*"                element={<NotFound />}          />
         </Routes>
       </PageShell>

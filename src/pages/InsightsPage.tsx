@@ -61,6 +61,14 @@ const TOPICS = [
   },
 ]
 
+const TOPIC_CHIP_MAP: Record<string, string[]> = {
+  'Branding': ['brand-strategy', 'visual-identity', 'brand strategy', 'visual identity', 'brand'],
+  'Business': ['growth', 'business', 'authority'],
+  'Web & Tech': ['process', 'digital', 'tech', 'web'],
+  'Marketing': ['brand-strategy', 'growth', 'market'],
+  'Founder Journey': ['process', 'growth', 'founder'],
+}
+
 export default function InsightsPage() {
   const [activeTab, setActiveTab] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
@@ -75,19 +83,38 @@ export default function InsightsPage() {
   }
 
   const filteredArticles = insights.filter((article) => {
+    const q = searchQuery.trim().toLowerCase()
+    let matchesSearch = true
+
+    if (q) {
+      if (TOPIC_CHIP_MAP[searchQuery]) {
+        const matchTerms = TOPIC_CHIP_MAP[searchQuery]
+        matchesSearch =
+          matchTerms.some((t) => article.category.toLowerCase().includes(t) || article.categoryLabel.toLowerCase().includes(t)) ||
+          article.title.toLowerCase().includes(q) ||
+          article.excerpt.toLowerCase().includes(q)
+      } else if (q === 'branding' || q === 'brand') {
+        matchesSearch =
+          article.category === 'brand-strategy' ||
+          article.category === 'visual-identity' ||
+          article.categoryLabel.toLowerCase().includes('brand') ||
+          article.title.toLowerCase().includes('brand')
+      } else {
+        matchesSearch =
+          article.title.toLowerCase().includes(q) ||
+          article.excerpt.toLowerCase().includes(q) ||
+          article.categoryLabel.toLowerCase().includes(q)
+      }
+    }
+
     const matchesTab =
       activeTab === 'All' ||
-      article.categoryLabel.toLowerCase().includes(activeTab.toLowerCase()) ||
+      article.categoryLabel.toLowerCase() === activeTab.toLowerCase() ||
+      (activeTab === 'Brand Strategy' && article.category === 'brand-strategy') ||
       (activeTab === 'Positioning' && article.category === 'brand-strategy') ||
       (activeTab === 'Digital' && (article.category === 'process' || article.category === 'growth')) ||
       (activeTab === 'Identity' && article.category === 'visual-identity') ||
       (activeTab === 'Business' && article.category === 'growth')
-
-    const matchesSearch =
-      searchQuery === '' ||
-      article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      article.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      article.categoryLabel.toLowerCase().includes(searchQuery.toLowerCase())
 
     return matchesTab && matchesSearch
   })
@@ -98,23 +125,25 @@ export default function InsightsPage() {
           1. HERO — Full-Bleed Studio Desk with Laptop (Insight hero.png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full min-h-[90vh] flex flex-col justify-between bg-white border-b border-forge-border overflow-hidden"
+        className="relative w-full min-h-0 py-16 sm:py-24 lg:py-32 lg:min-h-[90vh] flex flex-col justify-between bg-white border-b border-forge-border overflow-hidden"
         aria-labelledby="insights-hero-heading"
       >
-        {/* Full-bleed background */}
-        <div className="absolute inset-0 pointer-events-none select-none z-0" aria-hidden="true">
+        {/* Full-bleed responsive background */}
+        <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden" aria-hidden="true">
           <ResponsiveImage
             desktopSrc="/assets/insights/01-hero.webp"
             mobileSrc="/assets/insights/01-hero-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-center lg:object-right-center"
+            className="w-full h-full object-cover object-bottom sm:object-right-center mix-blend-multiply opacity-25 sm:opacity-75 lg:opacity-100"
             fetchPriority="high"
+            loading="eager"
+            decoding="async"
           />
-          {/* Directional scrim (Desktop) */}
-          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:w-[60%]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent lg:hidden pointer-events-none" />
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:w-[60%] pointer-events-none" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 pt-20 md:pt-32 pb-12 flex-1 flex flex-col justify-center">
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 pt-12 md:pt-24 pb-12 flex-1 flex flex-col justify-center">
           <div className="max-w-xl">
             <span className="inline-block text-xs font-bold text-forge-blue uppercase tracking-[0.25em] mb-4">
               I N S I G H T S
@@ -134,13 +163,17 @@ export default function InsightsPage() {
 
             {/* Search bar */}
             <div className="w-full max-w-lg relative mb-6">
+              <label htmlFor="insights-search" className="sr-only">
+                Search articles, topics or keywords
+              </label>
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-forge-muted">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <circle cx="11" cy="11" r="8" />
                   <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
               </div>
               <input
+                id="insights-search"
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -150,27 +183,22 @@ export default function InsightsPage() {
             </div>
 
             {/* Category pill tags */}
-            <div className="flex flex-wrap items-center gap-2 max-w-lg mb-8">
+            <div className="flex flex-wrap items-center gap-2 max-w-lg mb-8" role="group" aria-label="Topic filters">
               {['Branding', 'Business', 'Web & Tech', 'Marketing', 'Founder Journey'].map((topic) => (
                 <button
                   key={topic}
                   type="button"
-                  onClick={() => setSearchQuery(topic === 'Web & Tech' ? 'Digital' : topic)}
-                  className="px-4 py-1.5 rounded-full text-xs font-semibold bg-white/90 text-forge-ink border border-forge-border shadow-sm hover:border-forge-ink hover:bg-forge-ink hover:text-white transition-all backdrop-blur-sm"
+                  onClick={() => setSearchQuery((prev) => (prev === topic ? '' : topic))}
+                  aria-pressed={searchQuery === topic}
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold border shadow-sm transition-all backdrop-blur-sm ${
+                    searchQuery === topic
+                      ? 'bg-forge-ink text-white border-forge-ink'
+                      : 'bg-white/90 text-forge-ink border-forge-border hover:border-forge-ink'
+                  }`}
                 >
                   {topic}
                 </button>
               ))}
-            </div>
-
-            {/* Mobile Hero Studio Desk Asset — matches mobile mockup (01-hero-featured.webp) */}
-            <div className="lg:hidden w-full max-w-md mx-auto aspect-[16/11] relative rounded-2xl overflow-hidden shadow-sm flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
-              <img
-                src="/assets/insights/01-hero-mobile.webp"
-                alt=""
-                className="w-full h-full object-cover object-center"
-                fetchPriority="high"
-              />
             </div>
           </div>
         </div>
@@ -181,7 +209,7 @@ export default function InsightsPage() {
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="featured-insight"
-        className="relative w-full min-h-[850px] lg:min-h-[920px] py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
+        className="relative w-full min-h-0 py-16 sm:py-24 lg:py-28 lg:min-h-[920px] bg-white border-b border-forge-border overflow-hidden flex flex-col justify-between"
         aria-labelledby="featured-insight-heading"
       >
         {/* Full-bleed background */}
@@ -200,36 +228,48 @@ export default function InsightsPage() {
         <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 mb-auto">
           <div className="max-w-xl space-y-6">
             <Eyebrow>FEATURED INSIGHT</Eyebrow>
+            <div className="inline-flex items-center gap-2 mb-2">
+              <span className="text-xs font-bold tracking-widest uppercase text-forge-blue">
+                {featured.categoryLabel}
+              </span>
+            </div>
             <h2
               id="featured-insight-heading"
               className="font-display text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-forge-ink tracking-[-0.03em] leading-tight"
             >
-              Why most brands<br />
-              fail before they<br />
-              <span className="text-forge-blue">even launch.</span>
+              {featured.title}
             </h2>
             <p className="text-base sm:text-lg text-forge-secondary mb-6 leading-relaxed font-normal">
-              A practical look at why clarity, not creativity, is the real competitive advantage, and how to build a brand that actually gets chosen.
+              {featured.excerpt}
             </p>
 
             <div className="flex items-center gap-3 text-xs sm:text-sm text-forge-muted pt-2 pb-4">
               <div className="w-8 h-8 rounded-full bg-forge-ink text-white font-bold flex items-center justify-center text-xs">
-                MK
+                {featured.author.name.split(' ').map((n) => n[0]).join('')}
               </div>
-              <span className="font-semibold text-forge-ink">By Melo Kaji</span>
+              <span className="font-semibold text-forge-ink">By {featured.author.name}</span>
               <span>•</span>
-              <time dateTime="2024-10-12">Oct 12, 2024</time>
+              <time dateTime={featured.publishedAt}>
+                {new Date(featured.publishedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+              </time>
               <span>•</span>
-              <span>8 min read</span>
+              <span>{featured.readTime}</span>
             </div>
 
             <div>
-              <Link
-                to={featured.href}
-                className="inline-flex items-center gap-2 bg-forge-blue text-white text-sm font-semibold px-8 py-3.5 rounded-full shadow-[0_8px_24px_rgba(21,87,255,0.25)] hover:bg-forge-blue-hover transition-all"
-              >
-                Read the Article <span aria-hidden="true">↗</span>
-              </Link>
+              {featured.content ? (
+                <Link
+                  to={featured.href}
+                  className="inline-flex items-center gap-2 bg-forge-blue text-white text-sm font-semibold px-8 py-3.5 rounded-full shadow-[0_8px_24px_rgba(21,87,255,0.25)] hover:bg-forge-blue-hover transition-all"
+                >
+                  Read the Article <span aria-hidden="true">↗</span>
+                </Link>
+              ) : (
+                <div className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-slate-100 border border-forge-border text-xs font-medium text-forge-muted">
+                  <span className="w-2 h-2 rounded-full bg-amber-500" aria-hidden="true" />
+                  <span>Full article publishing soon</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -308,77 +348,116 @@ export default function InsightsPage() {
             </div>
 
             <div className="relative w-full sm:w-64">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-forge-muted">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-forge-muted" aria-hidden="true">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="11" cy="11" r="8" />
                   <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 </svg>
               </div>
               <input
+                id="insights-search"
                 type="text"
+                aria-label="Search articles"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search articles..."
-                className="w-full pl-9 pr-4 py-2 bg-white text-forge-ink placeholder:text-forge-muted rounded-full border border-forge-border text-xs focus:outline-none focus:border-forge-blue focus:ring-1 focus:ring-forge-blue"
+                className="w-full pl-9 pr-8 py-2 bg-white text-forge-ink placeholder:text-forge-muted rounded-full border border-forge-border text-xs focus:outline-none focus:border-forge-blue focus:ring-1 focus:ring-forge-blue"
               />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  aria-label="Clear search query"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-forge-muted hover:text-forge-ink text-xs"
+                >
+                  ✕
+                </button>
+              )}
             </div>
           </div>
 
-          {/* Articles grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredArticles.map((article) => (
-              <article
-                key={article.id}
-                className="flex flex-col bg-white rounded-2xl overflow-hidden border border-forge-border shadow-sm hover:shadow-lg transition-all duration-300 group hover:-translate-y-1"
-              >
-                {/* Image */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
-                  <img
-                    src={article.coverImage}
-                    alt={article.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <span className="absolute top-3 left-3 px-3 py-1 bg-white/95 rounded-full text-xs font-semibold text-forge-ink shadow-sm backdrop-blur-sm">
-                    {article.categoryLabel}
-                  </span>
-                </div>
+          {/* Articles grid or empty state */}
+          {filteredArticles.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredArticles.map((article) => (
+                <article
+                  key={article.id}
+                  className="flex flex-col bg-white rounded-2xl overflow-hidden border border-forge-border shadow-sm hover:shadow-lg transition-all duration-300 group hover:-translate-y-1"
+                >
+                  {/* Image */}
+                  <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                    <img
+                      src={article.coverImage}
+                      alt={article.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span className="absolute top-3 left-3 px-3 py-1 bg-white/95 rounded-full text-xs font-semibold text-forge-ink shadow-sm backdrop-blur-sm">
+                      {article.categoryLabel}
+                    </span>
+                  </div>
 
-                {/* Body */}
-                <div className="p-6 flex flex-col flex-1 justify-between">
-                  <div>
-                    <div className="flex items-center gap-2 text-xs text-forge-muted mb-2 font-medium">
-                      <span>{article.readTime}</span>
-                      <span>•</span>
-                      <time dateTime={article.publishedAt}>
-                        {new Date(article.publishedAt).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}
-                      </time>
+                  {/* Body */}
+                  <div className="p-6 flex flex-col flex-1 justify-between">
+                    <div>
+                      <div className="flex items-center gap-2 text-xs text-forge-muted mb-2 font-medium">
+                        <span>{article.readTime}</span>
+                        <span>•</span>
+                        <time dateTime={article.publishedAt}>
+                          {new Date(article.publishedAt).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}
+                        </time>
+                      </div>
+
+                      <h3 className="font-display text-lg sm:text-xl font-bold text-forge-ink tracking-tight mb-3 leading-snug group-hover:text-forge-blue transition-colors">
+                        {article.title}
+                      </h3>
+
+                      <p className="text-xs sm:text-sm text-forge-secondary line-clamp-3 leading-relaxed mb-6">
+                        {article.excerpt}
+                      </p>
                     </div>
 
-                    <h3 className="font-display text-lg sm:text-xl font-bold text-forge-ink tracking-tight mb-3 leading-snug group-hover:text-forge-blue transition-colors">
-                      {article.title}
-                    </h3>
-
-                    <p className="text-xs sm:text-sm text-forge-secondary line-clamp-3 leading-relaxed mb-6">
-                      {article.excerpt}
-                    </p>
+                    <div className="pt-4 flex items-center justify-between border-t border-forge-border">
+                      <span className="text-xs font-semibold text-forge-muted">{article.author.name}</span>
+                      <Link
+                        to={article.href}
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-forge-ink group-hover:text-forge-blue transition-colors"
+                        aria-label={`Read "${article.title}"`}
+                      >
+                        Read Article <span aria-hidden="true">↗</span>
+                      </Link>
+                    </div>
                   </div>
-
-                  <div className="pt-4 flex items-center justify-between border-t border-forge-border">
-                    <span className="text-xs font-semibold text-forge-muted">{article.author.name}</span>
-                    <Link
-                      to={article.href}
-                      className="inline-flex items-center gap-1 text-xs font-semibold text-forge-ink group-hover:text-forge-blue transition-colors"
-                      aria-label={`Read "${article.title}"`}
-                    >
-                      Read Article <span aria-hidden="true">↗</span>
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="py-16 text-center bg-white rounded-2xl border border-forge-border p-8 max-w-xl mx-auto shadow-sm">
+              <div className="w-12 h-12 rounded-full bg-forge-surface border border-forge-border flex items-center justify-center mx-auto mb-4 text-forge-muted">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </div>
+              <h3 className="font-display font-bold text-lg text-forge-ink mb-2">No articles found</h3>
+              <p className="text-sm text-forge-secondary mb-6 leading-relaxed">
+                {searchQuery
+                  ? `No published insights matched "${searchQuery}". Try a different keyword or reset filters.`
+                  : 'No articles found in this category.'}
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setSearchQuery('')
+                  setActiveTab('All')
+                }}
+                className="px-6 py-2.5 rounded-full bg-forge-ink text-white text-xs font-semibold hover:bg-neutral-800 transition-all shadow-sm"
+              >
+                Reset all filters
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -609,7 +688,11 @@ export default function InsightsPage() {
             </p>
 
             <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md pt-2">
+              <label htmlFor="newsletter-email" className="sr-only">
+                Email address for newsletter
+              </label>
               <input
+                id="newsletter-email"
                 type="email"
                 required
                 value={subscribedEmail}

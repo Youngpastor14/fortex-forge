@@ -29,6 +29,53 @@ function Eyebrow({ children }: { children: string }) {
 
 const CATEGORIES: Array<'All' | ProjectCategory> = ['All', 'Brand Strategy', 'Identity', 'Website', 'Product']
 
+const CASE_STUDY_PANELS = [
+  {
+    num: '01',
+    label: 'The Challenge',
+    title: 'A fragmented brand in a high-trust market.',
+    desc: 'Haven was operating with fragmented digital touchpoints and inconsistent collateral. In an ultra-competitive real estate environment where six-figure trust is won or lost in seconds, their messaging failed to convey institutional credibility and premium property access.',
+    metrics: [
+      { value: '3+', label: 'Disjointed touchpoints' },
+      { value: '65%', label: 'Drop-off on inquiry' },
+      { value: '0', label: 'Unified brand guidelines' },
+    ],
+  },
+  {
+    num: '02',
+    label: 'Our Approach',
+    title: 'Clarity before creative execution.',
+    desc: 'We conducted deep stakeholder and client interviews to uncover Haven’s core differentiation: transparent pricing and curated property vetting. Rather than relying on generic luxury real estate tropes, we architected a brand positioning centered on absolute transparency and effortless client discovery.',
+    metrics: [
+      { value: '14 Days', label: 'Strategy sprint' },
+      { value: '32+', label: 'Interviews & audits' },
+      { value: '1', label: 'Unified value proposition' },
+    ],
+  },
+  {
+    num: '03',
+    label: 'The Solution',
+    title: 'Unified identity and digital flagship.',
+    desc: 'We created an authoritative visual identity system—refined bespoke typography, sophisticated warm neutrals, and architectural spatial grids. We then engineered a high-converting web platform with seamless property filtering, instant clarity, and frictionless inquiry pathways.',
+    metrics: [
+      { value: '60+ fps', label: 'Fluid web experience' },
+      { value: '<1.2s', label: 'LCP page load speed' },
+      { value: '100%', label: 'Mobile responsiveness' },
+    ],
+  },
+  {
+    num: '04',
+    label: 'The Results',
+    title: '+220% qualified leads and market authority.',
+    desc: 'Haven is now positioned as a modern real estate authority focused on helping people find better places to live and invest. Within 60 days of deployment, high-intent inquiries surged +220%, bounce rates dropped dramatically, and brand recognition across Lagos and the diaspora expanded.',
+    metrics: [
+      { value: '+220%', label: 'Increase in qualified inquiries' },
+      { value: '3.4x', label: 'More website engagement' },
+      { value: '+150%', label: 'Growth in brand recognition' },
+    ],
+  },
+]
+
 export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState<'All' | ProjectCategory>('All')
   const [activeStep, setActiveStep] = useState(0)
@@ -51,7 +98,7 @@ export default function WorkPage() {
           1. WORK HERO — Full-Bleed Studio Desk with Laptop (work.png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full min-h-[90vh] flex flex-col justify-between bg-white border-b border-forge-border overflow-hidden"
+        className="relative w-full min-h-0 py-16 sm:py-24 lg:py-32 lg:min-h-[90vh] flex flex-col justify-between bg-white border-b border-forge-border overflow-hidden"
         aria-labelledby="work-hero-heading"
       >
         {/* Full-bleed background */}
@@ -60,14 +107,16 @@ export default function WorkPage() {
             desktopSrc="/assets/work/01-portfolio-hero.webp"
             mobileSrc="/assets/work/01-portfolio-hero-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-center lg:object-right-center"
+            className="w-full h-full object-cover object-bottom sm:object-right-center opacity-35 sm:opacity-75 lg:opacity-100"
             fetchPriority="high"
+            loading="eager"
           />
-          {/* Directional scrim to ensure typography has pristine contrast (Desktop) */}
+          {/* Directional scrim to ensure typography has pristine contrast */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent lg:hidden pointer-events-none" />
           <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent lg:w-[60%]" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 pt-20 md:pt-32 pb-12 flex-1 flex flex-col justify-center">
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 pt-16 md:pt-32 pb-12 flex-1 flex flex-col justify-center">
           <div className="max-w-xl">
             <Eyebrow>OUR WORK</Eyebrow>
 
@@ -92,16 +141,6 @@ export default function WorkPage() {
                 <span>View Our Work</span>
                 <span className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-xs" aria-hidden="true">↗</span>
               </a>
-            </div>
-
-            {/* Mobile Hero Studio Desk Asset — matches mobile mockup (01-hero-selected-work.webp) */}
-            <div className="lg:hidden mb-8 w-full max-w-md mx-auto aspect-[16/10] relative rounded-2xl overflow-hidden shadow-sm flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
-              <img
-                src="/assets/work/01-portfolio-hero-mobile.webp"
-                alt=""
-                className="w-full h-full object-cover object-center"
-                fetchPriority="high"
-              />
             </div>
 
             {/* Stats row matching work.png */}
@@ -178,50 +217,26 @@ export default function WorkPage() {
           </div>
 
           {/* Flagship hero grid — matching work1.png */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            {/* Flagship left — Haven */}
-            <article className="lg:col-span-6 relative group rounded-2xl overflow-hidden min-h-[460px] lg:min-h-[580px] bg-slate-900 flex flex-col justify-end p-8 sm:p-10 border border-forge-border/40 transition-shadow hover:shadow-[0_20px_35px_-10px_rgba(13,17,23,0.12)]">
-              <img
-                src={featured.coverImage}
-                alt={`${featured.client} — ${featured.tagline}`}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                loading="lazy"
-                decoding="async"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent" aria-hidden="true" />
-              <div className="relative z-10">
-                <span className="text-[11px] font-bold tracking-widest text-white/80 uppercase mb-3 block">Real Estate</span>
-                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3">{featured.title}</h3>
-                <p className="text-sm text-gray-300 max-w-sm mb-6 leading-relaxed">{featured.tagline}</p>
-                <a
-                  href="#featured-case-study"
-                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white border-b border-white/40 pb-1 hover:border-white transition-all group-hover:gap-2.5"
-                >
-                  <span>View Case Study</span>
-                  <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-            </article>
-
-            {/* Right staggered column */}
-            <div className="lg:col-span-6 flex flex-col gap-6">
-              {/* Top right — Health Tech */}
-              <article className="relative group rounded-2xl overflow-hidden min-h-[260px] lg:min-h-[275px] bg-slate-950 flex flex-col justify-end p-8 border border-forge-border/40 transition-shadow hover:shadow-[0_20px_35px_-10px_rgba(13,17,23,0.12)]">
+          {activeFilter === 'All' ? (
+            /* Flagship hero grid — matching work1.png */
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+              {/* Flagship left — Haven */}
+              <article className="lg:col-span-6 relative group rounded-2xl overflow-hidden min-h-[460px] lg:min-h-[580px] bg-slate-900 flex flex-col justify-end p-8 sm:p-10 border border-forge-border/40 transition-shadow hover:shadow-[0_20px_35px_-10px_rgba(13,17,23,0.12)]">
                 <img
-                  src={heroGridRight[2]?.coverImage}
-                  alt={`${heroGridRight[2]?.client} — ${heroGridRight[2]?.tagline}`}
-                  className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-700 ease-out"
+                  src={featured.coverImage}
+                  alt={`${featured.client} — ${featured.tagline}`}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent" aria-hidden="true" />
-                <div className="relative z-10 max-w-sm">
-                  <span className="text-[11px] font-bold tracking-widest text-forge-blue uppercase mb-2 block">Health Tech</span>
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-white mb-2">A healthier tomorrow.</h3>
-                  <p className="text-xs sm:text-sm text-gray-300 mb-4 leading-relaxed">{heroGridRight[2]?.tagline}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent" aria-hidden="true" />
+                <div className="relative z-10">
+                  <span className="text-[11px] font-bold tracking-widest text-white/80 uppercase mb-3 block">Real Estate</span>
+                  <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3">{featured.title}</h3>
+                  <p className="text-sm text-gray-300 max-w-sm mb-6 leading-relaxed">{featured.tagline}</p>
                   <a
-                    href="#all-projects"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/95 hover:text-white transition-colors"
+                    href="#featured-case-study"
+                    className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-white border-b border-white/40 pb-1 hover:border-white transition-all group-hover:gap-2.5"
                   >
                     <span>View Case Study</span>
                     <span aria-hidden="true">↗</span>
@@ -229,56 +244,157 @@ export default function WorkPage() {
                 </div>
               </article>
 
-              {/* Bottom sub-grid: SaaS + Brand Identity */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {/* SaaS */}
-                <article className="relative group rounded-2xl overflow-hidden min-h-[260px] bg-slate-900 flex flex-col justify-end p-6 border border-forge-border/40 transition-shadow hover:shadow-[0_20px_35px_-10px_rgba(13,17,23,0.12)]">
+              {/* Right staggered column */}
+              <div className="lg:col-span-6 flex flex-col gap-6">
+                {/* Top right — Health Tech */}
+                <article className="relative group rounded-2xl overflow-hidden min-h-[260px] lg:min-h-[275px] bg-slate-950 flex flex-col justify-end p-8 border border-forge-border/40 transition-shadow hover:shadow-[0_20px_35px_-10px_rgba(13,17,23,0.12)]">
                   <img
-                    src={heroGridRight[1]?.coverImage}
-                    alt={`${heroGridRight[1]?.client} — ${heroGridRight[1]?.tagline}`}
-                    className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-700 ease-out"
+                    src={heroGridRight[2]?.coverImage}
+                    alt={`${heroGridRight[2]?.client} — ${heroGridRight[2]?.tagline}`}
+                    className="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-700 ease-out"
                     loading="lazy"
                     decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent" aria-hidden="true" />
-                  <div className="relative z-10">
-                    <span className="text-[10px] font-bold tracking-widest text-blue-400 uppercase mb-1 block">SaaS</span>
-                    <h4 className="font-display text-lg font-bold text-white mb-1">Built for what's next.</h4>
-                    <p className="text-xs text-gray-300 mb-4 line-clamp-2">{heroGridRight[1]?.tagline}</p>
-                    <a
-                      href="#all-projects"
-                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-white hover:text-forge-blue transition-colors"
-                    >
-                      View Case Study <span aria-hidden="true">↗</span>
-                    </a>
+                  <div className="relative z-10 max-w-sm">
+                    <span className="text-[11px] font-bold tracking-widest text-forge-blue uppercase mb-2 block">Health Tech</span>
+                    <h3 className="font-display text-xl sm:text-2xl font-bold text-white mb-2">A healthier tomorrow.</h3>
+                    <p className="text-xs sm:text-sm text-gray-300 mb-4 leading-relaxed">{heroGridRight[2]?.tagline}</p>
+                    {heroGridRight[2]?.caseStudyHref ? (
+                      <Link
+                        to={heroGridRight[2].caseStudyHref}
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/95 hover:text-white transition-colors"
+                      >
+                        <span>View Case Study</span>
+                        <span aria-hidden="true">↗</span>
+                      </Link>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 text-xs font-medium text-white/70">
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-400" aria-hidden="true" />
+                        Case study coming soon
+                      </span>
+                    )}
                   </div>
                 </article>
 
-                {/* Brand Identity / Tiziano */}
-                <article className="relative group rounded-2xl overflow-hidden min-h-[260px] bg-neutral-100 flex flex-col justify-end p-6 border border-forge-border transition-shadow hover:shadow-[0_20px_35px_-10px_rgba(13,17,23,0.08)]">
-                  <img
-                    src={heroGridRight[0]?.coverImage}
-                    alt={`${heroGridRight[0]?.client} — ${heroGridRight[0]?.tagline}`}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/50 to-transparent" aria-hidden="true" />
-                  <div className="relative z-10">
-                    <span className="text-[10px] font-bold tracking-widest text-forge-muted uppercase mb-1 block">Brand Identity</span>
-                    <h4 className="font-display text-lg font-bold text-forge-ink mb-1">{heroGridRight[0]?.client}™</h4>
-                    <p className="text-xs text-forge-secondary mb-4 line-clamp-2">{heroGridRight[0]?.tagline}</p>
-                    <a
-                      href="#all-projects"
-                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-forge-ink underline hover:text-forge-blue transition-colors"
-                    >
-                      View Case Study <span aria-hidden="true">↗</span>
-                    </a>
-                  </div>
-                </article>
+                {/* Bottom sub-grid: SaaS + Brand Identity */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {/* SaaS */}
+                  <article className="relative group rounded-2xl overflow-hidden min-h-[260px] bg-slate-900 flex flex-col justify-end p-6 border border-forge-border/40 transition-shadow hover:shadow-[0_20px_35px_-10px_rgba(13,17,23,0.12)]">
+                    <img
+                      src={heroGridRight[1]?.coverImage}
+                      alt={`${heroGridRight[1]?.client} — ${heroGridRight[1]?.tagline}`}
+                      className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-700 ease-out"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent" aria-hidden="true" />
+                    <div className="relative z-10">
+                      <span className="text-[10px] font-bold tracking-widest text-blue-400 uppercase mb-1 block">SaaS</span>
+                      <h4 className="font-display text-lg font-bold text-white mb-1">Built for what's next.</h4>
+                      <p className="text-xs text-gray-300 mb-4 line-clamp-2">{heroGridRight[1]?.tagline}</p>
+                      {heroGridRight[1]?.caseStudyHref ? (
+                        <Link
+                          to={heroGridRight[1].caseStudyHref}
+                          className="inline-flex items-center gap-1 text-[11px] font-semibold text-white hover:text-forge-blue transition-colors"
+                        >
+                          View Case Study <span aria-hidden="true">↗</span>
+                        </Link>
+                      ) : (
+                        <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-white/70">
+                          <span className="w-1.5 h-1.5 rounded-full bg-slate-400" aria-hidden="true" />
+                          Case study coming soon
+                        </span>
+                      )}
+                    </div>
+                  </article>
+
+                  {/* Brand Identity / Tiziano */}
+                  <article className="relative group rounded-2xl overflow-hidden min-h-[260px] bg-neutral-100 flex flex-col justify-end p-6 border border-forge-border transition-shadow hover:shadow-[0_20px_35px_-10px_rgba(13,17,23,0.08)]">
+                    <img
+                      src={heroGridRight[0]?.coverImage}
+                      alt={`${heroGridRight[0]?.client} — ${heroGridRight[0]?.tagline}`}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/50 to-transparent" aria-hidden="true" />
+                    <div className="relative z-10">
+                      <span className="text-[10px] font-bold tracking-widest text-forge-muted uppercase mb-1 block">Brand Identity</span>
+                      <h4 className="font-display text-lg font-bold text-forge-ink mb-1">{heroGridRight[0]?.client}™</h4>
+                      <p className="text-xs text-forge-secondary mb-4 line-clamp-2">{heroGridRight[0]?.tagline}</p>
+                      {heroGridRight[0]?.caseStudyHref ? (
+                        <Link
+                          to={heroGridRight[0].caseStudyHref}
+                          className="inline-flex items-center gap-1 text-[11px] font-semibold text-forge-ink underline hover:text-forge-blue transition-colors"
+                        >
+                          View Case Study <span aria-hidden="true">↗</span>
+                        </Link>
+                      ) : (
+                        <span className="inline-flex items-center gap-1.5 text-[11px] font-medium text-forge-muted">
+                          <span className="w-1.5 h-1.5 rounded-full bg-slate-400" aria-hidden="true" />
+                          Case study coming soon
+                        </span>
+                      )}
+                    </div>
+                  </article>
+                </div>
               </div>
             </div>
-          </div>
+          ) : filteredProjects.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProjects.map((project) => (
+                <article
+                  key={project.id}
+                  className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-forge-border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className={`relative aspect-[16/11] overflow-hidden ${project.coverBg ?? 'bg-slate-900'}`}>
+                    <img
+                      src={project.coverImage}
+                      alt={`${project.client} — ${project.tagline}`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <span className="absolute top-4 left-4 px-3 py-1 bg-black/65 backdrop-blur-sm text-[10px] font-bold uppercase tracking-wider text-white rounded-full">
+                      {project.tags.join(' · ')}
+                    </span>
+                  </div>
+                  <div className="p-6 flex flex-col flex-1 justify-between">
+                    <div>
+                      <h3 className="font-display text-xl font-bold text-forge-ink mb-1">{project.client}.</h3>
+                      <p className="text-xs sm:text-sm text-forge-secondary leading-relaxed mb-4">{project.tagline}</p>
+                    </div>
+                    <div className="pt-4 border-t border-forge-border">
+                      {project.caseStudyHref ? (
+                        <Link
+                          to={project.caseStudyHref}
+                          className="text-xs font-semibold text-forge-blue hover:underline inline-flex items-center gap-1"
+                        >
+                          View Case Study <span aria-hidden="true">↗</span>
+                        </Link>
+                      ) : (
+                        <span className="text-xs text-forge-muted font-medium inline-flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-slate-400" aria-hidden="true" />
+                          Case study coming soon
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="py-16 text-center">
+              <p className="text-forge-secondary text-sm mb-4">No projects found in this category.</p>
+              <button
+                type="button"
+                onClick={() => setActiveFilter('All')}
+                className="px-6 py-2.5 rounded-full bg-forge-ink text-white text-xs font-semibold hover:bg-neutral-800 transition-all"
+              >
+                Reset filters
+              </button>
+            </div>
+          )}
 
           {/* Results banner matching work1.png with mountain backdrop */}
           <div className="mt-12 rounded-2xl border border-forge-border overflow-hidden shadow-lg relative bg-white flex flex-col lg:flex-row items-stretch justify-between min-h-[140px]">
@@ -385,41 +501,59 @@ export default function WorkPage() {
         {/* Floating bottom container matching insi.png */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-12">
           <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-forge-border shadow-lg">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-6 border-b border-forge-border">
-              {/* Metrics */}
-              <div className="lg:col-span-5 grid grid-cols-3 gap-4 sm:gap-6 border-b lg:border-b-0 lg:border-r border-forge-border pb-6 lg:pb-0 lg:pr-6">
-                <div>
-                  <div className="font-display text-3xl sm:text-4xl font-extrabold text-forge-ink tracking-tight">+220%</div>
-                  <div className="text-xs text-forge-muted mt-1 leading-snug">Increase in qualified inquiries</div>
-                </div>
-                <div>
-                  <div className="font-display text-3xl sm:text-4xl font-extrabold text-forge-ink tracking-tight">3.4x</div>
-                  <div className="text-xs text-forge-muted mt-1 leading-snug">More website engagement</div>
-                </div>
-                <div>
-                  <div className="font-display text-3xl sm:text-4xl font-extrabold text-forge-ink tracking-tight">+150%</div>
-                  <div className="text-xs text-forge-muted mt-1 leading-snug">Growth in brand recognition</div>
-                </div>
-              </div>
+            {/* Stepper dynamic panel */}
+            {(() => {
+              const panel = CASE_STUDY_PANELS[activeStep] || CASE_STUDY_PANELS[0]
+              return (
+                <div
+                  id={`step-panel-${activeStep}`}
+                  role="tabpanel"
+                  aria-labelledby={`step-tab-${activeStep}`}
+                  className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-6 border-b border-forge-border"
+                >
+                  {/* Metrics */}
+                  <div className="lg:col-span-5 grid grid-cols-3 gap-4 sm:gap-6 border-b lg:border-b-0 lg:border-r border-forge-border pb-6 lg:pb-0 lg:pr-6">
+                    {panel.metrics.map((m, mIdx) => (
+                      <div key={mIdx}>
+                        <div className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-forge-ink tracking-tight">{m.value}</div>
+                        <div className="text-xs text-forge-muted mt-1 leading-snug">{m.label}</div>
+                      </div>
+                    ))}
+                  </div>
 
-              {/* Transformation story */}
-              <div className="lg:col-span-7">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-forge-muted mb-2 block">THE TRANSFORMATION</span>
-                <p className="text-xs sm:text-sm text-forge-secondary leading-relaxed">
-                  Haven is a modern real estate company focused on helping people find better places to live and invest. We positioned their brand around clarity and trust, designed a clean and distinctive identity, and built a digital experience that makes property search simple, intuitive and inspiring.
-                </p>
-              </div>
-            </div>
+                  {/* Transformation story */}
+                  <div className="lg:col-span-7">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-forge-muted mb-2 block">
+                      {panel.num} · {panel.label.toUpperCase()}
+                    </span>
+                    <h4 className="font-display text-base sm:text-lg font-bold text-forge-ink mb-2">
+                      {panel.title}
+                    </h4>
+                    <p className="text-xs sm:text-sm text-forge-secondary leading-relaxed">
+                      {panel.desc}
+                    </p>
+                  </div>
+                </div>
+              )
+            })()}
 
             {/* Stepper navigation matching insi.png */}
             <div className="flex items-center justify-between pt-6">
-              <div className="flex items-center gap-6 sm:gap-10 text-xs sm:text-sm font-medium overflow-x-auto py-1">
-                {steps.map((step, idx) => (
+              <div
+                role="tablist"
+                aria-label="Case study phases"
+                className="flex items-center gap-6 sm:gap-10 text-xs sm:text-sm font-medium overflow-x-auto py-1"
+              >
+                {CASE_STUDY_PANELS.map((step, idx) => (
                   <button
                     key={step.num}
+                    id={`step-tab-${idx}`}
+                    role="tab"
+                    aria-selected={activeStep === idx}
+                    aria-controls={`step-panel-${idx}`}
                     type="button"
                     onClick={() => setActiveStep(idx)}
-                    className={`flex items-center gap-2 pb-1 whitespace-nowrap relative transition-colors ${
+                    className={`flex items-center gap-2 pb-2 min-h-[44px] whitespace-nowrap relative transition-colors ${
                       activeStep === idx ? 'text-forge-ink font-semibold' : 'text-forge-muted hover:text-forge-ink'
                     }`}
                   >
@@ -434,17 +568,17 @@ export default function WorkPage() {
               <div className="flex items-center gap-2 shrink-0 ml-4">
                 <button
                   type="button"
-                  onClick={() => setActiveStep((prev) => (prev > 0 ? prev - 1 : steps.length - 1))}
+                  onClick={() => setActiveStep((prev) => (prev > 0 ? prev - 1 : CASE_STUDY_PANELS.length - 1))}
                   aria-label="Previous step"
-                  className="w-9 h-9 rounded-full border border-forge-border flex items-center justify-center text-forge-ink bg-white hover:bg-slate-50 transition-colors shadow-sm"
+                  className="w-11 h-11 rounded-full border border-forge-border flex items-center justify-center text-forge-ink bg-white hover:bg-slate-50 transition-colors shadow-sm"
                 >
                   ←
                 </button>
                 <button
                   type="button"
-                  onClick={() => setActiveStep((prev) => (prev < steps.length - 1 ? prev + 1 : 0))}
+                  onClick={() => setActiveStep((prev) => (prev < CASE_STUDY_PANELS.length - 1 ? prev + 1 : 0))}
                   aria-label="Next step"
-                  className="w-9 h-9 rounded-full bg-forge-ink text-white flex items-center justify-center hover:bg-neutral-800 transition-colors shadow-sm"
+                  className="w-11 h-11 rounded-full bg-forge-ink text-white flex items-center justify-center hover:bg-neutral-800 transition-colors shadow-sm"
                 >
                   →
                 </button>
@@ -540,8 +674,9 @@ export default function WorkPage() {
                           View Case Study <span aria-hidden="true">↗</span>
                         </Link>
                       ) : (
-                        <span className="text-xs font-semibold text-forge-blue inline-flex items-center gap-1">
-                          View Case Study <span aria-hidden="true">↗</span>
+                        <span className="text-xs font-medium text-forge-muted inline-flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-slate-400" aria-hidden="true" />
+                          Case study coming soon
                         </span>
                       )}
                     </div>
@@ -550,8 +685,15 @@ export default function WorkPage() {
               ))}
             </div>
           ) : (
-            <div className="py-16 text-center text-forge-muted text-sm">
-              No projects in this category yet.
+            <div className="py-16 text-center text-forge-muted text-sm space-y-4">
+              <p>No projects found in “{activeFilter}”.</p>
+              <button
+                type="button"
+                onClick={() => setActiveFilter('All')}
+                className="inline-flex items-center px-5 py-2 rounded-full text-xs font-semibold bg-forge-ink text-white hover:bg-neutral-800 transition-colors"
+              >
+                Reset filters
+              </button>
             </div>
           )}
 

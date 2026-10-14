@@ -152,7 +152,68 @@ export default function ContactPage() {
     if (form.scopes.length === 0) e.scopes = 'Select at least one area of interest.'
     if (!form.projectNotes.trim()) e.projectNotes = 'Please tell us a bit about what you want to achieve.'
     setErrors(e)
-    return Object.keys(e).length === 0
+
+    if (Object.keys(e).length > 0) {
+      if (e.fullName || e.workEmail || e.companyName) {
+        setStep(1)
+        setTimeout(() => {
+          const firstErrField = document.querySelector<HTMLInputElement>(
+            '#contact-fullname[aria-invalid="true"], #contact-email[aria-invalid="true"], #contact-company[aria-invalid="true"]'
+          )
+          firstErrField?.focus()
+        }, 50)
+      } else if (e.scopes || e.projectNotes) {
+        setStep(2)
+        setTimeout(() => {
+          const firstErrField = document.querySelector<HTMLElement>(
+            '#contact-notes[aria-invalid="true"], #contact-scopes-legend'
+          )
+          firstErrField?.focus()
+        }, 50)
+      }
+      return false
+    }
+    return true
+  }
+
+  const handleStep1Next = () => {
+    const e: typeof errors = {}
+    if (!form.fullName.trim()) e.fullName = 'Full name is required.'
+    if (!form.workEmail.trim()) e.workEmail = 'Work email is required.'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.workEmail.trim())) {
+      e.workEmail = 'Enter a valid email address.'
+    }
+    if (!form.companyName.trim()) e.companyName = 'Company name is required.'
+
+    if (Object.keys(e).length > 0) {
+      setErrors(prev => ({ ...prev, ...e }))
+      setTimeout(() => {
+        const first = document.querySelector<HTMLInputElement>(
+          '#contact-fullname[aria-invalid="true"], #contact-email[aria-invalid="true"], #contact-company[aria-invalid="true"]'
+        )
+        first?.focus()
+      }, 50)
+      return
+    }
+    setStep(2)
+  }
+
+  const handleStep2Next = () => {
+    const e: typeof errors = {}
+    if (form.scopes.length === 0) e.scopes = 'Select at least one area of interest.'
+    if (!form.projectNotes.trim()) e.projectNotes = 'Please tell us a bit about what you want to achieve.'
+
+    if (Object.keys(e).length > 0) {
+      setErrors(prev => ({ ...prev, ...e }))
+      setTimeout(() => {
+        const first = document.querySelector<HTMLElement>(
+          '#contact-notes[aria-invalid="true"], #contact-scopes-legend'
+        )
+        first?.focus()
+      }, 50)
+      return
+    }
+    setStep(3)
   }
 
   const toggleScope = (id: string) => {
@@ -200,21 +261,25 @@ export default function ContactPage() {
           Reference: Reference mockups/contact page/01.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
+        className="relative py-16 sm:py-24 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-0 lg:min-h-[920px] flex flex-col justify-between"
         aria-labelledby="contact-hero-heading"
       >
-        {/* Full-bleed background artwork (Desktop) */}
+        {/* Full-bleed responsive background artwork */}
         <div
-          className="hidden lg:block absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
+          className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/contact/01-hero.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/contact/01-hero.webp"
+            mobileSrc="/assets/contact/01-hero-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-right-bottom"
+            className="w-full h-full object-cover object-bottom sm:object-right-bottom mix-blend-multiply opacity-30 sm:opacity-75 lg:opacity-100"
             fetchPriority="high"
+            loading="eager"
             decoding="async"
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent lg:hidden pointer-events-none" />
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent w-1/2 pointer-events-none" />
         </div>
 
         <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mb-auto">
@@ -308,16 +373,6 @@ export default function ContactPage() {
                 Ask a Question
               </button>
             </div>
-
-            {/* Mobile Hero Executive Desk Asset — matches mobile mockup (01-hero-next.webp) */}
-            <div className="lg:hidden mt-10 -mb-4 w-full max-w-md mx-auto aspect-[16/10] relative rounded-2xl overflow-hidden shadow-sm flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
-              <img
-                src="/assets/contact/01-hero-mobile.webp"
-                alt=""
-                className="w-full h-full object-cover object-bottom"
-                fetchPriority="high"
-              />
-            </div>
           </div>
         </div>
 
@@ -373,7 +428,7 @@ export default function ContactPage() {
           Reference: Reference mockups/contact page/02.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-16 lg:py-20 bg-white border-b border-forge-border overflow-hidden min-h-[960px] lg:min-h-[1080px] flex flex-col justify-between"
+        className="relative py-16 lg:py-20 bg-white border-b border-forge-border overflow-hidden min-h-0 lg:min-h-[1080px] flex flex-col justify-between"
         aria-labelledby="what-happens-heading"
       >
         {/* Full-bleed what happens next background artwork */}
@@ -514,7 +569,7 @@ export default function ContactPage() {
       ════════════════════════════════════════════════════════════════════ */}
       <section
         ref={formRef}
-        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[860px] lg:min-h-[960px] flex flex-col justify-between"
+        className="relative py-16 sm:py-24 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-0 lg:min-h-[960px] flex flex-col justify-between"
         id="diagnostic"
         aria-labelledby="diagnostic-heading"
       >
@@ -637,7 +692,25 @@ export default function ContactPage() {
                     </a>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-8">
+                  <form onSubmit={handleSubmit} className="space-y-8" noValidate>
+                    {/* Error summary alert for screen readers and users */}
+                    {Object.keys(errors).length > 0 && (
+                      <div
+                        role="alert"
+                        aria-live="assertive"
+                        className="p-4 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700"
+                      >
+                        <p className="font-semibold mb-1">Please correct the following fields:</p>
+                        <ul className="list-disc list-inside space-y-0.5">
+                          {errors.fullName && <li>{errors.fullName}</li>}
+                          {errors.workEmail && <li>{errors.workEmail}</li>}
+                          {errors.companyName && <li>{errors.companyName}</li>}
+                          {errors.scopes && <li>{errors.scopes}</li>}
+                          {errors.projectNotes && <li>{errors.projectNotes}</li>}
+                        </ul>
+                      </div>
+                    )}
+
                     {/* Top step progress indicator matching 03.png */}
                     <div className="pb-6 border-b border-neutral-200/80">
                       <div className="flex items-center justify-between mb-3">
@@ -680,55 +753,83 @@ export default function ContactPage() {
                       <div className="space-y-5">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                           <div>
-                            <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
+                            <label htmlFor="contact-fullname" className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
                               Full Name *
                             </label>
                             <input
+                              id="contact-fullname"
                               type="text"
                               required
+                              aria-required="true"
+                              aria-invalid={Boolean(errors.fullName)}
+                              aria-describedby={errors.fullName ? "contact-fullname-err" : undefined}
                               value={form.fullName}
-                              onChange={e => setForm({ ...form, fullName: e.target.value })}
+                              onChange={e => {
+                                setForm({ ...form, fullName: e.target.value })
+                                if (errors.fullName) setErrors(prev => ({ ...prev, fullName: undefined }))
+                              }}
                               placeholder="Your name"
-                              className="w-full bg-white border border-neutral-300 rounded-xl px-4 py-3 text-sm text-forge-ink focus:outline-none focus:border-forge-blue focus:ring-1 focus:ring-forge-blue transition-all"
+                              className={`w-full bg-white border rounded-xl px-4 py-3 text-sm text-forge-ink focus:outline-none focus:ring-1 transition-all ${
+                                errors.fullName ? 'border-red-400 focus:border-red-500 focus:ring-red-400' : 'border-neutral-300 focus:border-forge-blue focus:ring-forge-blue'
+                              }`}
                             />
-                            {errors.fullName && <p className="text-xs text-red-500 mt-1">{errors.fullName}</p>}
+                            {errors.fullName && <p id="contact-fullname-err" role="alert" className="text-xs text-red-500 mt-1">{errors.fullName}</p>}
                           </div>
                           <div>
-                            <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
+                            <label htmlFor="contact-email" className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
                               Work Email Address *
                             </label>
                             <input
+                              id="contact-email"
                               type="email"
                               required
+                              aria-required="true"
+                              aria-invalid={Boolean(errors.workEmail)}
+                              aria-describedby={errors.workEmail ? "contact-email-err" : undefined}
                               value={form.workEmail}
-                              onChange={e => setForm({ ...form, workEmail: e.target.value })}
+                              onChange={e => {
+                                setForm({ ...form, workEmail: e.target.value })
+                                if (errors.workEmail) setErrors(prev => ({ ...prev, workEmail: undefined }))
+                              }}
                               placeholder="you@company.com"
-                              className="w-full bg-white border border-neutral-300 rounded-xl px-4 py-3 text-sm text-forge-ink focus:outline-none focus:border-forge-blue focus:ring-1 focus:ring-forge-blue transition-all"
+                              className={`w-full bg-white border rounded-xl px-4 py-3 text-sm text-forge-ink focus:outline-none focus:ring-1 transition-all ${
+                                errors.workEmail ? 'border-red-400 focus:border-red-500 focus:ring-red-400' : 'border-neutral-300 focus:border-forge-blue focus:ring-forge-blue'
+                              }`}
                             />
-                            {errors.workEmail && <p className="text-xs text-red-500 mt-1">{errors.workEmail}</p>}
+                            {errors.workEmail && <p id="contact-email-err" role="alert" className="text-xs text-red-500 mt-1">{errors.workEmail}</p>}
                           </div>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                           <div>
-                            <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
+                            <label htmlFor="contact-company" className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
                               Company Name *
                             </label>
                             <input
+                              id="contact-company"
                               type="text"
                               required
+                              aria-required="true"
+                              aria-invalid={Boolean(errors.companyName)}
+                              aria-describedby={errors.companyName ? "contact-company-err" : undefined}
                               value={form.companyName}
-                              onChange={e => setForm({ ...form, companyName: e.target.value })}
+                              onChange={e => {
+                                setForm({ ...form, companyName: e.target.value })
+                                if (errors.companyName) setErrors(prev => ({ ...prev, companyName: undefined }))
+                              }}
                               placeholder="Your company name"
-                              className="w-full bg-white border border-neutral-300 rounded-xl px-4 py-3 text-sm text-forge-ink focus:outline-none focus:border-forge-blue focus:ring-1 focus:ring-forge-blue transition-all"
+                              className={`w-full bg-white border rounded-xl px-4 py-3 text-sm text-forge-ink focus:outline-none focus:ring-1 transition-all ${
+                                errors.companyName ? 'border-red-400 focus:border-red-500 focus:ring-red-400' : 'border-neutral-300 focus:border-forge-blue focus:ring-forge-blue'
+                              }`}
                             />
-                            {errors.companyName && <p className="text-xs text-red-500 mt-1">{errors.companyName}</p>}
+                            {errors.companyName && <p id="contact-company-err" role="alert" className="text-xs text-red-500 mt-1">{errors.companyName}</p>}
                           </div>
                           <div>
-                            <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
+                            <label htmlFor="contact-phone" className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
                               Phone Number
                             </label>
                             <input
+                              id="contact-phone"
                               type="tel"
                               value={form.phone}
                               onChange={e => setForm({ ...form, phone: e.target.value })}
@@ -740,10 +841,11 @@ export default function ContactPage() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                           <div>
-                            <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
+                            <label htmlFor="contact-website" className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
                               Website (if available)
                             </label>
                             <input
+                              id="contact-website"
                               type="text"
                               value={form.website}
                               onChange={e => setForm({ ...form, website: e.target.value })}
@@ -752,10 +854,11 @@ export default function ContactPage() {
                             />
                           </div>
                           <div>
-                            <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
+                            <label htmlFor="contact-businesstype" className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
                               What best describes your business?
                             </label>
                             <select
+                              id="contact-businesstype"
                               value={form.businessType}
                               onChange={e => setForm({ ...form, businessType: e.target.value })}
                               className="w-full bg-white border border-neutral-300 rounded-xl px-4 py-3 text-sm text-forge-ink focus:outline-none focus:border-forge-blue focus:ring-1 focus:ring-forge-blue transition-all"
@@ -769,18 +872,11 @@ export default function ContactPage() {
                           </div>
                         </div>
 
-
                         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
                           <span className="text-xs text-forge-secondary font-medium">Step 2: Your Current Situation</span>
                           <button
                             type="button"
-                            onClick={() => {
-                              if (!form.fullName.trim() || !form.workEmail.trim() || !form.companyName.trim()) {
-                                validate()
-                                return
-                              }
-                              setStep(2)
-                            }}
+                            onClick={handleStep1Next}
                             className="px-8 py-3.5 rounded-full bg-forge-blue text-white text-sm font-semibold hover:bg-forge-blue-hover transition-all flex items-center gap-2 shadow-md shadow-forge-blue/20"
                           >
                             Next Step <span aria-hidden="true">→</span>
@@ -792,10 +888,10 @@ export default function ContactPage() {
                     {/* Step 2: Scopes & Goals */}
                     {step === 2 && (
                       <div className="space-y-6">
-                        <div>
-                          <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-3">
+                        <div role="group" aria-labelledby="contact-scopes-legend">
+                          <div id="contact-scopes-legend" className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-3">
                             Services Needed (select all that apply) *
-                          </label>
+                          </div>
                           <div className="flex flex-wrap gap-2.5">
                             {SCOPE_OPTIONS.map(opt => {
                               const active = form.scopes.includes(opt.id)
@@ -804,6 +900,7 @@ export default function ContactPage() {
                                   key={opt.id}
                                   type="button"
                                   onClick={() => toggleScope(opt.id)}
+                                  aria-pressed={active}
                                   className={`px-4 py-2.5 rounded-full text-xs font-semibold border transition-all ${
                                     active
                                       ? 'bg-forge-blue text-white border-forge-blue shadow-sm'
@@ -815,14 +912,15 @@ export default function ContactPage() {
                               )
                             })}
                           </div>
-                          {errors.scopes && <p className="text-xs text-red-500 mt-2">{errors.scopes}</p>}
+                          {errors.scopes && <p id="contact-scopes-err" role="alert" className="text-xs text-red-500 mt-2">{errors.scopes}</p>}
                         </div>
 
                         <div>
-                          <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
+                          <label htmlFor="contact-barrier" className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
                             What is your primary commercial hurdle right now?
                           </label>
                           <select
+                            id="contact-barrier"
                             value={form.primaryBarrier}
                             onChange={e => setForm({ ...form, primaryBarrier: e.target.value })}
                             className="w-full bg-white border border-neutral-300 rounded-xl px-4 py-3 text-sm text-forge-ink focus:outline-none focus:border-forge-blue focus:ring-1 focus:ring-forge-blue transition-all"
@@ -835,18 +933,27 @@ export default function ContactPage() {
                         </div>
 
                         <div>
-                          <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
+                          <label htmlFor="contact-notes" className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-2">
                             What are you looking to achieve? *
                           </label>
                           <textarea
+                            id="contact-notes"
                             required
+                            aria-required="true"
+                            aria-invalid={Boolean(errors.projectNotes)}
+                            aria-describedby={errors.projectNotes ? "contact-notes-err" : undefined}
                             rows={4}
                             value={form.projectNotes}
-                            onChange={e => setForm({ ...form, projectNotes: e.target.value })}
+                            onChange={e => {
+                              setForm({ ...form, projectNotes: e.target.value })
+                              if (errors.projectNotes) setErrors(prev => ({ ...prev, projectNotes: undefined }))
+                            }}
                             placeholder="Share a bit about your goals, challenges, or what you have in mind..."
-                            className="w-full bg-white border border-neutral-300 rounded-xl p-4 text-sm text-forge-ink focus:outline-none focus:border-forge-blue focus:ring-1 focus:ring-forge-blue transition-all"
+                            className={`w-full bg-white border rounded-xl p-4 text-sm text-forge-ink focus:outline-none focus:ring-1 transition-all ${
+                              errors.projectNotes ? 'border-red-400 focus:border-red-500 focus:ring-red-400' : 'border-neutral-300 focus:border-forge-blue focus:ring-forge-blue'
+                            }`}
                           />
-                          {errors.projectNotes && <p className="text-xs text-red-500 mt-1">{errors.projectNotes}</p>}
+                          {errors.projectNotes && <p id="contact-notes-err" role="alert" className="text-xs text-red-500 mt-1">{errors.projectNotes}</p>}
                         </div>
 
                         <div className="flex justify-between items-center pt-4">
@@ -859,13 +966,7 @@ export default function ContactPage() {
                           </button>
                           <button
                             type="button"
-                            onClick={() => {
-                              if (form.scopes.length === 0 || !form.projectNotes.trim()) {
-                                validate()
-                                return
-                              }
-                              setStep(3)
-                            }}
+                            onClick={handleStep2Next}
                             className="px-8 py-3.5 rounded-full bg-forge-blue text-white text-sm font-semibold hover:bg-forge-blue-hover transition-all flex items-center gap-2"
                           >
                             Next Step <span aria-hidden="true">→</span>
@@ -877,10 +978,10 @@ export default function ContactPage() {
                     {/* Step 3: Budget & Timeline */}
                     {step === 3 && (
                       <div className="space-y-6">
-                        <div>
-                          <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-3">
+                        <fieldset>
+                          <legend className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-3">
                             Anticipated Investment Range
-                          </label>
+                          </legend>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {BUDGET_OPTIONS.map(b => (
                               <label
@@ -906,17 +1007,18 @@ export default function ContactPage() {
                               </label>
                             ))}
                           </div>
-                        </div>
+                        </fieldset>
 
-                        <div>
-                          <label className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-3">
+                        <fieldset>
+                          <legend className="block text-xs font-bold uppercase tracking-wider text-forge-ink mb-3">
                             Target Launch Window
-                          </label>
+                          </legend>
                           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                             {LAUNCH_OPTIONS.map(l => (
                               <button
                                 key={l.id}
                                 type="button"
+                                aria-pressed={form.launchWindow === l.id}
                                 onClick={() => setForm({ ...form, launchWindow: l.id })}
                                 className={`p-3 rounded-xl border text-xs font-semibold transition-all ${
                                   form.launchWindow === l.id
@@ -928,7 +1030,7 @@ export default function ContactPage() {
                               </button>
                             ))}
                           </div>
-                        </div>
+                        </fieldset>
 
                         <div className="flex justify-between items-center pt-4 flex-wrap gap-4">
                           <button
@@ -971,21 +1073,6 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-
-        {/* Bottom bar matching mockup 03.png */}
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto pt-10">
-          <div className="flex flex-col sm:flex-row items-center justify-between text-xs text-forge-secondary border-t border-neutral-200/80 pt-6 gap-4">
-            <div className="flex items-center gap-2">
-              <span className="font-display font-bold tracking-wider text-forge-ink uppercase">FORTEX FORGE</span>
-            </div>
-            <div className="text-neutral-400">
-              Strategy-led. Results-driven. <span className="mx-2">—</span>
-            </div>
-            <div className="text-forge-secondary">
-              Your brand's next chapter starts here.
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
@@ -995,7 +1082,7 @@ export default function ContactPage() {
           Reference: Reference mockups/contact page/04.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
+        className="relative py-16 sm:py-24 lg:py-28 bg-white border-b border-forge-border overflow-hidden min-h-0 lg:min-h-[920px] flex flex-col justify-between"
         aria-labelledby="other-ways-heading"
       >
         {/* Full-bleed alternative contact background artwork */}
@@ -1134,14 +1221,6 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-
-        {/* Bottom bar matching mockup 04.png */}
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto pt-10">
-          <div className="flex items-center justify-between text-xs text-forge-secondary border-t border-neutral-200/80 pt-6">
-            <span className="font-display font-bold tracking-wider text-forge-ink uppercase">FORTEX FORGE</span>
-            <span className="text-neutral-400">Forging Absolute Clarity</span>
-          </div>
-        </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
@@ -1151,7 +1230,7 @@ export default function ContactPage() {
           Reference: Reference mockups/contact page/05.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-t border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
+        className="relative py-16 sm:py-24 lg:py-28 bg-white border-t border-forge-border overflow-hidden min-h-0 lg:min-h-[920px]"
         aria-labelledby="closing-thought-heading"
       >
         {/* Full-bleed closing background artwork */}
@@ -1251,14 +1330,6 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Bottom bar matching mockup 05.png */}
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto pt-10">
-          <div className="flex items-center justify-between text-xs text-forge-secondary border-t border-neutral-200/80 pt-6">
-            <span className="font-display font-bold tracking-wider text-forge-ink uppercase">FORTEX FORGE</span>
-            <span className="text-neutral-400">Forging Absolute Clarity</span>
           </div>
         </div>
       </section>

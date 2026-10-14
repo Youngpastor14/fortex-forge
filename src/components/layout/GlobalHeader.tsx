@@ -133,7 +133,7 @@ export default function GlobalHeader() {
               {/* Mobile Hamburger */}
               <button
                 type="button"
-                className="lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-md -mr-2
+                className="lg:hidden flex flex-col justify-center items-center w-11 h-11 min-w-[44px] min-h-[44px] rounded-lg -mr-2
                            transition-colors duration-fast hover:bg-forge-surface
                            focus-visible:outline-2 focus-visible:outline-forge-blue focus-visible:outline-offset-2"
                 onClick={handleMobileToggle}

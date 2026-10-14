@@ -94,7 +94,7 @@ const faqItems = [
     id: 'faq-02',
     num: '02',
     q: 'How long does a typical project take?',
-    a: 'A full comprehensive system deployment takes exactly 6 weeks from kickoff discovery to final website launch and brand asset handoff.',
+    a: 'Our focused brand sprint runs across 6 weeks with a Week 7 launch phase. Full bespoke brand and website systems typically run 8–12 weeks depending on scope depth and asset deliverables.',
   },
   {
     id: 'faq-03',
@@ -148,6 +148,7 @@ function FaqItem({ item, isOpen, onToggle }: {
   return (
     <div className="bg-white/95 backdrop-blur-sm rounded-xl border border-forge-border shadow-sm overflow-hidden">
       <button
+        id={`${item.id}-btn`}
         type="button"
         className="w-full flex items-center justify-between gap-4 text-left px-6 py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forge-blue focus-visible:ring-offset-2 rounded-xl"
         aria-expanded={isOpen}
@@ -183,6 +184,7 @@ function FaqItem({ item, isOpen, onToggle }: {
         id={`${item.id}-body`}
         role="region"
         aria-labelledby={`${item.id}-btn`}
+        hidden={!isOpen}
         className={[
           'overflow-hidden transition-all duration-200 motion-reduce:transition-none',
           isOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0',
@@ -213,26 +215,27 @@ export default function HomePage() {
           Protected by white-to-transparent gradient overlay
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative min-h-[640px] lg:min-h-[760px] flex flex-col justify-between pt-16 pb-12 overflow-hidden bg-white"
+        className="relative min-h-[560px] lg:min-h-[760px] flex flex-col justify-between pt-12 sm:pt-16 pb-12 overflow-hidden bg-white"
         id="hero"
         aria-labelledby="hero-heading"
       >
-        {/* Atmospheric background — monolith bleeds from right (Desktop only) */}
+        {/* Atmospheric background — single responsive layer integrated behind section */}
         <div
-          className="hidden lg:block absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
+          className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
         >
-          <img
-            src="/assets/home/hero-bg.webp"
+          <ResponsiveImage
+            desktopSrc="/assets/home/hero-bg.webp"
+            mobileSrc="/assets/home/01-hero-mobile.webp"
             alt=""
-            className="absolute right-0 top-0 w-[62%] h-full object-contain object-right-bottom mix-blend-multiply opacity-100"
+            className="absolute inset-0 w-full h-full object-contain object-bottom sm:object-right-bottom lg:w-[62%] lg:left-auto lg:right-0 lg:top-0 mix-blend-multiply opacity-35 sm:opacity-60 lg:opacity-100"
             fetchPriority="high"
+            loading="eager"
             decoding="async"
-            width={900}
-            height={760}
           />
-          {/* White gradient — protects left copy */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent w-1/2 pointer-events-none" />
+          {/* Subtle gradient overlays to guarantee copy contrast */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent lg:hidden pointer-events-none" />
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent w-1/2 pointer-events-none" />
         </div>
 
         {/* Hero copy — left column */}
@@ -261,16 +264,6 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-
-          {/* Mobile Hero Scene Asset — positioned below copy matching mobile mockup (01-hero-cost-proof.webp) */}
-          <div className="lg:hidden mt-8 -mb-4 w-full max-w-sm mx-auto aspect-[4/5] relative flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
-            <img
-              src="/assets/home/01-hero-mobile.webp"
-              alt=""
-              className="w-full h-full object-contain object-bottom drop-shadow-md"
-              fetchPriority="high"
-            />
-          </div>
         </div>
 
         {/* Client proof ribbon — grounded at base of hero */}
@@ -297,11 +290,11 @@ export default function HomePage() {
           section annotation footer
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-24 lg:py-32 bg-white relative border-t border-forge-border overflow-hidden"
+        className="py-16 sm:py-24 lg:py-32 bg-white relative border-t border-forge-border overflow-hidden"
         id="services"
         aria-labelledby="hidden-cost-heading"
       >
-        {/* Fractured mark — atmospheric right bleed */}
+        {/* Fractured mark — single responsive background layer */}
         <div
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
@@ -310,11 +303,12 @@ export default function HomePage() {
             desktopSrc="/assets/home/02-hidden-cost.webp"
             mobileSrc="/assets/home/02-hidden-cost-mobile.webp"
             alt=""
-            className="absolute right-[-10%] sm:right-0 bottom-0 w-full sm:w-[75%] lg:w-[58%] h-full object-contain object-right-bottom mix-blend-multiply opacity-85 sm:opacity-95 lg:opacity-100"
+            className="absolute right-0 bottom-0 w-full sm:w-[75%] lg:w-[58%] h-full object-contain object-bottom sm:object-right-bottom mix-blend-multiply opacity-35 sm:opacity-75 lg:opacity-100"
             loading="lazy"
             decoding="async"
           />
-          {/* White gradient — protects left copy (desktop only) */}
+          {/* Protective scrim for mobile and desktop readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent lg:hidden pointer-events-none" />
           <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent w-1/2 pointer-events-none" />
 
           {/* Blueprint annotations — large screens only, purely decorative */}
@@ -373,23 +367,8 @@ export default function HomePage() {
             >
               Stop Leaving Money Behind <span aria-hidden="true" className="text-xs">↗</span>
             </Link>
-
-            {/* Mobile Visual Asset for Hidden Cost */}
-            <div className="lg:hidden mt-8 w-full max-w-xs mx-auto aspect-square relative flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
-              <img
-                src="/assets/home/02-hidden-cost-mobile.webp"
-                alt=""
-                className="w-full h-full object-contain drop-shadow-sm"
-                loading="lazy"
-              />
-            </div>
           </div>
 
-          {/* Section annotation footer */}
-          <div className="mt-28 pt-6 flex items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-100">
-            <span>UNCLEAR BRANDS LOSE GROWTH.</span>
-            <span>CLARITY CHANGES EVERYTHING.</span>
-          </div>
         </div>
       </section>
 
@@ -478,9 +457,6 @@ export default function HomePage() {
             >
               See Our Work ↗
             </Link>
-            <span className="text-[10px] tracking-widest uppercase text-neutral-400 font-semibold mt-8">
-              STRATEGY BUILDS TRUST. RESULTS KEEP IT.
-            </span>
           </div>
         </div>
       </section>
@@ -488,12 +464,13 @@ export default function HomePage() {
       {/* ════════════════════════════════════════════════════════════════════
           4. OUR APPROACH (WHAT ACTUALLY WORKS)
           Full background composition: 04-our-approach.webp spans the section.
-          Header centered in top sky space, 3 transformation blocks displayed
-          in center, 3-discipline columns aligned beneath on reflective floor.
+          Header centered in top white/light space above stones.
+          01/02/03 numerals sit on each stone via absolute positioning.
+          3-discipline columns aligned beneath on reflective floor.
           Reference: Reference mockups/home page/home 3rd sec.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-24 lg:py-32 bg-white border-t border-forge-border overflow-hidden min-h-[900px] lg:min-h-[1050px] flex flex-col justify-between"
+        className="relative py-16 sm:py-24 lg:py-32 bg-white border-t border-forge-border overflow-hidden min-h-0 lg:min-h-[960px]"
         id="approach"
         aria-labelledby="what-works-heading"
       >
@@ -506,15 +483,19 @@ export default function HomePage() {
             desktopSrc="/assets/home/04-our-approach.webp"
             mobileSrc="/assets/home/04-our-approach-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-center mix-blend-multiply"
+            className="w-full h-full object-cover object-center mix-blend-multiply opacity-40 sm:opacity-70 lg:opacity-100"
             loading="lazy"
             decoding="async"
           />
+          {/* Strong top scrim so heading text always reads clearly on mobile & desktop */}
+          <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-white via-white/90 to-transparent pointer-events-none" />
+          {/* Bottom scrim to protect content columns text */}
+          <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-white/95 via-white/60 to-transparent pointer-events-none" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mb-auto">
-          {/* Centered header in top white space */}
-          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+          {/* Centered header — sits in top protected zone */}
+          <div className="text-center max-w-3xl mx-auto mb-4 sm:mb-6">
             <Eyebrow className="mb-5" center>OUR APPROACH</Eyebrow>
             <h2
               id="what-works-heading"
@@ -522,32 +503,28 @@ export default function HomePage() {
             >
               What Actually <span className="text-forge-blue">Works.</span>
             </h2>
-            <p className="text-base sm:text-lg text-forge-secondary leading-relaxed max-w-2xl mx-auto">
+          </div>
+
+          {/* Subheading — protected in its own band above the stone zone */}
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+            <p className="text-base sm:text-lg text-forge-secondary leading-relaxed">
               We don't just make things look good. We build strategic systems that help you attract, convince and retain the right clients.
             </p>
           </div>
 
-          {/* Dedicated spacing where the 3 monoliths in the background image live */}
-          <div className="relative w-full max-w-5xl mx-auto h-40 sm:h-56 lg:h-72 my-2 pointer-events-none select-none flex items-center justify-between">
-            {/* Overlay numbers 01, 02, 03 on top of the monoliths matching mockup */}
-            <div className="hidden lg:grid grid-cols-3 w-full text-center font-display font-bold text-3xl lg:text-4xl text-neutral-400/90 tracking-tight">
-              <span className="translate-y-2">01</span>
-              <span className="translate-y-2">02</span>
-              <span className="translate-y-2">03</span>
-            </div>
-            {/* Mobile-visible 3 monolith stages image */}
-            <div className="lg:hidden w-full h-full flex items-center justify-center">
-              <img
-                src="/assets/home/04-our-approach-mobile.webp"
-                alt="Three disciplines: Positioning, Identity, Website"
-                className="w-full h-full object-contain object-bottom"
-                loading="lazy"
-              />
-            </div>
+          {/* Stone zone — large gap where the 3 monoliths in the background image live.
+              01 / 02 / 03 numerals are absolutely positioned to sit on each stone.
+              Stone 1 (left):   ~17% from left
+              Stone 2 (centre): ~50% from left (hatched face)
+              Stone 3 (right):  ~83% from left */}
+          <div className="relative w-full max-w-5xl mx-auto h-20 sm:h-32 lg:h-52 pointer-events-none select-none" aria-hidden="true">
+            <span className="hidden lg:block absolute font-display font-bold text-4xl text-white/70 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] leading-none" style={{ left: '10%', bottom: '12%' }}>01</span>
+            <span className="hidden lg:block absolute font-display font-bold text-4xl text-white/70 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] leading-none" style={{ left: '46%', bottom: '18%', transform: 'translateX(-50%)' }}>02</span>
+            <span className="hidden lg:block absolute font-display font-bold text-4xl text-white/70 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] leading-none" style={{ right: '8%', bottom: '12%' }}>03</span>
           </div>
 
-          {/* 3-discipline breakdown on the reflective ground beneath the blocks */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-5xl mx-auto mt-6 mb-14">
+          {/* 3-discipline breakdown — max-w-5xl so columns align under each stone */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-0 max-w-5xl mx-auto mt-2 mb-12">
             {[
               {
                 num: '01',
@@ -570,7 +547,7 @@ export default function HomePage() {
             ].map((item) => (
               <div
                 key={item.num}
-                className="space-y-3 pt-5 border-t border-neutral-300/80 bg-white/75 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none p-5 lg:p-0 rounded-2xl lg:rounded-none"
+                className="space-y-3 pt-5 border-t border-neutral-300/80 bg-white/80 backdrop-blur-sm p-5 rounded-2xl md:rounded-none md:bg-transparent md:backdrop-blur-none lg:px-4"
               >
                 <span className="text-xs font-bold text-neutral-400 uppercase tracking-widest font-mono block">
                   {item.num}
@@ -589,27 +566,13 @@ export default function HomePage() {
           </div>
 
           {/* Centered CTA */}
-          <div className="text-center mb-10">
+          <div className="text-center pb-4">
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-forge-blue text-white text-sm font-semibold shadow-lg shadow-forge-blue/25 hover:bg-forge-blue-hover transition-all duration-200 hover:-translate-y-0.5"
             >
               Let's Build Your System <span aria-hidden="true">↗</span>
             </Link>
-          </div>
-        </div>
-
-        {/* Bottom annotations */}
-        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mt-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-3">
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
-              STRATEGY. DESIGN. TECHNOLOGY. BUILT FOR REAL GROWTH.
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
-              FROM CLARITY TO OPPORTUNITY.
-            </span>
           </div>
         </div>
       </section>
@@ -622,7 +585,7 @@ export default function HomePage() {
           and deliverables on reflective floor.
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-t border-forge-border overflow-hidden min-h-[960px] lg:min-h-[1080px] flex flex-col justify-between"
+        className="relative py-16 sm:py-20 lg:py-28 bg-white border-t border-forge-border overflow-hidden min-h-0 lg:min-h-[1000px]"
         id="process"
         aria-labelledby="process-heading"
       >
@@ -635,7 +598,7 @@ export default function HomePage() {
             desktopSrc="/assets/home/05-how-we-work.webp"
             mobileSrc="/assets/home/05-how-we-work-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-center mix-blend-multiply"
+            className="w-full h-full object-cover object-center mix-blend-multiply opacity-40 sm:opacity-75 lg:opacity-100"
             loading="lazy"
             decoding="async"
           />
@@ -663,7 +626,7 @@ export default function HomePage() {
 
             <div className="flex flex-col sm:flex-row items-start lg:items-center justify-between lg:justify-end gap-6 lg:gap-10 pb-1">
               <p className="text-forge-secondary text-sm sm:text-base leading-relaxed max-w-sm">
-                In just 6 weeks, we take you from confusion to a clear, credible brand that attracts the right clients and positions you for real growth.
+                In our core 6-week brand sprint (with a Week 7 go-live launch), we take you from confusion to a clear, credible brand that attracts the right clients and positions you for real growth.
               </p>
               <div className="hidden lg:flex items-start gap-2.5 shrink-0 text-left border-l-[1.5px] border-forge-blue pl-2.5">
                 <div className="text-[10px] font-bold uppercase tracking-wider text-forge-ink/70 leading-snug">
@@ -698,7 +661,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Middle spacing revealing the rocks & connecting blue line from background */}
-                <div className="h-44 sm:h-52 lg:h-60 xl:h-64 pointer-events-none select-none" aria-hidden="true" />
+                <div className="h-6 sm:h-12 lg:h-52 xl:h-60 pointer-events-none select-none" aria-hidden="true" />
 
                 {/* Bottom: body text + bullet points on marble floor */}
                 <div className="pt-2">
@@ -728,25 +691,6 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-
-        {/* Bottom annotations */}
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-4">
-            <div className="flex items-start gap-2 text-left border-l-[1.5px] border-forge-blue pl-2.5">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 leading-tight">
-                FROM STRATEGY<br />TO IMPACT.
-              </div>
-            </div>
-            <div className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">
-              IDEAS ARE EVERYWHERE. CLARITY IS RARE.
-            </div>
-            <div className="flex items-start gap-2 text-left border-l-[1.5px] border-forge-blue pl-2.5">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 leading-tight">
-                BUILT WITH INTENTION.<br />FOR WHAT'S NEXT.
-              </div>
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
@@ -757,7 +701,7 @@ export default function HomePage() {
           Reference: Reference mockups/home page/home 5th sec.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-24 lg:py-32 bg-white border-t border-forge-border overflow-hidden min-h-[820px] lg:min-h-[960px] flex flex-col justify-between"
+        className="relative py-16 sm:py-24 lg:py-32 bg-white border-t border-forge-border overflow-hidden min-h-0 lg:min-h-[900px]"
         id="consequences"
         aria-labelledby="consequences-heading"
       >
@@ -770,7 +714,7 @@ export default function HomePage() {
             desktopSrc="/assets/home/06-consequence-with-lettering.webp"
             mobileSrc="/assets/home/06-consequence-with-lettering.webp"
             alt=""
-            className="w-full h-full object-cover object-bottom mix-blend-multiply"
+            className="w-full h-full object-cover object-bottom mix-blend-multiply opacity-35 sm:opacity-75 lg:opacity-100"
             loading="lazy"
             decoding="async"
           />
@@ -801,7 +745,7 @@ export default function HomePage() {
           </div>
 
           {/* Period timeline headers positioned above the monolith columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto pt-2 pb-36 sm:pb-52 lg:pb-72">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto pt-2 pb-10 sm:pb-32 lg:pb-72">
             {/* 3 Months */}
             <div className="space-y-1.5">
               <span className="text-xs font-bold uppercase tracking-widest text-forge-ink font-mono block">
@@ -853,20 +797,6 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-
-        {/* Bottom annotations */}
-        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mt-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-3">
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
-              UNCLEAR BRANDS PAY A SILENT PRICE.
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
-              CLARITY CHANGES EVERYTHING.
-            </span>
-          </div>
-        </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
@@ -877,7 +807,7 @@ export default function HomePage() {
           Reference: Reference mockups/home page/home 6th sec.png
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="py-24 lg:py-32 bg-white border-t border-forge-border relative overflow-hidden min-h-[920px] flex flex-col justify-between"
+        className="py-16 sm:py-24 lg:py-32 bg-white border-t border-forge-border relative overflow-hidden min-h-0 lg:min-h-[880px]"
         id="faq"
         aria-labelledby="faq-heading"
       >
@@ -890,7 +820,7 @@ export default function HomePage() {
             desktopSrc="/assets/home/07-faq.webp"
             mobileSrc="/assets/home/07-faq-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-right mix-blend-multiply"
+            className="w-full h-full object-cover object-right mix-blend-multiply opacity-40 sm:opacity-75 lg:opacity-100"
             loading="lazy"
             decoding="async"
           />
@@ -959,20 +889,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
-        {/* Bottom annotations */}
-        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full mt-auto pt-12">
-          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-3">
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
-              GOOD QUESTIONS BUILD GREAT BRANDS.
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-3 bg-forge-blue inline-block rounded-full" aria-hidden="true" />
-              LET'S MAKE IT CLEAR.
-            </span>
-          </div>
-        </div>
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════
@@ -981,7 +897,7 @@ export default function HomePage() {
           on the right and reflective wet marble floor matching home 7th sec.png.
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative py-20 lg:py-28 bg-white border-t border-forge-border overflow-hidden min-h-[820px] lg:min-h-[920px] flex flex-col justify-between"
+        className="relative py-16 sm:py-20 lg:py-28 bg-white border-t border-forge-border overflow-hidden min-h-0 lg:min-h-[860px]"
         id="contact"
         aria-labelledby="final-cta-heading"
       >
@@ -994,7 +910,7 @@ export default function HomePage() {
             desktopSrc="/assets/home/08-closing.webp"
             mobileSrc="/assets/home/08-closing-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply"
+            className="w-full h-full object-cover object-bottom lg:object-right-bottom mix-blend-multiply opacity-40 sm:opacity-75 lg:opacity-100"
             loading="lazy"
             decoding="async"
           />
@@ -1015,16 +931,6 @@ export default function HomePage() {
                 BETTER BRANDS.<br />BRIGHTER OPPORTUNITIES.
               </div>
             </div>
-          </div>
-
-          {/* Mobile Closing Emblem Asset — matches mobile mockup (03-faq-closing-footer.webp) */}
-          <div className="lg:hidden mb-8 w-full max-w-xs mx-auto aspect-[4/5] relative flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
-            <img
-              src="/assets/home/08-closing-mobile.webp"
-              alt=""
-              className="w-full h-full object-contain object-bottom drop-shadow-md"
-              loading="lazy"
-            />
           </div>
 
           {/* Left copy block */}
@@ -1089,22 +995,6 @@ export default function HomePage() {
                 <div className="text-[11px] font-bold uppercase tracking-wider text-forge-ink leading-tight">
                   A PARTNER<br />IN YOUR GROWTH
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom annotation footer matching mockup */}
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 relative z-10 w-full mt-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] uppercase tracking-widest text-neutral-400 font-semibold border-t border-neutral-200/80 pt-6 gap-4">
-            <div className="flex items-start gap-2 text-left border-l-[1.5px] border-forge-blue pl-2.5">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 leading-tight">
-                STRATEGY TODAY.<br />A STRONGER TOMORROW.
-              </div>
-            </div>
-            <div className="flex items-start gap-2 text-left border-l-[1.5px] border-forge-blue pl-2.5">
-              <div className="text-[10px] font-bold uppercase tracking-wider text-neutral-400 leading-tight">
-                LET'S FORGE<br />WHAT'S NEXT.
               </div>
             </div>
           </div>

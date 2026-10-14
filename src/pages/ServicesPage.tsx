@@ -193,6 +193,7 @@ function FaqItem({
   return (
     <div className="border-b border-forge-border last:border-b-0">
       <button
+        id={`${item.id}-btn`}
         type="button"
         className="w-full flex items-center justify-between gap-4 py-5 text-left cursor-pointer hover:text-forge-blue transition-colors group"
         aria-expanded={isOpen}
@@ -215,6 +216,7 @@ function FaqItem({
         id={`${item.id}-panel`}
         role="region"
         aria-labelledby={`${item.id}-btn`}
+        hidden={!isOpen}
         className={`overflow-hidden transition-all duration-200 motion-reduce:transition-none ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
       >
         <p className="text-sm text-forge-secondary leading-relaxed pb-5 max-w-2xl">{item.a}</p>
@@ -232,7 +234,7 @@ export default function ServicesPage() {
           1. HERO — Full-Bleed Studio Desk Background (service hero (2).png)
       ════════════════════════════════════════════════════════════════════ */}
       <section
-        className="relative w-full overflow-hidden min-h-[92vh] flex flex-col justify-between border-b border-forge-border"
+        className="relative w-full overflow-hidden min-h-0 py-16 sm:py-24 lg:py-32 lg:min-h-[92vh] flex flex-col justify-between border-b border-forge-border"
         aria-labelledby="services-hero-heading"
       >
         {/* Full-bleed background */}
@@ -241,14 +243,17 @@ export default function ServicesPage() {
             desktopSrc="/assets/services/01-hero.webp"
             mobileSrc="/assets/services/01-hero-mobile.webp"
             alt=""
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-bottom sm:object-center opacity-35 sm:opacity-75 lg:opacity-100"
+            fetchPriority="high"
+            loading="eager"
           />
-          {/* Directional scrim (Desktop) */}
+          {/* Directional scrim for contrast */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-transparent lg:hidden pointer-events-none" />
           <div className="hidden lg:block absolute inset-0 bg-gradient-to-r lg:from-white/80 lg:via-white/40 lg:to-transparent" />
         </div>
 
         {/* Hero copy */}
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 pt-20 md:pt-32 pb-12 flex-1 flex flex-col justify-center items-center text-center">
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-12 pt-16 md:pt-32 pb-12 flex-1 flex flex-col justify-center items-center text-center">
           <div className="max-w-3xl flex flex-col items-center">
             <span className="inline-block text-xs font-bold text-forge-blue uppercase tracking-[0.2em] mb-4">
               OUR SERVICES
@@ -279,16 +284,6 @@ export default function ServicesPage() {
               >
                 Talk to Us
               </Link>
-            </div>
-
-            {/* Mobile Hero Studio Scene Asset — matches mobile mockup (01-hero-problem-overview.webp) */}
-            <div className="lg:hidden mb-8 w-full max-w-md mx-auto aspect-[16/10] relative rounded-2xl overflow-hidden shadow-sm flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
-              <img
-                src="/assets/services/01-hero-mobile.webp"
-                alt=""
-                className="w-full h-full object-cover object-center"
-                fetchPriority="high"
-              />
             </div>
 
             {/* Floating translucent assurance badges */}

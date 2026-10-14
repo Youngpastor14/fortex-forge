@@ -27,7 +27,5 @@ export const footerNav = {
   ],
   connect: [
     { label: 'LinkedIn',    href: 'https://www.linkedin.com/company/fortexforge/' },
-    { label: 'Instagram',   href: '#' },  // TODO: update with real URL
-    { label: 'X / Twitter', href: '#' },  // TODO: update with real URL
   ],
 }
