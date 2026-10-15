@@ -219,7 +219,7 @@ export default function HomePage() {
         id="hero"
         aria-labelledby="hero-heading"
       >
-        {/* Atmospheric background — single responsive layer integrated behind section */}
+        {/* Atmospheric background — full-bleed on mobile, right-panel on desktop */}
         <div
           className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
           aria-hidden="true"
@@ -228,15 +228,15 @@ export default function HomePage() {
             desktopSrc="/assets/home/hero-bg.webp"
             mobileSrc="/assets/home/01-hero-mobile.webp"
             alt=""
-            className="absolute inset-0 w-full h-full object-cover object-center sm:object-right-bottom lg:object-right lg:object-top mix-blend-multiply opacity-60 sm:opacity-75 lg:opacity-100"
+            className="absolute inset-0 w-full h-full object-cover object-center sm:object-right-bottom lg:object-right opacity-60 sm:opacity-75 lg:opacity-100 mix-blend-multiply lg:mix-blend-normal"
             fetchPriority="high"
             loading="eager"
             decoding="async"
           />
           {/* Mobile: strong top-to-bottom white wash so copy always reads clearly */}
           <div className="absolute inset-0 bg-gradient-to-b from-white via-white/75 to-white/20 lg:hidden pointer-events-none" />
-          {/* Desktop: left-side white fade for left-column copy */}
-          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent w-[55%] pointer-events-none" />
+          {/* Desktop: left-side white fade so copy reads over the white part of the image */}
+          <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-white/60 via-white/30 to-transparent w-[50%] pointer-events-none" />
         </div>
 
         {/* Hero copy — left column */}
